@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="10" height="10" tilewidth="50" tileheight="50">
+ <tileset firstgid="1" name="robo3d" tilewidth="50" tileheight="50">
+  <image source="tiles.png" width="250" height="150"/>
+ </tileset>
+ <layer name="Ground" width="10" height="10">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NkYGBgJBKzovGZgZiJgWEBDAP5C5DlYHwmNH1MqGYkAPEBkHoWIJsNyRx0fSDMiWYOFw51QLED6PYhq+NCsp8F4f4DuNQR8gcb1M/sSOZgcwvMTuRwQwq/AwAiwNuUkAEAAA==
+  </data>
+ </layer>
+</map>
