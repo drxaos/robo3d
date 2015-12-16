@@ -4,22 +4,22 @@ import com.jme3.asset.AssetManager;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.ViewPort;
 
-public class Environment {
+public class Env {
 
-    private Game3DRenderer renderer;
+    private App app;
     private AssetManager assetManager;
     private ViewPort viewPort;
     private Camera cam;
 
-    public Environment(Game3DRenderer renderer, AssetManager assetManager, ViewPort viewPort, Camera cam) {
-        this.renderer = renderer;
+    public Env(App app, AssetManager assetManager, ViewPort viewPort, Camera cam) {
+        this.app = app;
         this.assetManager = assetManager;
         this.viewPort = viewPort;
         this.cam = cam;
     }
 
-    public Game3DRenderer getRenderer() {
-        return renderer;
+    public App getApp() {
+        return app;
     }
 
     public AssetManager getAssetManager() {

@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="10" height="10" tilewidth="50" tileheight="50">
- <tileset firstgid="1" name="robo3d" tilewidth="50" tileheight="50">
-  <image source="tiles.png" width="250" height="150"/>
+ <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50">
+  <image source="tileset-roads.png" width="250" height="50"/>
+ </tileset>
+ <tileset firstgid="6" name="walls" tilewidth="50" tileheight="50">
+  <image source="tileset-walls.png" width="250" height="150"/>
+ </tileset>
+ <tileset firstgid="21" name="doors" tilewidth="50" tileheight="50">
+  <image source="tileset-doors.png" width="250" height="50"/>
  </tileset>
  <layer name="Ground" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NkYGBgJBKzovGZgZiJgWEBDAP5C5DlYHwmNH1MqGYkAPEBkHoWIJsNyRx0fSDMiWYOFw51QLED6PYhq+NCsp8F4f4DuNQR8gcb1M/sSOZgcwvMTuRwQwq/AwAiwNuUkAEAAA==
+   H4sIAAAAAAAAA3WQQQ6AIAwEKybqAQ2oD+RpfUqfZrElrgkcJi10SjYEIpqAVVmIuKI9t/sZnGQOZaO60vNOc1mr3NrvMBu8VxQZvef5yvbl63qQ67fbvOy5LuslDbwE+fCMBN0/bM4VPXPseJ6r+H+8NUP+xgN7eOEnkAEAAA==
   </data>
  </layer>
 </map>

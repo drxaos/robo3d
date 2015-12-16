@@ -1,6 +1,6 @@
 package com.github.drxaos.robo3d.graphics.map;
 
-import com.github.drxaos.robo3d.graphics.Environment;
+import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.Utils;
 import com.github.drxaos.robo3d.graphics.models.GroundTileModel;
 import com.github.drxaos.robo3d.tmx.TmxLayer;
@@ -14,10 +14,10 @@ import com.jme3.util.SkyFactory;
 
 public class MapLoader {
 
-    public void loadTo(Environment environment) {
-        AssetManager assetManager = environment.getAssetManager();
-        Node sceneNode = environment.getRenderer().getSceneNode();
-        ViewPort viewPort = environment.getViewPort();
+    public void loadTo(Env env) {
+        AssetManager assetManager = env.getAssetManager();
+        Node sceneNode = env.getApp().getSceneNode();
+        ViewPort viewPort = env.getViewPort();
 
         Spatial sky = SkyFactory.createSky(assetManager, "Textures/Sky/Bright/BrightSky.dds", false);
         sky.setLocalScale(350);

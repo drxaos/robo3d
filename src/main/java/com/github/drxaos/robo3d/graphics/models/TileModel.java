@@ -50,6 +50,7 @@ public class TileModel extends StaticModel {
     public TileModel(AssetManager am, String path, List<? extends Element> allElements, TileType type) {
         super(am, path);
 
+        // group elements
         for (Element element : allElements) {
             Spatial child = this.getChild(element.name());
             if (child == null) {
@@ -62,12 +63,21 @@ public class TileModel extends StaticModel {
                 Node node = nodes.get(element.getElementType());
                 if (node == null) {
                     node = new Node("Group_" + element.getElementType().name());
-                    this.attachChild(node);
                     nodes.put(element.getElementType(), node);
                 }
                 node.attachChild(child);
                 fixLighting(child, element.getElementType());
             }
+        }
+
+        // remove all
+        for (Spatial child : this.getChildren()) {
+            child.removeFromParent();
+        }
+
+        // attach groups
+        for (Node node : nodes.values()) {
+            this.attachChild(node);
         }
     }
 }

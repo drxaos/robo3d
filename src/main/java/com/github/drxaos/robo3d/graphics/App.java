@@ -7,7 +7,7 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.scene.CameraNode;
 import com.jme3.scene.Node;
 
-public class Game3DRenderer extends SimpleApplication {
+public class App extends SimpleApplication {
 
     private boolean mDisplayGraphicalStats = false;
     private Node mSceneNode;
@@ -15,9 +15,9 @@ public class Game3DRenderer extends SimpleApplication {
     private FutureUpdater mFutureUpdater;
     private MapLoader mMapLoader;
     private Lights mLights;
-    private Environment environment;
+    private Env env;
 
-    public Game3DRenderer() {
+    public App() {
         super();
         mMapLoader = new MapLoader();
         mLights = new Lights();
@@ -46,10 +46,10 @@ public class Game3DRenderer extends SimpleApplication {
         mSceneNode = new Node("Scene");
         rootNode.attachChild(mSceneNode);
 
-        environment = new Environment(this, assetManager, viewPort, cam);
+        env = new Env(this, assetManager, viewPort, cam);
 
-        mMapLoader.loadTo(environment);
-        mLights.setLights(environment);
+        mMapLoader.loadTo(env);
+        mLights.setLights(env);
     }
 
     public void toggleGraphicsStats() {
