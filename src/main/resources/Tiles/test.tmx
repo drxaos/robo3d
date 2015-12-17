@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="10" height="10" tilewidth="50" tileheight="50">
- <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="50" tileheight="50" nextobjectid="11">
+ <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="5" columns="5">
   <image source="tileset-roads.png" trans="ffffff" width="250" height="50"/>
  </tileset>
- <tileset firstgid="6" name="walls" tilewidth="50" tileheight="50">
+ <tileset firstgid="6" name="walls" tilewidth="50" tileheight="50" tilecount="15" columns="5">
   <image source="tileset-walls.png" trans="00ff00" width="250" height="150"/>
  </tileset>
- <tileset firstgid="21" name="doors" tilewidth="50" tileheight="50">
+ <tileset firstgid="21" name="doors" tilewidth="50" tileheight="50" tilecount="5" columns="5">
   <image source="tileset-doors.png" trans="ffff00" width="250" height="50"/>
  </tileset>
- <tileset firstgid="26" name="roofs" tilewidth="50" tileheight="50">
+ <tileset firstgid="26" name="roofs" tilewidth="50" tileheight="50" tilecount="5" columns="5">
   <image source="tileset-roofs.png" trans="000000" width="250" height="50"/>
+ </tileset>
+ <tileset firstgid="31" name="objects" tilewidth="50" tileheight="50" tilecount="5" columns="5">
+  <image source="tileset-objects.png" trans="ff00ff" width="250" height="50"/>
  </tileset>
  <layer name="roads" width="10" height="10">
   <data encoding="base64" compression="gzip">
@@ -32,4 +35,10 @@
    H4sIAAAAAAAAA5VQgQnAMAjLHVv1Nk/zlJ7WDNsxtiosICnBhFgAaJwTMLKjAHf6EXxj5+XbqDm5V94F5Qg9Gp6Pd0FmhlQlI8+447rJ+IPsX559gfw2eenZbTr1q+8AbwgR9ZABAAA=
   </data>
  </layer>
+ <objectgroup name="objects">
+  <object id="7" name="r1" type="robot" gid="31" x="50" y="50" width="50" height="50" rotation="-90"/>
+  <object id="8" name="r2" type="robot" gid="31" x="150.958" y="401.278" width="50" height="50" rotation="180.546"/>
+  <object id="9" name="r3" type="robot" gid="31" x="426.365" y="344.677" width="50" height="50" rotation="0.822539"/>
+  <object id="10" name="r4" type="robot" gid="31" x="426.365" y="364.677" width="50" height="50" rotation="0.822539"/>
+ </objectgroup>
 </map>

@@ -96,6 +96,29 @@ public class TmxMap {
             return (value != null) ? Integer.parseInt(value) : defaultValue;
         }
 
+        /**
+         * @param attributes
+         * @param qName specifies requested attribute name
+         * @return parsed int value of specified attribute
+         * or zero if attribute is not exists.
+         */
+        private float getAttributeAsFloat(Attributes attributes, String qName) {
+            return getAttributeAsFloat(attributes, qName, 0);
+        }
+
+        /**
+         * @param attributes
+         * @param qName specifies requested attribute name
+         * @param defaultValue
+         * @return parsed {@code int} value of specified attribute
+         * or defaultValue if attribute is not exists.
+         */
+        private float getAttributeAsFloat(Attributes attributes, String qName,
+                                          float defaultValue) {
+            String value = attributes.getValue(qName);
+            return (value != null) ? Float.parseFloat(value) : defaultValue;
+        }
+
         @Override
         public void startElement(String uri, String localName, String qName,
                                  Attributes attributes) throws SAXException {
@@ -159,8 +182,9 @@ public class TmxMap {
             } else if (localName.equalsIgnoreCase("object")) {
                 if (objects != null) {
                     int gid = getAttributeAsInt(attributes, "gid");
-                    int x = getAttributeAsInt(attributes, "x");
-                    int y = getAttributeAsInt(attributes, "y");
+                    float x = getAttributeAsFloat(attributes, "x");
+                    float y = getAttributeAsFloat(attributes, "y");
+                    float rotation = getAttributeAsFloat(attributes, "rotation");
                     int w = getAttributeAsInt(attributes, "width");
                     int h = getAttributeAsInt(attributes, "height");
                     String type = attributes.getValue("type");
@@ -176,7 +200,7 @@ public class TmxMap {
                         }
                     }
 
-                    object = new TmxMapObject(name, gid, x, y, w, h, type);
+                    object = new TmxMapObject(name, gid, x, y, rotation, w, h, type);
                     objects.addObject(object);
                 }
             }

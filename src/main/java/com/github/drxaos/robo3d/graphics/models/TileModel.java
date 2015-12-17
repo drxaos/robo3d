@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TileModel extends StaticModel {
+abstract public class TileModel extends StaticModel {
     enum ElementType {
         Floor(RenderQueue.ShadowMode.Receive),
         Wall(RenderQueue.ShadowMode.CastAndReceive),
@@ -80,4 +80,12 @@ public class TileModel extends StaticModel {
             this.attachChild(node);
         }
     }
+
+    public static final Map<String, Class<? extends TileModel>> TYPES = new HashMap<String, Class<? extends TileModel>>() {{
+        put("roofs", RoofTileModel.class);
+        put("walls", WallTileModel.class);
+        put("doors", DoorTileModel.class);
+        put("roads", RoadTileModel.class);
+    }};
+
 }
