@@ -13,7 +13,7 @@ public class TileModel extends StaticModel {
     enum ElementType {
         Floor(RenderQueue.ShadowMode.Receive),
         Wall(RenderQueue.ShadowMode.CastAndReceive),
-        Ceil(RenderQueue.ShadowMode.Cast),
+        Ceil(RenderQueue.ShadowMode.CastAndReceive),
         Door(RenderQueue.ShadowMode.CastAndReceive),
         Object(RenderQueue.ShadowMode.CastAndReceive),
         Display(RenderQueue.ShadowMode.Off),

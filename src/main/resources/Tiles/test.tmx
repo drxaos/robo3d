@@ -9,14 +9,17 @@
  <tileset firstgid="21" name="doors" tilewidth="50" tileheight="50">
   <image source="tileset-doors.png" trans="ffff00" width="250" height="50"/>
  </tileset>
+ <tileset firstgid="26" name="roofs" tilewidth="50" tileheight="50">
+  <image source="tileset-roofs.png" trans="000000" width="250" height="50"/>
+ </tileset>
  <layer name="roads" width="10" height="10">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAA2NiYGBgJAIzk6mOiYEhASi2AISZ8KhjJoJNrjqgvQdgbsCnDp84LnVoZoP8uICYcMKFAXjHgVSQAQAA
   </data>
  </layer>
- <layer name="walls" width="10" height="10" opacity="0.78">
+ <layer name="walls" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA4VQQQrAIAzrqZPNzek+uKf5FJ+2yCJIV1ghhNI00YqILICK1ACoA8wrJLIBieyVkgP9sNesJk26wRmI0GfmWF33WzEr8DvA549foV8x+fs392Zuy29fvX/o9K6+c9F/6IavrWjycI/bu+905/YAUvwgtJABAAA=
+   H4sIAAAAAAAAA4VQWwrAMAjzy5WtWx+7YI/mUXq0BaZQnDAhpK0xoRIRbQATSQI4APoCCR1AUbYqC7Oek/phblJQ7LgBGXqwRH7GFbigqT9+Xf26yz+/uUNzZ3vvsvbtH7u+28yt/qYzX1/Z5WEfI9rvsuf5AOOrNKGQAQAA
   </data>
  </layer>
  <layer name="doors" width="10" height="10">
@@ -24,10 +27,9 @@
    H4sIAAAAAAAAA2NgIB6IotHUBOIMDAk0MBYFiDEwHMBi7wIqmEs1AADtZ74jkAEAAA==
   </data>
  </layer>
- <layer name="roofs" width="10" height="10" visible="0">
+ <layer name="roofs" width="10" height="10" opacity="0.29">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAWDCQAADA0iRpABAAA=
+   H4sIAAAAAAAAA5VQgQnAMAjLHVv1Nk/zlJ7WDNsxtiosICnBhFgAaJwTMLKjAHf6EXxj5+XbqDm5V94F5Qg9Gp6Pd0FmhlQlI8+447rJ+IPsX559gfw2eenZbTr1q+8AbwgR9ZABAAA=
   </data>
  </layer>
- <objectgroup name="objects" width="10" height="10"/>
 </map>
