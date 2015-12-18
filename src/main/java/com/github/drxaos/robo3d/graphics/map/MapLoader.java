@@ -26,7 +26,7 @@ public class MapLoader {
 
         try {
             assetManager.registerLoader(TmxLoader.class, "tmx");
-            TmxMap map = (TmxMap) assetManager.loadAsset("Tiles/test.tmx");
+            TmxMap map = (TmxMap) assetManager.loadAsset("Tiles/level1.tmx");
 
 
             for (TmxLayer layer : map.getLayers()) {
