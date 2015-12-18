@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="50" tileheight="50" nextobjectid="17">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="50" tileheight="50" nextobjectid="12">
  <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="5" columns="5">
   <image source="tileset-roads.png" trans="ffffff" width="250" height="50"/>
  </tileset>
@@ -22,12 +22,12 @@
  </layer>
  <layer name="walls" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA3VQWwrAMAjLlyt7desu2KP1KD3aMlBWxAohRdMEBYCFEKAlQgJw3ijBRmRlqzyw6Dv9fh1BieNCnNTfRORnfDme+c10h9Mxr365zK9F88e57bFq3/485H3Yz3x97S6Pd6zRfZP2Oe8v88ilXJABAAA=
+   H4sIAAAAAAAAA4VQWwrAMAjzy5WtWx+7YI/mUXq0BaZQnDAhpK0xoRIRbQATSQI4APoCCR1AUbYqC7Oek/phblJQ7LgBGXqwRH7GFbigqT9+Xf26yz+/uUNzZ3vvsvbtH7u+28yt/qYzX1/Z5WEfI9rvsuf5AOOrNKGQAQAA
   </data>
  </layer>
  <layer name="doors" width="10" height="10">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgIB6IotHUBBIMDAk0MBYFiDEwHMBi7wJyzBJH0ieGWw3JAADXzf/qkAEAAA==
+   H4sIAAAAAAAAA2NgIB6IotHUBOIMDAk0MBYFiDEwHMBi7wIqmEs1AADtZ74jkAEAAA==
   </data>
  </layer>
  <layer name="roofs" width="10" height="10" opacity="0.29">
@@ -36,15 +36,10 @@
   </data>
  </layer>
  <objectgroup name="objects">
-  <object id="7" name="r1" type="Robot" gid="31" x="282.612" y="127.722" width="50" height="50" rotation="-431.204"/>
-  <object id="8" name="r2" type="Robot" gid="31" x="137.61" y="433.403" width="50" height="50" rotation="-14.1862"/>
-  <object id="9" name="r3" type="Robot" gid="31" x="368.999" y="320" width="50" height="50" rotation="-270"/>
-  <object id="10" name="r4" type="Robot" gid="31" x="393" y="320" width="50" height="50" rotation="-270"/>
-  <object id="11" name="r5" type="Robot" gid="31" x="416.122" y="321" width="50" height="50" rotation="-270"/>
-  <object id="12" name="e1" type="RedRobot" gid="32" x="51.0184" y="76.9383" width="50" height="50" rotation="-92.3843"/>
-  <object id="13" name="e2" type="RedRobot" gid="32" x="51.0184" y="118.938" width="50" height="50" rotation="-92.3843"/>
-  <object id="14" name="e3" type="RedRobot" gid="32" x="52.0184" y="161.938" width="50" height="50" rotation="-92.3843"/>
-  <object id="15" name="e4" type="RedRobot" gid="32" x="50.0184" y="213.938" width="50" height="50" rotation="-92.3843"/>
-  <object id="16" name="e5" type="RedRobot" gid="32" x="53.0184" y="268.938" width="50" height="50" rotation="-92.3843"/>
+  <object id="7" name="r1" type="robot" gid="31" x="62.6116" y="122.722" width="50" height="50" rotation="-431.204"/>
+  <object id="8" name="r2" type="robot" gid="31" x="136.61" y="443.403" width="50" height="50" rotation="-14.1862"/>
+  <object id="9" name="r3" type="robot" gid="31" x="428.365" y="338.677" width="50" height="50" rotation="0.822539"/>
+  <object id="10" name="r4" type="robot" gid="31" x="428.365" y="357.677" width="50" height="50" rotation="0.822539"/>
+  <object id="11" name="r5" type="robot" gid="31" x="428.365" y="376.68" width="50" height="50" rotation="0.822539"/>
  </objectgroup>
 </map>

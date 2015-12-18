@@ -1,7 +1,7 @@
 package com.github.drxaos.robo3d.graphics.map;
 
 import com.github.drxaos.robo3d.graphics.Env;
-import com.github.drxaos.robo3d.graphics.Utils;
+import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.models.ObjectModel;
 import com.github.drxaos.robo3d.graphics.models.TileModel;
 import com.github.drxaos.robo3d.tmx.*;
@@ -46,7 +46,7 @@ public class MapLoader {
                                 .getDeclaredConstructor(AssetManager.class, Integer.class)
                                 .newInstance(assetManager, id - tileset.firstGid + 1);
                         tileModel.move(x * 6 + 3, 0, y * 6 + 3);
-                        tileModel.rotate(0, Utils.degreesToRad(-r), 0);
+                        tileModel.rotate(0, JmeUtils.degreesToRad(-r), 0);
                         sceneNode.attachChild(tileModel);
                     }
                 }
@@ -59,10 +59,10 @@ public class MapLoader {
                             .getDeclaredConstructor(AssetManager.class)
                             .newInstance(assetManager);
                     objectModel.move(
-                            object.x / 50 * 6 + FastMath.cos(Utils.degreesToRad(object.rotation - 45)) * 3 * FastMath.sqrt(2),
+                            object.x / 50 * 6 + FastMath.cos(JmeUtils.degreesToRad(object.rotation - 45)) * 3 * FastMath.sqrt(2),
                             0,
-                            object.y / 50 * 6 + FastMath.sin(Utils.degreesToRad(object.rotation - 45)) * 3 * FastMath.sqrt(2));
-                    objectModel.rotate(0, Utils.degreesToRad(-object.rotation), 0);
+                            object.y / 50 * 6 + FastMath.sin(JmeUtils.degreesToRad(object.rotation - 45)) * 3 * FastMath.sqrt(2));
+                    objectModel.rotate(0, JmeUtils.degreesToRad(-object.rotation), 0);
                     sceneNode.attachChild(objectModel);
                 }
             }

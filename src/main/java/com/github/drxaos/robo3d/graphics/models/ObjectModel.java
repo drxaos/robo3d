@@ -16,6 +16,7 @@ abstract public class ObjectModel extends StaticModel {
     }
 
     public static final Map<String, Class<? extends ObjectModel>> TYPES = new HashMap<String, Class<? extends ObjectModel>>() {{
-        put("robot", RobotModel.class);
+        put("Robot", RobotModel.class);
+        put("RedRobot", RedRobotModel.class);
     }};
 }

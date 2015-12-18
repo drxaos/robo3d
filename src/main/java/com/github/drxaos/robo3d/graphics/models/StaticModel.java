@@ -51,7 +51,7 @@ public class StaticModel extends Node {
 
         Spatial model = ModelCache.getInstance().getModel(meshName);
         if (model == null) {
-            model = am.loadModel(meshName);
+            model = am.loadModel(meshName.replaceFirst("#.+$", ""));
             ModelCache.getInstance().putModel(meshName, model);
         }
         mModel = model.clone(false);

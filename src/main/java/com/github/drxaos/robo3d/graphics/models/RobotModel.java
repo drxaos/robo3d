@@ -8,4 +8,8 @@ public class RobotModel extends ObjectModel {
         super(am, "Models/robot/robot.blend");
     }
 
+    public RobotModel(AssetManager am, String subname) {
+        super(am, "Models/robot/robot.blend#" + subname);
+    }
+
 }

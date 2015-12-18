@@ -6,12 +6,14 @@ import com.jme3.material.RenderState;
 import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Box;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Utils {
+public class JmeUtils {
 
     private static class BoxGeoPair {
 
@@ -28,6 +30,25 @@ public class Utils {
         transparent.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
 
         return transparent;
+    }
+
+    public static List<Material> findMaterials(Node root, String name) {
+        if (name == null) {
+            return null;
+        }
+        List<Material> list = new ArrayList<Material>();
+        findMaterials(root, name, list);
+        return list;
+    }
+
+    private static void findMaterials(Node root, String name, List<Material> list) {
+        for (Spatial child : root.getChildren()) {
+            if (child instanceof Geometry && name.equals(((Geometry) child).getMaterial().getName())) {
+                list.add(((Geometry) child).getMaterial());
+            } else if (child instanceof Node) {
+                findMaterials((Node) child, name, list);
+            }
+        }
     }
 
     public static Geometry generateInvisibleBox(AssetManager am, Box box) {
