@@ -15,7 +15,7 @@ public class Main {
         appSettings.setResolution(1024, 768);
         appSettings.setDepthBits(24);
         appSettings.setBitsPerPixel(24);
-        appSettings.setSamples(4);
+        appSettings.setSamples(1);
         app.setSettings(appSettings);
         app.setShowSettings(false);
         app.setPauseOnLostFocus(false);

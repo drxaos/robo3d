@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="50" tileheight="50" nextobjectid="7">
- <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="50" tileheight="50" nextobjectid="9">
+ <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="100">
   <image source="tileset-roads.png" trans="000000" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="101" name="walls" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+ <tileset firstgid="101" name="walls" tilewidth="50" tileheight="50" tilecount="100">
   <image source="tileset-walls.png" trans="00ff00" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="201" name="doors" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+ <tileset firstgid="201" name="doors" tilewidth="50" tileheight="50" tilecount="100">
   <image source="tileset-doors.png" trans="ffff00" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="301" name="roofs" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+ <tileset firstgid="301" name="roofs" tilewidth="50" tileheight="50" tilecount="100">
   <image source="tileset-roofs.png" trans="000000" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="401" name="objects" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+ <tileset firstgid="401" name="objects" tilewidth="50" tileheight="50" tilecount="100">
   <image source="tileset-objects.png" trans="ff00ff" width="250" height="1000"/>
  </tileset>
  <layer name="roads" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3OMREAIAwEsO/h3wNS2SuADs2QPZWkAGCpk9xu+gQAvzyDduX+EA4AAA==
+   H4sIAAAAAAAAC+2WYQqAIAyFl2bn7GgexaO1KAmWyy01g/rxCDL83J5PGwBg+PU6TSgHMHPCcd+Ci3OHEZ+cXLt617o8JxwPvT2RymAtFteck6nMtZW/ezsX+xck/Vy5MU8tcsPVZeHIU43c0Bqe4tK5NNxcFq4yEM+EmH17vD/1IbHGoPEss0bP9UHLjXtW6fupD4l3l9xW+7wjtyojtU9NwqcSLr3Tp41zuwdS0TvdKeajZ6zm3irhlvRAyt09p2LzL/B3pv8svTLD+Caq49d3tQAFctzMEA4AAA==
   </data>
  </layer>
  <layer name="walls" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3SsQ0AIAhE0RvVRiuHYhRHE+MAdl6M/zWUPxAkAMBJNXWbVLIdOcPRd+3t6nZT95c7t91c/zxudl33BYAXTHdS5ZEQDgAA
+   H4sIAAAAAAAAC+2WXQ6DIAyAOaov/mzOv2S7D0fhaCtDZlehRQ1xDzZpFGv5KJSCUpf8o1SgpVLaa43erYJd5+CWpH1f201qXzQGTiG+wr8DUzeOHbRL8dMYtojky9kzc02K7wg6wNzEdCTzhn0rp/q2j1twnIHxBWYBam6IlcqlQjm4/QJOLeRvDq7kK3GrOffrQO4f4dr1btxTM799+8B9DWS8uN0LXCsPwY55T9T35PSTY5NTE/IJiZ3HOV7D/BYc26CWuW3VOv4j68v1YTl2b01uTxnMjeWz38dHuJYJ/et29k+J1+9jievPhZrUDFI/jH9KXGKPcs+uz742d6RGcuckXV/JHuLGagQXk7Q/U87Bbh5bv7R/7KF4m8j3cslnkXtWvP4MROtr7PcK3V2QT/Bes2d9c4hUR1PvdVtVqs2X5JU3AR+VORAOAAA=
   </data>
  </layer>
  <layer name="doors" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3OQREAAAgDoPWPZipvJfQDCUgAgJrvAAAcW3SKmzYQDgAA
+   H4sIAAAAAAAAC2NgGAWjADc4ycBwYADsXIBMj4JRMAqGFzg1AOUKseAUAfnTg9jt1AanB9oBo2AU0AEQyvOjYBSMBAAAUOSNVBAOAAA=
   </data>
  </layer>
  <layer name="roofs" width="30" height="30" opacity="0.29">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3BAQEAAACCIP+vbkhAAQAA8Gh7blyXEA4AAA==
+   H4sIAAAAAAAAC+2TSw6AIAwFy4EUuBFH4ygczUeUTVOMnwKbTtKwkDC0PogMwzCIvCPaHSWsebI3wZuxlsEemt1bBb0V1G/e/h8tbz1nO92P9yv1K+Yi4uyAb5HNQcvbI1xzCMwx2os+E5w5sjn4MwuF71+V8959jHtanqXiGdek5VkqnnHzfqe9X6n4mzaMlRwbU2pNEA4AAA==
   </data>
  </layer>
  <objectgroup name="objects">
@@ -41,6 +41,8 @@
   <object id="3" name="e3" type="RedRobot" gid="402" x="120.598" y="716.721" width="50" height="50" rotation="-146.882"/>
   <object id="4" name="e4" type="RedRobot" gid="402" x="115.611" y="788.529" width="50" height="50" rotation="-243.792"/>
   <object id="5" name="e5" type="RedRobot" gid="402" x="126.109" y="750.304" width="50" height="50" rotation="-174.937"/>
-  <object id="6" name="r1" type="Robot" gid="401" x="240.218" y="742.72" width="50" height="50" rotation="-92.8642"/>
+  <object id="6" name="r1" type="Robot" gid="401" x="229.218" y="681.72" width="50" height="50" rotation="-92.8642"/>
+  <object id="7" name="r2" type="Robot" gid="401" x="249.218" y="713.72" width="50" height="50" rotation="-92.8642"/>
+  <object id="8" name="r3" type="Robot" gid="401" x="271.218" y="681.72" width="50" height="50" rotation="-92.8642"/>
  </objectgroup>
 </map>

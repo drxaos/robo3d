@@ -1,5 +1,7 @@
 
 /*.so
+/*.dll
+/*.log
 
 # Created by https://www.gitignore.io/api/ava ,java,jetbrains
 

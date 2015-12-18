@@ -15,6 +15,8 @@ public class WallTileModel extends TileModel {
         WallBranchThin(ElementType.Wall),
         WallColumn(ElementType.Wall),
         WallColumnThin(ElementType.Wall),
+        WallTwo(ElementType.Wall),
+        WallTwoThin(ElementType.Wall),
         WallCorner(ElementType.Wall),
         WallCornerThin(ElementType.Wall),
         WallCross(ElementType.Wall),
@@ -55,7 +57,9 @@ public class WallTileModel extends TileModel {
         CornerThin(12, Element.WallCornerThin),
         BranchThin(13, Element.WallBranchThin),
         CrossThin(14, Element.WallCrossThin),
-        ColumnThin(15, Element.WallColumnThin);
+        ColumnThin(15, Element.WallColumnThin),
+        Two(16, Element.WallTwo),
+        TwoThin(17, Element.WallTwoThin);
 
         Integer idx;
         List<Element> elements;

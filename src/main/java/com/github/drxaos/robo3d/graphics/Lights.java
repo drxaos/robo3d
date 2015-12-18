@@ -46,12 +46,12 @@ public class Lights {
         dlsr.setLight(sun);
         dlsr.setLambda(0.55f);
         dlsr.setShadowIntensity(0.6f);
-        dlsr.setEdgeFilteringMode(EdgeFilteringMode.PCFPOISSON);
+        dlsr.setEdgeFilteringMode(EdgeFilteringMode.Dither);
         viewPort.addProcessor(dlsr);
 
         // Filters
         FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
-        fpp.setNumSamples(14);
+        fpp.setNumSamples(2);
 
         // Fade in-out
         fade = new FadeFilter(2);
@@ -63,12 +63,12 @@ public class Lights {
         fpp.addFilter(overlay);
 
         // Anti-aliasing
-        fxaa = new FXAAFilter();
-        fxaa.setSubPixelShift(0f);
-        fxaa.setReduceMul(0f);
-        fxaa.setVxOffset(5.0f);
-        fxaa.setEnabled(true);
-        fpp.addFilter(fxaa);
+//        fxaa = new FXAAFilter();
+//        fxaa.setSubPixelShift(0f);
+//        fxaa.setReduceMul(0f);
+//        fxaa.setVxOffset(5.0f);
+//        fxaa.setEnabled(true);
+//        fpp.addFilter(fxaa);
 
         viewPort.addProcessor(fpp);
     }

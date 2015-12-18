@@ -12,7 +12,10 @@ public class RoadTileModel extends TileModel {
     public enum Element implements TileModel.Element {
         Ground(ElementType.Floor),
         RoadCorner(ElementType.Floor),
-        Road(ElementType.Floor);
+        Road(ElementType.Floor),
+        Floor(ElementType.Floor),
+        FloorHalf(ElementType.Floor),
+        FloorQuarter(ElementType.Floor);
 
         ElementType elementType;
 
@@ -28,7 +31,10 @@ public class RoadTileModel extends TileModel {
     public enum TileType implements TileModel.TileType {
         Ground(1, Element.Ground),
         RoadCorner(2, Element.Ground, Element.RoadCorner),
-        Road(3, Element.Ground, Element.Road);
+        Road(3, Element.Ground, Element.Road),
+        Floor(4, Element.Floor),
+        FloorHalf(5, Element.FloorHalf, Element.Ground),
+        FloorQuarter(6, Element.FloorQuarter, Element.Ground);
 
         Integer idx;
         List<Element> elements;
