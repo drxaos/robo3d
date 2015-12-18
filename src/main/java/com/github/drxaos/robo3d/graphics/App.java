@@ -33,8 +33,9 @@ public class App extends SimpleApplication {
         setPauseOnLostFocus(true);
         toggleGraphicsStats();
 
-        cam.setLocation(new Vector3f(3, 2, 3));
+        cam.setLocation(new Vector3f(0, 2, 0));
         cam.lookAt(new Vector3f(0, 0, 0), cam.getUp());
+        cam.setFrustumPerspective(45f, (float) cam.getWidth() / cam.getHeight(), 0.01f, 1000f);
         flyCam.setDragToRotate(true);
         flyCam.setEnabled(true);
         flyCam.setMoveSpeed(10.0f);
@@ -80,7 +81,7 @@ public class App extends SimpleApplication {
     public void simpleUpdate(float tpf) {
         mFutureUpdater.update(tpf);
 
-        cam.getLocation().setY(2);
+        cam.getLocation().setY(1.5f);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.github.drxaos.robo3d.graphics.models;
 
 import com.jme3.asset.AssetManager;
-import com.jme3.renderer.queue.RenderQueue;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
@@ -10,26 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 abstract public class TileModel extends StaticModel {
-    enum ElementType {
-        Floor(RenderQueue.ShadowMode.Receive),
-        Wall(RenderQueue.ShadowMode.CastAndReceive),
-        Ceil(RenderQueue.ShadowMode.CastAndReceive),
-        Door(RenderQueue.ShadowMode.CastAndReceive),
-        Object(RenderQueue.ShadowMode.CastAndReceive),
-        Display(RenderQueue.ShadowMode.Off),
-        Camera(RenderQueue.ShadowMode.Off),
-        None(RenderQueue.ShadowMode.Off);
-
-        RenderQueue.ShadowMode shadowMode;
-
-        ElementType(RenderQueue.ShadowMode shadowMode) {
-            this.shadowMode = shadowMode;
-        }
-
-        public RenderQueue.ShadowMode getShadowMode() {
-            return shadowMode;
-        }
-    }
 
     public interface Element {
         ElementType getElementType();

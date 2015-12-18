@@ -36,7 +36,7 @@
   </data>
  </layer>
  <objectgroup name="objects">
-  <object id="7" name="r1" type="robot" gid="31" x="50" y="50" width="50" height="50" rotation="-90"/>
+  <object id="7" name="r1" type="robot" gid="31" x="28.0804" y="92.8365" width="50" height="50" rotation="-347.193"/>
   <object id="8" name="r2" type="robot" gid="31" x="150.958" y="401.278" width="50" height="50" rotation="180.546"/>
   <object id="9" name="r3" type="robot" gid="31" x="426.365" y="344.677" width="50" height="50" rotation="0.822539"/>
   <object id="10" name="r4" type="robot" gid="31" x="426.365" y="364.677" width="50" height="50" rotation="0.822539"/>

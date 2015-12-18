@@ -13,7 +13,28 @@ import com.jme3.util.TangentBinormalGenerator;
 
 public class StaticModel extends Node {
 
-    private final static float DEFAULT_SCALE = 5.0f;
+    enum ElementType {
+        Floor(ShadowMode.Receive),
+        Wall(ShadowMode.CastAndReceive),
+        Ceil(ShadowMode.CastAndReceive),
+        Door(ShadowMode.CastAndReceive),
+        Object(ShadowMode.CastAndReceive),
+        Display(ShadowMode.Off),
+        Camera(ShadowMode.Off),
+        None(ShadowMode.Off);
+
+        ShadowMode shadowMode;
+
+        ElementType(ShadowMode shadowMode) {
+            this.shadowMode = shadowMode;
+        }
+
+        public ShadowMode getShadowMode() {
+            return shadowMode;
+        }
+    }
+
+    private final static float DEFAULT_SCALE = 1.0f;
     private final static boolean ENABLE_NORMAL_MAP = false;
     private Spatial mModel;
     private Material mMaterial;
@@ -68,7 +89,7 @@ public class StaticModel extends Node {
         this.attachChild(mModelNode);
     }
 
-    protected void fixLighting(Spatial spatial, TileModel.ElementType type) {
+    protected void fixLighting(Spatial spatial, ElementType type) {
         if (spatial instanceof Geometry) {
             spatial.setShadowMode(type.getShadowMode());
             Material material = ((Geometry) spatial).getMaterial();
@@ -96,4 +117,5 @@ public class StaticModel extends Node {
     public Material getMaterial() {
         return mMaterial;
     }
+
 }

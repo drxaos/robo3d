@@ -53,18 +53,16 @@ public class MapLoader {
 
             }
 
-            int h = map.getHeightInPels();
-            int w = map.getWidthInPels();
             for (TmxObjectGroup tmxObjectGroup : map.getObjectGroups()) {
                 for (TmxMapObject object : tmxObjectGroup.getObjects()) {
                     ObjectModel objectModel = ObjectModel.TYPES.get(object.type)
                             .getDeclaredConstructor(AssetManager.class)
                             .newInstance(assetManager);
                     objectModel.move(
-                            object.x / 50 * 6 + FastMath.cos(Utils.degreesToRad(object.rotation - 90)) * 3,
+                            object.x / 50 * 6 + FastMath.cos(Utils.degreesToRad(object.rotation - 45)) * 3 * FastMath.sqrt(2),
                             0,
-                            object.y / 50 * 6 + FastMath.sin(Utils.degreesToRad(object.rotation - 90)) * 3);
-                    objectModel.rotate(0, Utils.degreesToRad(object.rotation), 0);
+                            object.y / 50 * 6 + FastMath.sin(Utils.degreesToRad(object.rotation - 45)) * 3 * FastMath.sqrt(2));
+                    objectModel.rotate(0, Utils.degreesToRad(-object.rotation), 0);
                     sceneNode.attachChild(objectModel);
                 }
             }
