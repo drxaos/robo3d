@@ -15,15 +15,27 @@ public class OutVar {
         data.chassis_right(max100);
     }
 
-    public void state(float memorize) {
-        data.state(memorize);
-    }
-
     public void scan(float angle) {
         data.scan(angle);
     }
 
     public void fire() {
         data.fire();
+    }
+
+    public void rx0(float memorize) {
+        data.rx0(memorize);
+    }
+
+    public void rx1(float memorize) {
+        data.rx1(memorize);
+    }
+
+    public void dx0(int memorize) {
+        data.dx0(memorize);
+    }
+
+    public void dx1(int memorize) {
+        data.dx1(memorize);
     }
 }

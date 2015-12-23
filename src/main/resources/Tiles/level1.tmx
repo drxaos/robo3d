@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="50" tileheight="50" nextobjectid="9">
- <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="100">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="50" tileheight="50" nextobjectid="11">
+ <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="100" columns="5">
   <image source="tileset-roads.png" trans="000000" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="101" name="walls" tilewidth="50" tileheight="50" tilecount="100">
+ <tileset firstgid="101" name="walls" tilewidth="50" tileheight="50" tilecount="100" columns="5">
   <image source="tileset-walls.png" trans="00ff00" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="201" name="doors" tilewidth="50" tileheight="50" tilecount="100">
+ <tileset firstgid="201" name="doors" tilewidth="50" tileheight="50" tilecount="100" columns="5">
   <image source="tileset-doors.png" trans="ffff00" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="301" name="roofs" tilewidth="50" tileheight="50" tilecount="100">
+ <tileset firstgid="301" name="roofs" tilewidth="50" tileheight="50" tilecount="100" columns="5">
   <image source="tileset-roofs.png" trans="000000" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="401" name="objects" tilewidth="50" tileheight="50" tilecount="100">
+ <tileset firstgid="401" name="objects" tilewidth="50" tileheight="50" tilecount="100" columns="5">
   <image source="tileset-objects.png" trans="ff00ff" width="250" height="1000"/>
  </tileset>
  <layer name="roads" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2WYQqAIAyFl2bn7GgexaO1KAmWyy01g/rxCDL83J5PGwBg+PU6TSgHMHPCcd+Ci3OHEZ+cXLt617o8JxwPvT2RymAtFteck6nMtZW/ezsX+xck/Vy5MU8tcsPVZeHIU43c0Bqe4tK5NNxcFq4yEM+EmH17vD/1IbHGoPEss0bP9UHLjXtW6fupD4l3l9xW+7wjtyojtU9NwqcSLr3Tp41zuwdS0TvdKeajZ6zm3irhlvRAyt09p2LzL/B3pv8svTLD+Caq49d3tQAFctzMEA4AAA==
+   H4sIAAAAAAAAA+2WYQqAIAyFl2bn7GgexaO1KAmWyy01g/rxCDL83J5PGwBg+PU6TSgHMHPCcd+Ci3OHEZ+cXLt617o8JxwPvT2RymAtFteck6nMtZW/ezsX+xck/Vy5MU8tcsPVZeHIU43c0Bqe4tK5NNxcFq4yEM+EmH17vD/1IbHGoPEss0bP9UHLjXtW6fupD4l3l9xW+7wjtyojtU9NwqcSLr3Tp41zuwdS0TvdKeajZ6zm3irhlvRAyt09p2LzL/B3pv8svTLD+Caq49d3tQAFctzMEA4AAA==
   </data>
  </layer>
  <layer name="walls" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2WXQ6DIAyAOaov/mzOv2S7D0fhaCtDZlehRQ1xDzZpFGv5KJSCUpf8o1SgpVLaa43erYJd5+CWpH1f201qXzQGTiG+wr8DUzeOHbRL8dMYtojky9kzc02K7wg6wNzEdCTzhn0rp/q2j1twnIHxBWYBam6IlcqlQjm4/QJOLeRvDq7kK3GrOffrQO4f4dr1btxTM799+8B9DWS8uN0LXCsPwY55T9T35PSTY5NTE/IJiZ3HOV7D/BYc26CWuW3VOv4j68v1YTl2b01uTxnMjeWz38dHuJYJ/et29k+J1+9jievPhZrUDFI/jH9KXGKPcs+uz742d6RGcuckXV/JHuLGagQXk7Q/U87Bbh5bv7R/7KF4m8j3cslnkXtWvP4MROtr7PcK3V2QT/Bes2d9c4hUR1PvdVtVqs2X5JU3AR+VORAOAAA=
+   H4sIAAAAAAAAA+2WXQ6DIAyAOaov/mzOv2S7D0fhaCtDZlehRQ1xDzZpFGv5KJSCUpf8o1SgpVLaa43erYJd5+CWpH1f201qXzQGTiG+wr8DUzeOHbRL8dMYtojky9kzc02K7wg6wNzEdCTzhn0rp/q2j1twnIHxBWYBam6IlcqlQjm4/QJOLeRvDq7kK3GrOffrQO4f4dr1btxTM799+8B9DWS8uN0LXCsPwY55T9T35PSTY5NTE/IJiZ3HOV7D/BYc26CWuW3VOv4j68v1YTl2b01uTxnMjeWz38dHuJYJ/et29k+J1+9jievPhZrUDFI/jH9KXGKPcs+uz742d6RGcuckXV/JHuLGagQXk7Q/U87Bbh5bv7R/7KF4m8j3cslnkXtWvP4MROtr7PcK3V2QT/Bes2d9c4hUR1PvdVtVqs2X5JU3AR+VORAOAAA=
   </data>
  </layer>
  <layer name="doors" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgGAWjADc4ycBwYADsXIBMj4JRMAqGFzg1AOUKseAUAfnTg9jt1AanB9oBo2AU0AEQyvOjYBSMBAAAUOSNVBAOAAA=
+   H4sIAAAAAAAAA2NgGAWjADc4ycBwYADsXIBMj4JRMAqGFzg1AOUKseAUAfnTg9jt1AanB9oBo2AU0AEQyvOjYBSMBAAAUOSNVBAOAAA=
   </data>
  </layer>
  <layer name="roofs" width="30" height="30" opacity="0.29">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2TSw6AIAwFy4EUuBFH4ygczUeUTVOMnwKbTtKwkDC0PogMwzCIvCPaHSWsebI3wZuxlsEemt1bBb0V1G/e/h8tbz1nO92P9yv1K+Yi4uyAb5HNQcvbI1xzCMwx2os+E5w5sjn4MwuF71+V8959jHtanqXiGdek5VkqnnHzfqe9X6n4mzaMlRwbU2pNEA4AAA==
+   H4sIAAAAAAAAA+2TSw6AIAwFy4EUuBFH4ygczUeUTVOMnwKbTtKwkDC0PogMwzCIvCPaHSWsebI3wZuxlsEemt1bBb0V1G/e/h8tbz1nO92P9yv1K+Yi4uyAb5HNQcvbI1xzCMwx2os+E5w5sjn4MwuF71+V8959jHtanqXiGdek5VkqnnHzfqe9X6n4mzaMlRwbU2pNEA4AAA==
   </data>
  </layer>
  <objectgroup name="objects">
@@ -44,5 +44,20 @@
   <object id="6" name="r1" type="Robot" gid="401" x="229.218" y="681.72" width="50" height="50" rotation="-92.8642"/>
   <object id="7" name="r2" type="Robot" gid="401" x="249.218" y="713.72" width="50" height="50" rotation="-92.8642"/>
   <object id="8" name="r3" type="Robot" gid="401" x="271.218" y="681.72" width="50" height="50" rotation="-92.8642"/>
+  <object id="9" name="p1" type="Path" x="145.333" y="774.667">
+   <polyline points="-13.3333,-29.3333 -2,2.66667 168,6.66667 213.333,-98.6667 134.667,-204 20,-309.333 74.6667,-402.667 536,-405.333 598.667,-180 556,193.333 -18.6667,202.667 -12,500 480,489.333 478.667,405.333 372,392 392,304 708,300 928,-97.3333 1174.67,-98.6667 1180,-1.33333 1330.67,1.33333"/>
+  </object>
+  <object id="10" name="p2" type="Path" x="145.333" y="774.667">
+   <polyline points="-88,33.3334 -28.6667,3.33333e-06 189.333,4 193.333,-197.333 61.3337,-230.667 30.6667,-404 272,-428 536,-405.333 532,-158.667 504,206.666 128,210.667 127.667,295.334 66,349.334 -12,353.333 2,490.666 480,489.333 492,402.666 366.667,409.333 385.333,292 776,297.333 778.667,-96 1174.67,-98.6667 1180,-1.33333 1330.67,1.33333"/>
+  </object>
+  <object id="11" name="p3" type="Path" x="145.333" y="774.667">
+   <polyline points="-65.3333,-57.3333 -19.3333,2.66667 162.667,-2.66666 210.666,-134.667 109.334,-213.333 26.6667,-342.666 98.6667,-413.334 556,-398.666 565.334,-150.667 538.667,209.333 277.333,218.667 266.667,484 480,489.333 498.667,409.333 373.333,410.667 374.667,302.667 732,301.333 938.667,-98.6666 1174.67,-98.6667 1180,-1.33333 1330.67,1.33333"/>
+  </object>
+  <object id="12" name="p4" type="Path" x="145.333" y="774.667">
+   <polyline points="-20,50.6667 -2,2.66667 168,6.66667 213.333,-38.6667 136,-244 33.3333,-246.666 32,-396 536,-405.333 593.334,-21.3333 521.333,177.333 268,204 308,501.333 510.667,493.333 478.667,405.333 1024,394.667 1021.33,304 820,297.333 827,206.333 1026,140.667 1012,5.33335 984,-97.3333 1174.67,-98.6667 1180,-1.33333 1330.67,1.33333"/>
+  </object>
+  <object id="13" name="p5" type="Path" x="145.333" y="774.667">
+   <polyline points="-49.3333,1.13687e-13 146.667,1.33333 193.333,-90.6667 154.667,-210.667 38.6667,-272 45.3333,-390.667 520,-389.333 522.667,194.667 290.667,210.667 282.667,504 480,489.333 546.667,397.333 1024,405.333 1036,300 770.667,292 950.667,-100 1174.67,-98.6667 1180,-1.33333 1330.67,1.33333"/>
+  </object>
  </objectgroup>
 </map>

@@ -20,19 +20,35 @@ public class InVar {
         return data.angle();
     }
 
-    public float turret() {
+    public float turret_wait() {
         return data.turret();
     }
 
-    public float distance() {
+    public float armor() {
+        return data.armor();
+    }
+
+    public float scan_distance() {
         return data.distance();
     }
 
-    public float type() {
+    public int scan_type() {
         return data.type();
     }
 
-    public float state() {
-        return data.state();
+    public float rx0() {
+        return data.rx0();
+    }
+
+    public float rx1() {
+        return data.rx1();
+    }
+
+    public int dx0() {
+        return data.dx0();
+    }
+
+    public int dx1() {
+        return data.dx1();
     }
 }

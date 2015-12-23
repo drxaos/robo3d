@@ -6,15 +6,17 @@ public class Data {
     public float y;
     public float angle;
     public float turret;
+    public float armor;
     public float distance;
-    public float type;
+    public int type;
 
     public float chassisLeft;
     public float chassisRight;
     public boolean fire;
     public float scanAngle;
 
-    public float state;
+    public float rx0, rx1;
+    public int dx0, dx1;
 
     // IN
     public float x() {
@@ -33,16 +35,32 @@ public class Data {
         return turret;
     }
 
+    public float armor() {
+        return armor;
+    }
+
     public float distance() {
         return distance;
     }
 
-    public float type() {
+    public int type() {
         return type;
     }
 
-    public float state() {
-        return state;
+    public float rx0() {
+        return rx0;
+    }
+
+    public float rx1() {
+        return rx1;
+    }
+
+    public int dx0() {
+        return dx0;
+    }
+
+    public int dx1() {
+        return dx1;
     }
 
     // OUT
@@ -62,8 +80,20 @@ public class Data {
         scanAngle = angle;
     }
 
-    public void state(float memorize) {
-        state = memorize;
+    public void rx0(float memorize) {
+        rx0 = memorize;
+    }
+
+    public void rx1(float memorize) {
+        rx1 = memorize;
+    }
+
+    public void dx0(int memorize) {
+        dx0 = memorize;
+    }
+
+    public void dx1(int memorize) {
+        dx1 = memorize;
     }
 
 }

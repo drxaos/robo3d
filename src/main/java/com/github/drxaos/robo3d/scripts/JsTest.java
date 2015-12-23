@@ -1,13 +1,9 @@
 package com.github.drxaos.robo3d.scripts;
 
-import jdk.nashorn.api.scripting.NashornScriptEngineFactory;
-
-import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import java.io.IOException;
 
 public class JsTest {
-    final static ScriptEngine engine = new NashornScriptEngineFactory().getScriptEngine(new String[]{"--no-java"});
 
     public static void main(String[] args) throws IOException, ScriptException {
         Data data = new Data();
@@ -24,7 +20,7 @@ public class JsTest {
         }
 
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 100000; i++) {
             pool.getScriptRunner().runScript("aim.js", data);
         }
         long end = System.currentTimeMillis();
