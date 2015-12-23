@@ -51,8 +51,13 @@ public class MapLoader {
                         layerNode.attachChild(tileModel);
                     }
                 }
-                if (layer.name.equals("walls") || layer.name.equals("roads") || layer.name.equals("roofs")) {
-                    Optimizer.optimize(layerNode, true);
+                try {
+                    Object staticLayer = TileModel.TYPES.get(layer.name).getDeclaredField("STATIC_LAYER").get(null);
+                    if (staticLayer.equals(Boolean.TRUE)) {
+                        Optimizer.optimize(layerNode, true);
+                    }
+                } catch (Exception e) {
+                    // non-static
                 }
                 sceneNode.attachChild(layerNode);
             }

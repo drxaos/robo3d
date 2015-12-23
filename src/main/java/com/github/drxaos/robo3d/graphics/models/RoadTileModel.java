@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RoadTileModel extends TileModel {
+    public static final boolean STATIC_LAYER = true;
 
     public enum Element implements TileModel.Element {
         Ground(ElementType.Floor),
