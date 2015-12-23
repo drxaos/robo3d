@@ -15,16 +15,21 @@ public class JsTest {
         ScriptRunnerPool pool = new ScriptRunnerPool(new ScriptCache());
         pool.start();
 
-        for (int i = 0; i < 100; i++) {
-            pool.getScriptRunner().runScript("aim.js", data);
+        ScriptRunner runner = pool.getScriptRunner();
+
+        for (int i = 0; i < 10; i++) {
+            runner.runScript("aim", data);
         }
 
         long start = System.currentTimeMillis();
-        for (int i = 0; i < 100000; i++) {
-            pool.getScriptRunner().runScript("aim.js", data);
+        for (int i = 0; i < 1000; i++) {
+            runner.runScript("aim", data);
         }
         long end = System.currentTimeMillis();
 
         System.out.println("Time: " + (end - start));
+
+        System.out.println("---- Logs ----");
+        System.out.println(runner.getLogs());
     }
 }

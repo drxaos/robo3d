@@ -55,4 +55,8 @@ public class InVar {
     public int recv() {
         return data.recv();
     }
+
+    public long time() {
+        return data.time();
+    }
 }

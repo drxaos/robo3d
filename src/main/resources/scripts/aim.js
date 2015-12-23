@@ -11,3 +11,12 @@ if (a < 0) {
 }
 OUT.scan(a);
 OUT.fire();
+
+this.s = "" + this.s + "1";
+print(this.s);
+
+function tetest() {
+    fail();
+}
+
+//tetest();

@@ -9,6 +9,7 @@ public class Data {
     public float armor;
     public float distance;
     public int type;
+    public long time;
 
     public float chassisLeft;
     public float chassisRight;
@@ -67,6 +68,10 @@ public class Data {
 
     public int recv() {
         return recv;
+    }
+
+    public long time() {
+        return time;
     }
 
     // OUT

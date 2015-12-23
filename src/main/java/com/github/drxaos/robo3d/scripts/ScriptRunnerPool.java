@@ -4,7 +4,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class ScriptRunnerPool implements Runnable {
 
-    LinkedBlockingQueue<ScriptRunner> pool = new LinkedBlockingQueue<ScriptRunner>(10);
+    LinkedBlockingQueue<ScriptRunner> pool = new LinkedBlockingQueue<ScriptRunner>(2);
     ScriptCache scriptCache;
     Thread thread;
 

@@ -30,6 +30,13 @@ public class SandboxDynObject extends DynObject {
 
     boolean filtering = false;
 
+    public SandboxDynObject() {
+    }
+
+    public SandboxDynObject(DynObject parent) {
+        super(parent);
+    }
+
     public void setFiltering(boolean filtering) {
         this.filtering = filtering;
     }

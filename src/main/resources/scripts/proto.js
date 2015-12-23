@@ -178,3 +178,11 @@ IN.dx1 = function () {
 IN.recv = function () {
     return 0;
 };
+
+/**
+ * Get current time
+ * @returns {long}
+ */
+IN.time = function () {
+    return 0;
+};
