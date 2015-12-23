@@ -51,4 +51,8 @@ public class InVar {
     public int dx1() {
         return data.dx1();
     }
+
+    public int recv() {
+        return data.recv();
+    }
 }

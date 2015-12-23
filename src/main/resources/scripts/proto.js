@@ -63,6 +63,22 @@ OUT.fire = function () {
     return;
 };
 
+/**
+ * Select radio channel
+ * @param int_channel - channel
+ */
+OUT.tune = function (int_channel) {
+    return;
+};
+
+/**
+ * Broadcast data to radio channel
+ * @param int_data - data
+ */
+OUT.send = function (int_data) {
+    return;
+};
+
 
 IN = {};
 
@@ -152,5 +168,13 @@ IN.dx0 = function () {
  * @returns {float}
  */
 IN.dx1 = function () {
+    return 0;
+};
+
+/**
+ * Recieve data from radio channel
+ * @returns {int}
+ */
+IN.recv = function () {
     return 0;
 };

@@ -55,7 +55,11 @@ public class MapLoader {
 
             for (TmxObjectGroup tmxObjectGroup : map.getObjectGroups()) {
                 for (TmxMapObject object : tmxObjectGroup.getObjects()) {
-                    ObjectModel objectModel = ObjectModel.TYPES.get(object.type)
+                    Class<? extends ObjectModel> typeCls = ObjectModel.TYPES.get(object.type);
+                    if (typeCls == null) {
+                        continue;
+                    }
+                    ObjectModel objectModel = typeCls
                             .getDeclaredConstructor(AssetManager.class)
                             .newInstance(assetManager);
                     objectModel.move(

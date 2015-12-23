@@ -18,6 +18,8 @@ public class Data {
     public float rx0, rx1;
     public int dx0, dx1;
 
+    public int channel, send, recv;
+
     // IN
     public float x() {
         return x;
@@ -63,6 +65,10 @@ public class Data {
         return dx1;
     }
 
+    public int recv() {
+        return recv;
+    }
+
     // OUT
     public void chassis_left(float max100) {
         chassisLeft = Math.max(100, Math.min(-100, max100));
@@ -94,6 +100,14 @@ public class Data {
 
     public void dx1(int memorize) {
         dx1 = memorize;
+    }
+
+    public void channel(int select) {
+        channel = select;
+    }
+
+    public void send(int data) {
+        send = data;
     }
 
 }

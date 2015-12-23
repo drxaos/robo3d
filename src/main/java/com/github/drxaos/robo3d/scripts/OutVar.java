@@ -38,4 +38,12 @@ public class OutVar {
     public void dx1(int memorize) {
         data.dx1(memorize);
     }
+
+    public void channel(int select) {
+        data.channel(select);
+    }
+
+    public void send(int send_data) {
+        data.send(send_data);
+    }
 }
