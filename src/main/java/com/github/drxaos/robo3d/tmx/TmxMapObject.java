@@ -9,6 +9,7 @@ public class TmxMapObject extends TmxEntity {
     public final int width;
     public final int height;
     public final String type;
+    public TmxPolyline polyline;
 
     public TmxMapObject(String name, int gid, float x, float y, float rotation,
                         int width, int height, String type) {
@@ -20,5 +21,9 @@ public class TmxMapObject extends TmxEntity {
         this.width = width;
         this.height = height;
         this.type = type;
+    }
+
+    public void setPolyline(TmxPolyline polyline) {
+        this.polyline = polyline;
     }
 }

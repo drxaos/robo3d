@@ -10,6 +10,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TmxMap {
 
@@ -203,6 +204,16 @@ public class TmxMap {
                     object = new TmxMapObject(name, gid, x, y, rotation, w, h, type);
                     objects.addObject(object);
                 }
+            } else if (localName.equalsIgnoreCase("polyline")) {
+                List<TmxPoint> tmxPoints = new ArrayList<>();
+                String points = attributes.getValue("points");
+                for (String point : points.split(" ")) {
+                    String[] coords = point.split(",");
+                    float x = Float.parseFloat(coords[0]);
+                    float y = Float.parseFloat(coords[1]);
+                    tmxPoints.add(new TmxPoint(x, y));
+                }
+                object.setPolyline(new TmxPolyline(tmxPoints));
             }
         }
     }
