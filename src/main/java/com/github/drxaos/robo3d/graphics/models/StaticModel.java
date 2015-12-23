@@ -2,12 +2,16 @@ package com.github.drxaos.robo3d.graphics.models;
 
 import com.github.drxaos.robo3d.graphics.ModelCache;
 import com.jme3.asset.AssetManager;
+import com.jme3.material.MatParamTexture;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.control.LodControl;
+import com.jme3.texture.Texture;
+import jme3tools.optimize.LodGenerator;
 
 public class StaticModel extends Node {
 
@@ -67,11 +71,17 @@ public class StaticModel extends Node {
             material.setColor("Specular", ColorRGBA.White.mult(0.1f));
             material.setFloat("Shininess", 0.1f);
 
-//            LodGenerator lod = new LodGenerator((Geometry) spatial);
-//            lod.bakeLods(LodGenerator.TriangleReductionMethod.PROPORTIONAL, 0.25f, 0.5f, 0.75f, 0.9f);
-//            LodControl lc = new LodControl();
-//            lc.setDistTolerance(0.0005f);
-//            spatial.addControl(lc);
+            MatParamTexture diffuseMap = material.getTextureParam("DiffuseMap");
+            if (diffuseMap != null) {
+                diffuseMap.getTextureValue().setMinFilter(Texture.MinFilter.Trilinear);
+                diffuseMap.getTextureValue().setMagFilter(Texture.MagFilter.Bilinear);
+            }
+
+            LodGenerator lod = new LodGenerator((Geometry) spatial);
+            lod.bakeLods(LodGenerator.TriangleReductionMethod.PROPORTIONAL, 0.25f, 0.5f, 0.75f, 0.9f);
+            LodControl lc = new LodControl();
+            lc.setDistTolerance(0.0005f);
+            spatial.addControl(lc);
         }
         if (spatial instanceof Node) {
             for (Spatial child : ((Node) spatial).getChildren()) {
