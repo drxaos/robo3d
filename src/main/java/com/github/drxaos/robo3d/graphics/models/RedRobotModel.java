@@ -12,6 +12,11 @@ public class RedRobotModel extends RobotModel {
 
     public RedRobotModel(AssetManager am) {
         super(am, "red");
+    }
+
+    @Override
+    protected void prepare() {
+        super.prepare();
 
         List<Material> greenMats = JmeUtils.findMaterials(this, "GreenMat");
         Texture redTexture = am.loadTexture("Models/robot/red.png");
@@ -31,5 +36,4 @@ public class RedRobotModel extends RobotModel {
             trackMat.setParam("DiffuseMap", VarType.Texture2D, redTrackTexture);
         }
     }
-
 }

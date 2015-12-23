@@ -2,6 +2,9 @@ package com.github.drxaos.robo3d.graphics;
 
 import com.github.drxaos.robo3d.graphics.map.MapLoader;
 import com.jme3.app.SimpleApplication;
+import com.jme3.asset.AssetEventListener;
+import com.jme3.asset.AssetKey;
+import com.jme3.asset.TextureKey;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.CameraNode;
@@ -32,6 +35,23 @@ public class App extends SimpleApplication {
         setDisplayStatView(false);
         setPauseOnLostFocus(true);
         toggleGraphicsStats();
+
+        AssetEventListener asl = new AssetEventListener() {
+            public void assetLoaded(AssetKey key) {
+            }
+
+            public void assetRequested(AssetKey key) {
+                if (key.getExtension().equals("png") || key.getExtension().equals("jpg") || key.getExtension().equals("dds")) {
+                    TextureKey tkey = (TextureKey) key;
+                    tkey.setAnisotropy(8);
+                    tkey.setGenerateMips(true);
+                }
+            }
+
+            public void assetDependencyNotFound(AssetKey parentKey, AssetKey dependentAssetKey) {
+            }
+        };
+        assetManager.addAssetEventListener(asl);
 
         cam.setLocation(new Vector3f(0, 2, 0));
         cam.lookAt(new Vector3f(0, 0, 0), cam.getUp());
@@ -81,7 +101,7 @@ public class App extends SimpleApplication {
     public void simpleUpdate(float tpf) {
         mFutureUpdater.update(tpf);
 
-        cam.getLocation().setY(1.5f);
+        //cam.getLocation().setY(1.5f);
     }
 
     @Override

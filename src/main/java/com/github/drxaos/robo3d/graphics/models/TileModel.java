@@ -27,37 +27,46 @@ abstract public class TileModel extends StaticModel {
     protected Map<ElementType, Node> nodes = new HashMap<ElementType, Node>();
 
     public TileModel(AssetManager am, String path, List<? extends Element> allElements, TileType type) {
-        super(am, path);
+        super(am, path, type.getClass().getName() + "." + type.name());
 
-        // group elements
-        for (Element element : allElements) {
-            Spatial child = this.getChild(element.name());
-            if (child == null) {
-                System.out.println("NO EL " + element.name());
-                continue;
-            }
-            child.removeFromParent();
-
-            if (type.getElements().contains(element)) {
-                Node node = nodes.get(element.getElementType());
-                if (node == null) {
-                    node = new Node("Group_" + element.getElementType().name());
-                    nodes.put(element.getElementType(), node);
+        if (fresh) {
+            // group elements
+            for (Element element : allElements) {
+                Spatial child = this.getChild(element.name());
+                if (child == null) {
+                    System.out.println("NO EL " + element.name());
+                    continue;
                 }
-                node.attachChild(child);
-                fixLighting(child, element.getElementType());
+                child.removeFromParent();
+
+                if (type.getElements().contains(element)) {
+                    Node node = nodes.get(element.getElementType());
+                    if (node == null) {
+                        node = new Node("Group_" + element.getElementType().name());
+                        nodes.put(element.getElementType(), node);
+                    }
+                    node.attachChild(child);
+                    fixLighting(child, element.getElementType());
+                }
             }
-        }
 
-        // remove all
-        for (Spatial child : this.getChildren()) {
-            child.removeFromParent();
-        }
+            // remove all
+            for (Spatial child : this.getChildren()) {
+                child.removeFromParent();
+            }
 
-        // attach groups
-        for (Node node : nodes.values()) {
-            this.attachChild(node);
+            // attach groups
+            for (Node node : nodes.values()) {
+                this.attachChild(node);
+            }
+
+            prepare();
+
+            applyModel();
         }
+    }
+
+    protected void prepare() {
     }
 
     public static final Map<String, Class<? extends TileModel>> TYPES = new HashMap<String, Class<? extends TileModel>>() {{

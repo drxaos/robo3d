@@ -16,7 +16,7 @@ import com.jme3.shadow.EdgeFilteringMode;
 
 public class Lights {
 
-    public static final int SHADOWMAP_SIZE = 1024;
+    public static final int SHADOWMAP_SIZE = 2048;
     DirectionalLightShadowRenderer dlsr;
     DirectionalLight sun;
     AmbientLight al;
@@ -42,11 +42,11 @@ public class Lights {
         sceneNode.addLight(al);
 
         // Shadows
-        dlsr = new DirectionalLightShadowRenderer(assetManager, SHADOWMAP_SIZE, 3);
+        dlsr = new DirectionalLightShadowRenderer(assetManager, SHADOWMAP_SIZE, 4);
         dlsr.setLight(sun);
         dlsr.setLambda(0.55f);
         dlsr.setShadowIntensity(0.6f);
-        dlsr.setEdgeFilteringMode(EdgeFilteringMode.Dither);
+        dlsr.setEdgeFilteringMode(EdgeFilteringMode.PCFPOISSON);
         viewPort.addProcessor(dlsr);
 
         // Filters
@@ -63,12 +63,12 @@ public class Lights {
         fpp.addFilter(overlay);
 
         // Anti-aliasing
-//        fxaa = new FXAAFilter();
-//        fxaa.setSubPixelShift(0f);
-//        fxaa.setReduceMul(0f);
-//        fxaa.setVxOffset(5.0f);
-//        fxaa.setEnabled(true);
-//        fpp.addFilter(fxaa);
+        fxaa = new FXAAFilter();
+        fxaa.setSubPixelShift(0f);
+        fxaa.setReduceMul(0f);
+        fxaa.setVxOffset(5.0f);
+        fxaa.setEnabled(true);
+        fpp.addFilter(fxaa);
 
         viewPort.addProcessor(fpp);
     }

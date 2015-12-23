@@ -8,8 +8,6 @@ import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import com.jme3.texture.Texture;
-import com.jme3.util.TangentBinormalGenerator;
 
 public class StaticModel extends Node {
 
@@ -34,59 +32,29 @@ public class StaticModel extends Node {
         }
     }
 
-    private final static float DEFAULT_SCALE = 1.0f;
-    private final static boolean ENABLE_NORMAL_MAP = false;
-    private Spatial mModel;
-    private Material mMaterial;
-    private Node mModelNode;
+    protected AssetManager am;
+    protected boolean fresh = false;
+    protected String meshName, subname;
 
-    public StaticModel(AssetManager am, String meshName) {
-        this(am, meshName, null, null);
+    public StaticModel(AssetManager am, String meshName, String subname) {
+        this.am = am;
+        this.meshName = meshName;
+        this.subname = subname;
+
+        Spatial model = ModelCache.getInstance().getModel(subname == null ? meshName : meshName + "#" + subname);
+        if (model == null) {
+            model = am.loadModel(meshName);
+            fresh = true;
+        }
+        model = model.clone(false);
+        for (Spatial spatial : ((Node) model).getChildren()) {
+            this.attachChild(spatial);
+        }
     }
 
-    public StaticModel(AssetManager am, String meshName,
-                       String diffusePath, String normalPath) {
-        mModelNode = new Node();
-        mModelNode.setShadowMode(ShadowMode.CastAndReceive);
-
-        Spatial model = ModelCache.getInstance().getModel(meshName);
-        if (model == null) {
-            model = am.loadModel(meshName.replaceFirst("#.+$", ""));
-            ModelCache.getInstance().putModel(meshName, model);
-        }
-        mModel = model.clone(false);
-        mModel.setLocalScale(DEFAULT_SCALE);
-
-        if (diffusePath != null) {
-            String cacheKey = diffusePath + "::" + normalPath;
-
-            Material cachedMat = ModelCache.getInstance().getMaterial(cacheKey);
-
-            if (cachedMat != null) {
-                mMaterial = cachedMat.clone();
-            } else {
-                mMaterial = new Material(am, "Common/MatDefs/Light/Lighting.j3md");
-                Texture diffuseTex = am.loadTexture(diffusePath);
-                diffuseTex.setMinFilter(Texture.MinFilter.Trilinear);
-                mMaterial.setTexture("DiffuseMap", diffuseTex);
-
-                if (ENABLE_NORMAL_MAP && normalPath != null) {
-                    TangentBinormalGenerator.generate(mModel);
-                    mMaterial.setTexture("NormalMap", am.loadTexture(normalPath));
-                }
-
-                mMaterial.setBoolean("UseMaterialColors", true);
-                mMaterial.setColor("Ambient", ColorRGBA.White);
-                mMaterial.setColor("Diffuse", ColorRGBA.DarkGray);
-
-                ModelCache.getInstance().putMaterial(cacheKey, mMaterial);
-            }
-
-            mModel.setMaterial(mMaterial);
-        }
-
-        mModelNode.attachChild(mModel);
-        this.attachChild(mModelNode);
+    protected void applyModel() {
+        ModelCache.getInstance().putModel(subname == null ? meshName : meshName + "#" + subname, this);
+        fresh = false;
     }
 
     protected void fixLighting(Spatial spatial, ElementType type) {
@@ -98,6 +66,12 @@ public class StaticModel extends Node {
             material.setColor("Diffuse", ColorRGBA.White.clone());
             material.setColor("Specular", ColorRGBA.White.mult(0.1f));
             material.setFloat("Shininess", 0.1f);
+
+//            LodGenerator lod = new LodGenerator((Geometry) spatial);
+//            lod.bakeLods(LodGenerator.TriangleReductionMethod.PROPORTIONAL, 0.25f, 0.5f, 0.75f, 0.9f);
+//            LodControl lc = new LodControl();
+//            lc.setDistTolerance(0.0005f);
+//            spatial.addControl(lc);
         }
         if (spatial instanceof Node) {
             for (Spatial child : ((Node) spatial).getChildren()) {
@@ -105,17 +79,4 @@ public class StaticModel extends Node {
             }
         }
     }
-
-    public Spatial getModel() {
-        return mModel;
-    }
-
-    public Node getModelNode() {
-        return mModelNode;
-    }
-
-    public Material getMaterial() {
-        return mMaterial;
-    }
-
 }

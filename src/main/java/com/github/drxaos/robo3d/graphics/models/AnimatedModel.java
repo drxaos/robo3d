@@ -10,17 +10,12 @@ public class AnimatedModel extends StaticModel {
     private AnimChannel mChannel;
 
     public AnimatedModel(AssetManager am, String meshName) {
-        this(am, meshName, null, null);
-    }
+        super(am, meshName, null);
 
-    public AnimatedModel(AssetManager am, String meshName,
-                         String diffusePath, String normalPath) {
-        super(am, meshName, diffusePath, normalPath);
-
-        mControl = getModel().getControl(AnimControl.class);
+        mControl = this.getControl(AnimControl.class);
         mChannel = mControl.createChannel();
 
-        SkeletonControl skeletonControl = getModel().getControl(SkeletonControl.class);
+        SkeletonControl skeletonControl = this.getControl(SkeletonControl.class);
         skeletonControl.setHardwareSkinningPreferred(true);
     }
 

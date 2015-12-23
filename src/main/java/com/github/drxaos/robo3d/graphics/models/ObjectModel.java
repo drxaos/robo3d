@@ -8,11 +8,22 @@ import java.util.Map;
 
 abstract public class ObjectModel extends StaticModel {
 
-    public ObjectModel(AssetManager am, String path) {
-        super(am, path);
-        for (Spatial spatial : this.getChildren()) {
-            fixLighting(spatial, ElementType.Object);
+    public ObjectModel(AssetManager am, String path, String subname) {
+        super(am, path, subname);
+
+        if (fresh) {
+            for (Spatial spatial : this.getChildren()) {
+                fixLighting(spatial, ElementType.Object);
+            }
+
+            prepare();
+
+            applyModel();
         }
+    }
+
+    protected void prepare() {
+        System.out.println("Preparing: " + meshName + "#" + subname);
     }
 
     public static final Map<String, Class<? extends ObjectModel>> TYPES = new HashMap<String, Class<? extends ObjectModel>>() {{

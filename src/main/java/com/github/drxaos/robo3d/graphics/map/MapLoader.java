@@ -30,6 +30,7 @@ public class MapLoader {
 
 
             for (TmxLayer layer : map.getLayers()) {
+                Node layerNode = new Node("Layer_" + layer.name);
                 for (int x = 0; x < layer.width; x++) {
                     for (int y = 0; y < layer.height; y++) {
 
@@ -47,10 +48,13 @@ public class MapLoader {
                                 .newInstance(assetManager, id - tileset.firstGid + 1);
                         tileModel.move(x * 6 + 3, 0, y * 6 + 3);
                         tileModel.rotate(0, JmeUtils.degreesToRad(-r), 0);
-                        sceneNode.attachChild(tileModel);
+                        layerNode.attachChild(tileModel);
                     }
                 }
-
+                if (layer.name.equals("walls") || layer.name.equals("roads") || layer.name.equals("roofs")) {
+                    Optimizer.optimize(layerNode, true);
+                }
+                sceneNode.attachChild(layerNode);
             }
 
             for (TmxObjectGroup tmxObjectGroup : map.getObjectGroups()) {
@@ -76,4 +80,5 @@ public class MapLoader {
 
 
     }
+
 }

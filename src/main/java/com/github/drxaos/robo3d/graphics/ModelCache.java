@@ -23,10 +23,12 @@ public class ModelCache {
     }
 
     public final Spatial getModel(final String path) {
+        System.out.println("Searching: " + path);
         return mModels.get(path);
     }
 
     public void putModel(final String path, final Spatial model) {
+        System.out.println("Caching: " + path);
         mModels.put(path, model);
     }
 
