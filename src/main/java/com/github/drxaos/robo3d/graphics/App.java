@@ -9,6 +9,8 @@ import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.CameraNode;
 import com.jme3.scene.Node;
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.World;
 
 public class App extends SimpleApplication {
 
@@ -19,6 +21,11 @@ public class App extends SimpleApplication {
     private MapLoader mMapLoader;
     private Lights mLights;
     private Env env;
+
+    private World physicsWorld;
+    float timeStep = 1.0f / 60.0f;
+    int velocityIterations = 6;
+    int positionIterations = 2;
 
     public App() {
         super();
@@ -69,6 +76,8 @@ public class App extends SimpleApplication {
 
         env = new Env(this, assetManager, viewPort, cam);
 
+        physicsWorld = new World(new Vec2(0, 0));
+
         mMapLoader.loadTo(env);
         mLights.setLights(env);
     }
@@ -97,11 +106,17 @@ public class App extends SimpleApplication {
         return mSceneNode;
     }
 
+    public World getPhysicsWorld() {
+        return physicsWorld;
+    }
+
     @Override
     public void simpleUpdate(float tpf) {
         mFutureUpdater.update(tpf);
 
         //cam.getLocation().setY(1.5f);
+
+        physicsWorld.step(timeStep, velocityIterations, positionIterations);
     }
 
     @Override

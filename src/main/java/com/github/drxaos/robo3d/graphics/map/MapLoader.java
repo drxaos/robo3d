@@ -49,6 +49,7 @@ public class MapLoader {
                         tileModel.move(x * 6 + 3, 0, y * 6 + 3);
                         tileModel.rotate(0, JmeUtils.degreesToRad(-r), 0);
                         layerNode.attachChild(tileModel);
+                        tileModel.addBodyTo(env.getApp().getPhysicsWorld());
                     }
                 }
                 try {
@@ -77,6 +78,7 @@ public class MapLoader {
                             object.y / 50 * 6 + FastMath.sin(JmeUtils.degreesToRad(object.rotation - 45)) * 3 * FastMath.sqrt(2));
                     objectModel.rotate(0, JmeUtils.degreesToRad(-object.rotation), 0);
                     sceneNode.attachChild(objectModel);
+                    objectModel.addBodyTo(env.getApp().getPhysicsWorld());
                 }
             }
         } catch (Exception e) {

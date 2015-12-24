@@ -12,6 +12,8 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.control.LodControl;
 import com.jme3.texture.Texture;
 import jme3tools.optimize.LodGenerator;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.World;
 
 public class StaticModel extends Node {
 
@@ -39,6 +41,7 @@ public class StaticModel extends Node {
     protected AssetManager am;
     protected boolean fresh = false;
     protected String meshName, subname;
+    protected Body physicsBody;
 
     public StaticModel(AssetManager am, String meshName, String subname) {
         this.am = am;
@@ -88,5 +91,13 @@ public class StaticModel extends Node {
                 fixLighting(child, type);
             }
         }
+    }
+
+    public final Body addBodyTo(World world) {
+        return physicsBody = createBody(world);
+    }
+
+    protected Body createBody(World world) {
+        return null;
     }
 }

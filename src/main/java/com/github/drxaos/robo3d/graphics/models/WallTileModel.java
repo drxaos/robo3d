@@ -1,6 +1,8 @@
 package com.github.drxaos.robo3d.graphics.models;
 
 import com.jme3.asset.AssetManager;
+import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.World;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -91,5 +93,11 @@ public class WallTileModel extends TileModel {
 
     public WallTileModel(AssetManager am, Integer id) {
         this(am, TILES.get(id));
+    }
+
+    @Override
+    protected Body createBody(World world) {
+        // Static Body
+        return null; // TODO
     }
 }
