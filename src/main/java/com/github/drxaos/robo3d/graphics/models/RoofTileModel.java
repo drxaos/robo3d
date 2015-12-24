@@ -1,6 +1,8 @@
 package com.github.drxaos.robo3d.graphics.models;
 
+import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.jme3.asset.AssetManager;
+import com.jme3.material.Material;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,4 +68,13 @@ public class RoofTileModel extends TileModel {
         this(am, TILES.get(id));
     }
 
+    @Override
+    protected void prepare() {
+        super.prepare();
+        // fix z-fighting
+        List<Material> wallMats = JmeUtils.findMaterials(this, "WallMat");
+        for (Material wallMat : wallMats) {
+            wallMat.getAdditionalRenderState().setPolyOffset(1, 1);
+        }
+    }
 }

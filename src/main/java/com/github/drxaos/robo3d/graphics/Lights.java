@@ -34,7 +34,7 @@ public class Lights {
         // Lights
         sun = new DirectionalLight();
         sun.setColor(ColorRGBA.White.mult(0.7f));
-        sun.setDirection(new Vector3f(-1, -1, -1));
+        sun.setDirection(new Vector3f(-0.5f, -1, -1));
         sceneNode.addLight(sun);
 
         al = new AmbientLight();
