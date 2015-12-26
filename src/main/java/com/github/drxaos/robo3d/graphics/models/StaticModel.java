@@ -100,4 +100,8 @@ public class StaticModel extends Node {
     protected Body createBody(World world) {
         return null;
     }
+
+    public Body getPhysicsBody() {
+        return physicsBody;
+    }
 }

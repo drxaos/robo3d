@@ -3,6 +3,7 @@ package com.github.drxaos.robo3d.graphics.map;
 import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.models.ObjectModel;
+import com.github.drxaos.robo3d.graphics.models.StaticModel;
 import com.github.drxaos.robo3d.graphics.models.TileModel;
 import com.github.drxaos.robo3d.tmx.*;
 import com.jme3.asset.AssetManager;
@@ -12,9 +13,12 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import com.jme3.util.SkyFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MapLoader {
 
-    public void loadTo(Env env) {
+    public List<StaticModel> loadTo(Env env) {
         AssetManager assetManager = env.getAssetManager();
         Node sceneNode = env.getApp().getSceneNode();
         ViewPort viewPort = env.getViewPort();
@@ -23,6 +27,7 @@ public class MapLoader {
         sky.setLocalScale(350);
         sceneNode.attachChild(sky);
 
+        List<StaticModel> list = new ArrayList<>();
 
         try {
             assetManager.registerLoader(TmxLoader.class, "tmx");
@@ -49,6 +54,7 @@ public class MapLoader {
                         tileModel.move(x * 6 + 3, 0, y * 6 + 3);
                         tileModel.rotate(0, JmeUtils.degreesToRad(-r), 0);
                         layerNode.attachChild(tileModel);
+                        list.add(tileModel);
                         tileModel.addBodyTo(env.getApp().getPhysicsWorld());
                     }
                 }
@@ -79,13 +85,14 @@ public class MapLoader {
                     objectModel.rotate(0, JmeUtils.degreesToRad(-object.rotation), 0);
                     sceneNode.attachChild(objectModel);
                     objectModel.addBodyTo(env.getApp().getPhysicsWorld());
+                    list.add(objectModel);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-
+        return list;
     }
 
 }
