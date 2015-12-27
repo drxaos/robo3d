@@ -51,6 +51,25 @@ public class JmeUtils {
         }
     }
 
+    public static List<Geometry> findGeometryByMaterial(Node root, String materialName) {
+        if (materialName == null) {
+            return null;
+        }
+        List<Geometry> list = new ArrayList<Geometry>();
+        findGeometryByMaterial(root, materialName, list);
+        return list;
+    }
+
+    private static void findGeometryByMaterial(Node root, String name, List<Geometry> list) {
+        for (Spatial child : root.getChildren()) {
+            if (child instanceof Geometry && name.equals(((Geometry) child).getMaterial().getName())) {
+                list.add(((Geometry) child));
+            } else if (child instanceof Node) {
+                findGeometryByMaterial((Node) child, name, list);
+            }
+        }
+    }
+
     public static Geometry generateInvisibleBox(AssetManager am, Box box) {
         BoxGeoPair cache = null;
         for (BoxGeoPair pair : mBoxCache) {

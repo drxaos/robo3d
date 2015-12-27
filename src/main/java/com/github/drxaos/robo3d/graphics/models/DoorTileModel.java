@@ -1,6 +1,10 @@
 package com.github.drxaos.robo3d.graphics.models;
 
+import com.github.drxaos.robo3d.graphics.Env;
+import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.jme3.asset.AssetManager;
+import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.scene.Geometry;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -76,5 +80,12 @@ public class DoorTileModel extends TileModel {
 
     public DoorTileModel(AssetManager am, Integer id) {
         this(am, TILES.get(id));
+    }
+
+    public void init(Env env) {
+        RigidBodyControl phy = new RigidBodyControl(0.0f);
+        List<Geometry> doors = JmeUtils.findGeometryByMaterial(this, "DoorMat");
+        doors.get(0).getParent().addControl(phy);
+        env.getApp().getBulletAppState().getPhysicsSpace().add(phy);
     }
 }

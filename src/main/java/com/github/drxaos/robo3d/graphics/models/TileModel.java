@@ -1,6 +1,8 @@
 package com.github.drxaos.robo3d.graphics.models;
 
+import com.github.drxaos.robo3d.graphics.Env;
 import com.jme3.asset.AssetManager;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
@@ -75,5 +77,6 @@ abstract public class TileModel extends StaticModel {
         put("doors", DoorTileModel.class);
         put("roads", RoadTileModel.class);
     }};
+
 
 }

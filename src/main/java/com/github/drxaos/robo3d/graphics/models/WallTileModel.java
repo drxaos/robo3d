@@ -1,8 +1,8 @@
 package com.github.drxaos.robo3d.graphics.models;
 
+import com.github.drxaos.robo3d.graphics.Env;
 import com.jme3.asset.AssetManager;
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.World;
+import com.jme3.bullet.control.RigidBodyControl;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -95,9 +95,9 @@ public class WallTileModel extends TileModel {
         this(am, TILES.get(id));
     }
 
-    @Override
-    protected Body createBody(World world) {
-        // Static Body
-        return null; // TODO
+    public void init(Env env) {
+        RigidBodyControl phy = new RigidBodyControl(0.0f);
+        this.addControl(phy);
+        env.getApp().getBulletAppState().getPhysicsSpace().add(phy);
     }
 }

@@ -6,16 +6,13 @@ import com.jme3.app.SimpleApplication;
 import com.jme3.asset.AssetEventListener;
 import com.jme3.asset.AssetKey;
 import com.jme3.asset.TextureKey;
-import com.jme3.math.FastMath;
-import com.jme3.math.Quaternion;
+import com.jme3.bullet.BulletAppState;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.CameraNode;
 import com.jme3.scene.Node;
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.Body;
-import org.jbox2d.dynamics.World;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class App extends SimpleApplication {
@@ -27,9 +24,9 @@ public class App extends SimpleApplication {
     private MapLoader mMapLoader;
     private Lights mLights;
     private Env env;
+    private BulletAppState bulletAppState;
 
-    private World physicsWorld;
-    private List<StaticModel> models;
+    private List<StaticModel> objects = new ArrayList<>();
     float timeStep = 1.0f / 60.0f;
     int velocityIterations = 6;
     int positionIterations = 2;
@@ -50,6 +47,12 @@ public class App extends SimpleApplication {
         setPauseOnLostFocus(true);
         toggleGraphicsStats();
 
+        bulletAppState = new BulletAppState();
+        stateManager.attach(bulletAppState);
+        bulletAppState.setDebugEnabled(true);
+        bulletAppState.getPhysicsSpace().setAccuracy(1f / 100f);
+        bulletAppState.getPhysicsSpace().setMaxSubSteps(10);
+
         AssetEventListener asl = new AssetEventListener() {
             public void assetLoaded(AssetKey key) {
             }
@@ -67,8 +70,8 @@ public class App extends SimpleApplication {
         };
         assetManager.addAssetEventListener(asl);
 
-        cam.setLocation(new Vector3f(0, 2, 0));
-        cam.lookAt(new Vector3f(0, 0, 0), cam.getUp());
+        cam.setLocation(new Vector3f(15, 30, 100));
+        cam.lookAt(new Vector3f(15, 0, 100), cam.getUp());
         cam.setFrustumPerspective(45f, (float) cam.getWidth() / cam.getHeight(), 0.01f, 1000f);
         flyCam.setDragToRotate(true);
         flyCam.setEnabled(true);
@@ -83,9 +86,7 @@ public class App extends SimpleApplication {
 
         env = new Env(this, assetManager, viewPort, cam);
 
-        physicsWorld = new World(new Vec2(0, 0));
-
-        models = mMapLoader.loadTo(env);
+        mMapLoader.loadTo(env);
         mLights.setLights(env);
     }
 
@@ -113,38 +114,26 @@ public class App extends SimpleApplication {
         return mSceneNode;
     }
 
-    public World getPhysicsWorld() {
-        return physicsWorld;
-    }
-
     @Override
     public void simpleUpdate(float tpf) {
         mFutureUpdater.update(tpf);
 
         //cam.getLocation().setY(1.5f);
 
-        for (StaticModel model : models) {
-            Body physicsBody = model.getPhysicsBody();
-            if (physicsBody == null) {
-                continue;
-            }
-            float angle = physicsBody.getAngle() * -1;
-            physicsBody.applyForce(new Vec2(-50f * FastMath.cos(angle), -50f * FastMath.sin(angle)), physicsBody.getPosition());
-        }
-
-        physicsWorld.step(timeStep, velocityIterations, positionIterations);
-
-        for (StaticModel model : models) {
-            Body physicsBody = model.getPhysicsBody();
-            if (physicsBody == null) {
-                continue;
-            }
-            model.setLocalTranslation(physicsBody.getPosition().x, 0, physicsBody.getPosition().y);
-            model.setLocalRotation(new Quaternion().fromAngleAxis(physicsBody.getAngle(), Vector3f.UNIT_Y));
+        for (StaticModel model : objects) {
+            model.update(env);
         }
     }
 
     @Override
     public void simpleRender(RenderManager rm) {
+    }
+
+    public BulletAppState getBulletAppState() {
+        return bulletAppState;
+    }
+
+    public List<StaticModel> getObjects() {
+        return objects;
     }
 }
