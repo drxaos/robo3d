@@ -45,6 +45,7 @@ public class StaticModel extends Node {
     protected AssetManager am;
     protected boolean fresh = false;
     protected String meshName, subname;
+    boolean selected;
 
     public StaticModel(AssetManager am, String meshName, String subname, String objectName) {
         this.am = am;
@@ -116,5 +117,9 @@ public class StaticModel extends Node {
     }
 
     public void update(Env env) {
+    }
+
+    public void selected(boolean selected) {
+        this.selected = selected;
     }
 }

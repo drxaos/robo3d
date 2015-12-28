@@ -1,5 +1,7 @@
 package com.github.drxaos.robo3d.graphics.filters;
 
+import com.github.drxaos.robo3d.graphics.App;
+import com.github.drxaos.robo3d.graphics.models.StaticModel;
 import com.jme3.app.Application;
 import com.jme3.app.state.AbstractAppState;
 import com.jme3.app.state.AppStateManager;
@@ -23,7 +25,7 @@ public class SelectionAppState extends AbstractAppState {
         HOVER, SELECT;
     }
 
-    protected Application app;
+    protected App app;
     protected AssetManager assetManager;
     protected final Node scene;
     protected Node hoverNode, selectNode;
@@ -38,7 +40,7 @@ public class SelectionAppState extends AbstractAppState {
     @Override
     public void initialize(AppStateManager stateManager, Application app) {
         super.initialize(stateManager, app);
-        this.app = app;
+        this.app = (App) app;
         this.rm = app.getRenderManager();
         this.assetManager = app.getAssetManager();
         setupMaterials(app);
@@ -62,8 +64,19 @@ public class SelectionAppState extends AbstractAppState {
     @Override
     public void update(float tpf) {
         super.update(tpf);
-        scene.updateLogicalState(tpf);
-        scene.updateGeometricState();
+        app.getRootNode().updateLogicalState(tpf);
+        app.getRootNode().updateGeometricState();
+        updateSelections(hoverNode);
+        updateSelections(selectNode);
+    }
+
+    protected void updateSelections(Node node) {
+        for (Spatial spatial : node.getChildren()) {
+            Object originalObject = spatial.getUserData("original_object");
+            if (originalObject != null && originalObject instanceof StaticModel) {
+                spatial.setLocalTransform(((StaticModel) originalObject).getLocalTransform());
+            }
+        }
     }
 
     @Override
@@ -87,12 +100,13 @@ public class SelectionAppState extends AbstractAppState {
         }
     }
 
-    protected void highlight(Spatial spatial, Node node, Material color) {
+    protected void highlight(Spatial obj, Node node, Material color) {
         for (Spatial s : node.getChildren()) {
             s.removeFromParent();
         }
-        if (spatial != null) {
-            spatial = spatial.clone(false);
+        if (obj != null) {
+            Spatial spatial = obj.clone(false);
+            spatial.setUserData("original_object", obj);
             node.attachChild(spatial);
             ArrayList<Geometry> geoms = new ArrayList<>();
             GeometryBatchFactory.gatherGeoms(spatial, geoms);

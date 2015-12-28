@@ -157,7 +157,18 @@ public class App extends SimpleApplication {
         return null;
     }
 
+    StaticModel selectedObject;
+
     public void select(StaticModel object, SelectionAppState.Type type) {
         selectionAppState.highlight(object, type);
+        if (type == SelectionAppState.Type.SELECT) {
+            if (selectedObject != null) {
+                selectedObject.selected(false);
+            }
+            selectedObject = object;
+            if (selectedObject != null) {
+                selectedObject.selected(true);
+            }
+        }
     }
 }

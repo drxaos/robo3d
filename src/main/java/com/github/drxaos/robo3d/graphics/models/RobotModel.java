@@ -107,10 +107,10 @@ public class RobotModel extends ObjectModel {
         Vector3f back = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(0.5f));
         Vector3f lc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(0.9f)).add(back);
         Vector3f rc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(-0.9f)).add(back);
-        if (l) {
+        if (l && selected) {
             physic.applyForce(force, lc);
         }
-        if (r) {
+        if (r && selected) {
             physic.applyForce(force, rc);
         }
     }
