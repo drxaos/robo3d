@@ -1,63 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="50" tileheight="50" nextobjectid="14">
- <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="50" tileheight="50" nextobjectid="30">
+ <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="100">
   <image source="tileset-roads.png" trans="000000" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="101" name="walls" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+ <tileset firstgid="101" name="walls" tilewidth="50" tileheight="50" tilecount="100">
   <image source="tileset-walls.png" trans="00ff00" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="201" name="doors" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+ <tileset firstgid="201" name="doors" tilewidth="50" tileheight="50" tilecount="100">
   <image source="tileset-doors.png" trans="ffff00" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="301" name="roofs" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+ <tileset firstgid="301" name="roofs" tilewidth="50" tileheight="50" tilecount="100">
   <image source="tileset-roofs.png" trans="000000" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="401" name="objects" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+ <tileset firstgid="401" name="objects" tilewidth="50" tileheight="50" tilecount="100">
   <image source="tileset-objects.png" trans="ff00ff" width="250" height="1000"/>
  </tileset>
  <layer name="roads" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+1WQQ6AIAybIL7Tp/EUnuaMEpPJZBMQEz00JmDo1q7iAADDj9dhQjiAmQPu+xa8eHYY8cnBtet37ctzwP3Q2xMpDPZiseYcTGVeW/m9t/OifkGi58ob89QiN1xfFo481cgN7eEpXnqWhjeXhasMxG9CzL491k86JGoMGs8yNXpOBy0vnVmh7ycdEmuXvK3mvCNvVY7UnJqEPyW89E6fNp7bGkhB73SnOI/Oq+beKuEt0UDKu3tOweZf4O9M/1l6ZYbxTdTHj+9iATmpHdEQDgAA
+   H4sIAAAAAAAAC+1VQQ7DIAxLYfSdfRpP4WlLtVVDUbKaLekqrQerBxDGjk0nIpounA4zoxAtFni9RvDy2e3GXwslTu+qq1rg9fbrmaBIrCXznfeQnHmz876z87J/DfFz5d36FNEbS1emV588eiM1HMUrzxrhRbuwQehd+u73c+zfQY03D74XOz2t8l0sht5RXtR7yat4cwiv4pvJ+0nn5H9gfnRczRqaVwRaTpNy73e8ciaWHzK7YD7DZ2n40hRfwnm/8QDlfc5cQu2/c3bVfHjCmBuk48L/4g798y6JEA4AAA==
   </data>
  </layer>
  <layer name="walls" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2WXQ6DIAyAOaov/mzOv2S7D0fhaCtDZlehRQ1xDzZpFGv5KJSCUpf8o1SgpVLaa43erYJd5+CWpH1f201qXzQGTiG+wr8DUzeOHbRL8dMYtojky9kzc02K7wg6wNzEdCTzhn0rp/q2j1twnIHxBWYBam6IlcqlQjm4/QJOLeRvDq7kK3GrOffrQO4f4dr1btxTM799+8B9DWS8uN0LXCsPwY55T9T35PSTY5NTE/IJiZ3HOV7D/BYc26CWuW3VOv4j68v1YTl2b01uTxnMjeWz38dHuJYJ/et29k+J1+9jievPhZrUDFI/jH9KXGKPcs+uz742d6RGcuckXV/JHuLGagQXk7Q/U87Bbh5bv7R/7KF4m8j3cslnkXtWvP4MROtr7PcK3V2QT/Bes2d9c4hUR1PvdVtVqs2X5JU3AR+VORAOAAA=
+   H4sIAAAAAAAAC+1WWY7DIAzlqPwE2um0SaXpfTgKRxsoS13XC2mUUT/GksXi2I+HDcSYf/lEcUknYwKnyR72wJ10exyNpXGA6o2xrf9VxveWsmv8NQ4Kv7ftO+PGEd8bsi1J57RXTRe0b9DXFQ1HMOcNnUPsm+JaiHNF652FNSdMmzQegQ/Ht9YCactyQmOIm/bGSr4SbrWxgvlJfNfiulr7nqj9Lbg534fSBuGzHgPGml/z28cXBTfLt2KHeD8g9rVghRNTZwpfW/lG4TNybcQ+D+NWu4jJxcg4uW4Tz3ArnHscrp7bOd6IS7aSTzvHDdc95gPw63Xs0Z1R82lhu6zcZ180gj55X62Vkfxm/rmf92B6tt2l3cVndBdL7yTO74D9pc/dERIn7XxiXwr3XNd2eYyf7BTfAzPP5fCT+LY3EOQ35nkH/l2ATz8DnuE7mt93ReKM3314Zzr0L7ZWpTd4KydJ9vp300TaL+0t+mv5Bf8lhGUQDgAA
   </data>
  </layer>
  <layer name="doors" width="30" height="30">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGAWjADc4ycBwYADsXIBMj4JRMAqGFzg1AOUKseAUAfnTg9jt1AanB9oBo2AU0AEQyvOjYBSMBAAAUOSNVBAOAAA=
+   H4sIAAAAAAAAC+3UsQ0AIAhE0b//FI5iKyxla0liiBb/NVdBaA6Q/rJgnClV5esDVBIwb+az8TdE12JJX7LzEmy73PxAEA4AAA==
   </data>
  </layer>
  <layer name="roofs" width="30" height="30" opacity="0.29">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2TSw6AIAwFy4EUuBFH4ygczUeUTVOMnwKbTtKwkDC0PogMwzCIvCPaHSWsebI3wZuxlsEemt1bBb0V1G/e/h8tbz1nO92P9yv1K+Yi4uyAb5HNQcvbI1xzCMwx2os+E5w5sjn4MwuF71+V8959jHtanqXiGdek5VkqnnHzfqe9X6n4mzaMlRwbU2pNEA4AAA==
+   H4sIAAAAAAAAC+2WYQqAIAyF14FKu1FH8ygerUkNYpm4OQnKD96PoPWaPlcAg8HgK6wTgJ9gI+F1qK11WLtgjRPUXHyTXyDhdRT4bugbnKBGQ+pP01sr2FtENSPdHyvf9Jz58K6+36jfWy5K+bbyzeHPNSD5i89bvu7IQuQ1Fjkv+T7B30czT1rmCCHNqxXaOcYzrZ3fUvgeS/d7+NbBM02irNA5yann92oprEfPs/M3X5oLOfX+55GyA2NnOEQQDgAA
   </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="e1" type="RedRobot" gid="402" x="162.448" y="726.435" width="50" height="50" rotation="-168.6"/>
-  <object id="2" name="e2" type="RedRobot" gid="402" x="72.5082" y="777.284" width="50" height="50" rotation="-195.317"/>
-  <object id="3" name="e3" type="RedRobot" gid="402" x="120.598" y="716.721" width="50" height="50" rotation="-146.882"/>
-  <object id="4" name="e4" type="RedRobot" gid="402" x="115.611" y="788.529" width="50" height="50" rotation="-243.792"/>
-  <object id="5" name="e5" type="RedRobot" gid="402" x="126.109" y="750.304" width="50" height="50" rotation="-174.937"/>
-  <object id="6" name="r1" type="Robot" gid="401" x="229.218" y="681.72" width="50" height="50" rotation="-92.8642"/>
-  <object id="7" name="r2" type="Robot" gid="401" x="249.218" y="713.72" width="50" height="50" rotation="-92.8642"/>
-  <object id="8" name="r3" type="Robot" gid="401" x="271.218" y="681.72" width="50" height="50" rotation="-92.8642"/>
+  <object id="1" name="e1" type="RedRobot" gid="402" x="116.346" y="718.214" width="50" height="50" rotation="-136.274"/>
+  <object id="2" name="e2" type="RedRobot" gid="402" x="42.8227" y="784.052" width="50" height="50" rotation="-203.735"/>
+  <object id="3" name="e3" type="RedRobot" gid="402" x="65.598" y="720.721" width="50" height="50" rotation="-146.882"/>
+  <object id="4" name="e4" type="RedRobot" gid="402" x="80.6104" y="795.946" width="50" height="50" rotation="-577.507"/>
+  <object id="5" name="e5" type="RedRobot" gid="402" x="62.109" y="751.304" width="50" height="50" rotation="-174.937"/>
+  <object id="6" name="r1" type="Robot" gid="401" x="232.218" y="699.72" width="50" height="50" rotation="-92.8642"/>
+  <object id="7" name="r2" type="Robot" gid="401" x="757.257" y="620.234" width="50" height="50" rotation="-358.27"/>
+  <object id="8" name="r3" type="Robot" gid="401" x="266.218" y="698.72" width="50" height="50" rotation="-92.8642"/>
   <object id="9" name="p1" type="Path" x="145.333" y="774.667">
-   <polyline points="-13.3333,-29.3333 -2,2.66667 168,6.66667 213.333,-98.6667 134.667,-204 20,-309.333 74.6667,-402.667 536,-405.333 598.667,-180 556,193.333 -18.6667,202.667 -12,500 480,489.333 478.667,405.333 372,392 392,304 708,300 928,-97.3333 1174.67,-98.6667 1180,-1.33333 1330.67,1.33333"/>
+   <polyline points="-63.3333,-55.3333 -2,2.66667 168,6.66667 213.333,-98.6667 134.667,-204 20,-309.333 74.6667,-402.667 536,-405.333 598.667,-180 556,193.333 -18.6667,202.667 -12,500 480,489.333 478.667,405.333 372,392 392,304 708,300 928,-97.3333 1174.67,-98.6667 1232,-148.333 1326.67,-151.667"/>
   </object>
   <object id="10" name="p2" type="Path" x="145.333" y="774.667">
-   <polyline points="-88,33.3334 -28.6667,3.33333e-06 189.333,4 193.333,-197.333 61.3337,-230.667 30.6667,-404 272,-428 536,-405.333 532,-158.667 504,206.666 128,210.667 127.667,295.334 66,349.334 -12,353.333 2,490.666 480,489.333 492,402.666 366.667,409.333 385.333,292 776,297.333 778.667,-96 1174.67,-98.6667 1180,-1.33333 1330.67,1.33333"/>
+   <polyline points="-113,41.3334 -28.6667,3.33333e-06 189.333,4 193.333,-197.333 61.3337,-230.667 30.6667,-404 272,-428 536,-405.333 532,-158.667 504,206.666 128,210.667 127.667,295.334 66,349.334 -12,353.333 2,490.666 480,489.333 492,402.666 366.667,409.333 385.333,292 776,297.333 778.667,-96 1174.67,-98.6667 1238,-127.333 1328.67,-120.667"/>
   </object>
   <object id="11" name="p3" type="Path" x="145.333" y="774.667">
-   <polyline points="-65.3333,-57.3333 -19.3333,2.66667 162.667,-2.66666 210.666,-134.667 109.334,-213.333 26.6667,-342.666 98.6667,-413.334 556,-398.666 565.334,-150.667 538.667,209.333 277.333,218.667 266.667,484 480,489.333 498.667,409.333 373.333,410.667 374.667,302.667 732,301.333 938.667,-98.6666 1174.67,-98.6667 1180,-1.33333 1330.67,1.33333"/>
+   <polyline points="-114.333,-45.3333 -35.3333,-1.33333 162.667,-2.66666 210.666,-134.667 109.334,-213.333 26.6667,-342.666 98.6667,-413.334 556,-398.666 565.334,-150.667 538.667,209.333 277.333,218.667 266.667,484 480,489.333 498.667,409.333 373.333,410.667 374.667,302.667 732,301.333 938.667,-98.6666 1174.67,-98.6667 1242,-46.3333 1322.67,-49.6667"/>
   </object>
   <object id="12" name="p4" type="Path" x="145.333" y="774.667">
-   <polyline points="-20,50.6667 -2,2.66667 168,6.66667 213.333,-38.6667 136,-244 33.3333,-246.666 32,-396 536,-405.333 593.334,-21.3333 521.333,177.333 268,204 308,501.333 510.667,493.333 478.667,405.333 1024,394.667 1021.33,304 820,297.333 827,206.333 1026,140.667 1012,5.33335 984,-97.3333 1174.67,-98.6667 1180,-1.33333 1330.67,1.33333"/>
+   <polyline points="-72,54.6667 -2,2.66667 168,6.66667 213.333,-38.6667 136,-244 33.3333,-246.666 32,-396 536,-405.333 593.334,-21.3333 521.333,177.333 268,204 308,501.333 510.667,493.333 478.667,405.333 1024,394.667 1021.33,304 820,297.333 827,206.333 1026,140.667 1012,5.33335 984,-97.3333 1174.67,-98.6667 1238,-70.3333 1325.67,-72.6667"/>
   </object>
   <object id="13" name="p5" type="Path" x="145.333" y="774.667">
-   <polyline points="-49.3333,1.13687e-13 146.667,1.33333 193.333,-90.6667 154.667,-210.667 38.6667,-272 45.3333,-390.667 520,-389.333 522.667,194.667 290.667,210.667 282.667,504 480,489.333 546.667,397.333 1024,405.333 1036,300 770.667,292 950.667,-100 1174.67,-98.6667 1180,-1.33333 1330.67,1.33333"/>
+   <polyline points="-108.333,-1 146.667,1.33333 193.333,-90.6667 154.667,-210.667 38.6667,-272 45.3333,-390.667 520,-389.333 522.667,194.667 290.667,210.667 282.667,504 480,489.333 546.667,397.333 1024,405.333 1036,300 770.667,292 950.667,-100 1174.67,-98.6667 1240,-98.3333 1292.67,-100.667"/>
   </object>
+  <object id="14" name="rs1" type="RadioStation" gid="404" x="467.666" y="629" width="50" height="50"/>
+  <object id="15" name="rs2" type="RadioStation" gid="404" x="563.611" y="457.98" width="50" height="50" rotation="-225.631"/>
+  <object id="16" name="f1" type="Fence" gid="405" x="293.299" y="716.605" width="50" height="50" rotation="-14.9568"/>
+  <object id="17" name="f2" type="Fence" gid="405" x="517.072" y="960.68" width="50" height="50" rotation="7.17787"/>
+  <object id="18" name="f3" type="Fence" gid="405" x="757.14" y="1303.73" width="50" height="50" rotation="282.223"/>
+  <object id="19" name="f4" type="Fence" gid="405" x="805.17" y="797.828" width="50" height="50" rotation="269.608"/>
+  <object id="20" name="r4" type="Robot" gid="401" x="757.257" y="738.234" width="50" height="50" rotation="-358.27"/>
+  <object id="21" name="r5" type="Robot" gid="401" x="1073.85" y="478.096" width="50" height="50" rotation="-447.43"/>
+  <object id="22" name="f5" type="Fence" gid="405" x="213.26" y="847.258" width="50" height="50" rotation="-0.593299"/>
+  <object id="23" name="f6" type="Fence" gid="405" x="277.26" y="849.258" width="50" height="50" rotation="-0.593299"/>
+  <object id="24" name="f7" type="Fence" gid="405" x="334.26" y="847.258" width="50" height="50" rotation="-0.593299"/>
+  <object id="25" name="ctr1" type="Control" gid="406" x="525.317" y="785.321" width="50" height="50" rotation="180"/>
+  <object id="26" name="ctr2" type="Control" gid="406" x="580.317" y="785.321" width="50" height="50" rotation="180"/>
+  <object id="27" name="ctr3" type="Control" gid="406" x="468.903" y="845.294" width="50" height="50" rotation="75.6564"/>
+  <object id="28" name="ctr4" type="Control" gid="406" x="570.709" y="895.922" width="50" height="50" rotation="-90.9071"/>
+  <object id="29" name="rs3" type="RadioStation" gid="404" x="1357.7" y="1190.79" width="50" height="50" rotation="-472.634"/>
  </objectgroup>
 </map>

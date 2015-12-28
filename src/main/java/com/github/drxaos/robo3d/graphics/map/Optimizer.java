@@ -14,7 +14,10 @@ public class Optimizer {
 
 
     public static Node optimize(Node scene, boolean useLods) {
-        ArrayList<Geometry> geoms = new ArrayList<Geometry>();
+        Transform transform = scene.getLocalTransform();
+        scene.setLocalTransform(Transform.IDENTITY);
+
+        ArrayList<Geometry> geoms = new ArrayList<>();
 
         GeometryBatchFactory.gatherGeoms(scene, geoms);
 
@@ -28,14 +31,12 @@ public class Optimizer {
             geometry.removeFromParent();
         }
 
-        // Since the scene is returned unaltered the transform must be reset
-        scene.setLocalTransform(Transform.IDENTITY);
-
+        scene.setLocalTransform(transform);
         return scene;
     }
 
     public static List<Geometry> makeBatches(Collection<Geometry> geometries, boolean useLods) {
-        ArrayList<Geometry> retVal = new ArrayList<Geometry>();
+        ArrayList<Geometry> retVal = new ArrayList<>();
         HashMap<Material, List<Geometry>> matToGeom = new HashMap<Material, List<Geometry>>();
 
         for (Geometry geom : geometries) {
@@ -71,6 +72,7 @@ public class Optimizer {
             out.setMaterial(mat);
             out.updateModelBound();
             out.setShadowMode(geomsForMat.get(0).getShadowMode());
+            out.setCullHint(geomsForMat.get(0).getCullHint());
             retVal.add(out);
         }
 

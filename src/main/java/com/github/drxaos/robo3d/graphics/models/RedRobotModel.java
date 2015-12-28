@@ -10,8 +10,8 @@ import java.util.List;
 
 public class RedRobotModel extends RobotModel {
 
-    public RedRobotModel(AssetManager am) {
-        super(am, "red");
+    public RedRobotModel(AssetManager am, String objectName) {
+        super(am, "red", objectName);
     }
 
     @Override

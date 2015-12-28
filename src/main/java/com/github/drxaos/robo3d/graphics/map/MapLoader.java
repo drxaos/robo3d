@@ -76,8 +76,8 @@ public class MapLoader {
                         continue;
                     }
                     ObjectModel objectModel = typeCls
-                            .getDeclaredConstructor(AssetManager.class)
-                            .newInstance(assetManager);
+                            .getDeclaredConstructor(AssetManager.class, String.class)
+                            .newInstance(assetManager, object.name);
                     objectModel.move(
                             object.x / 50 * 6 + FastMath.cos(JmeUtils.degreesToRad(object.rotation - 45)) * 3 * FastMath.sqrt(2),
                             0,

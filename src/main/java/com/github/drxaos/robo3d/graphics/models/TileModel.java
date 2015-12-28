@@ -1,8 +1,6 @@
 package com.github.drxaos.robo3d.graphics.models;
 
-import com.github.drxaos.robo3d.graphics.Env;
 import com.jme3.asset.AssetManager;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
@@ -29,7 +27,7 @@ abstract public class TileModel extends StaticModel {
     protected Map<ElementType, Node> nodes = new HashMap<ElementType, Node>();
 
     public TileModel(AssetManager am, String path, List<? extends Element> allElements, TileType type) {
-        super(am, path, type.getClass().getName() + "." + type.name());
+        super(am, path, type.getClass().getName() + "." + type.name(), null);
 
         if (fresh) {
             // group elements

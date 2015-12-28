@@ -1,8 +1,11 @@
 package com.github.drxaos.robo3d.graphics.models;
 
 import com.github.drxaos.robo3d.graphics.Env;
+import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.ModelCache;
 import com.jme3.asset.AssetManager;
+import com.jme3.bullet.collision.shapes.CollisionShape;
+import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.MatParamTexture;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -13,6 +16,8 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.control.LodControl;
 import com.jme3.texture.Texture;
 import jme3tools.optimize.LodGenerator;
+
+import java.util.List;
 
 public class StaticModel extends Node {
 
@@ -41,7 +46,7 @@ public class StaticModel extends Node {
     protected boolean fresh = false;
     protected String meshName, subname;
 
-    public StaticModel(AssetManager am, String meshName, String subname) {
+    public StaticModel(AssetManager am, String meshName, String subname, String objectName) {
         this.am = am;
         this.meshName = meshName;
         this.subname = subname;
@@ -55,6 +60,8 @@ public class StaticModel extends Node {
         for (Spatial spatial : ((Node) model).getChildren()) {
             this.attachChild(spatial);
         }
+
+        this.name = objectName;
     }
 
     protected void applyModel() {
@@ -91,6 +98,18 @@ public class StaticModel extends Node {
                 fixLighting(child, type);
             }
         }
+    }
+
+    protected CollisionShape boundsToCollisionShape() {
+        List<Geometry> bounds = JmeUtils.findGeometryByMaterial(this, "Bound");
+        Node boundsNode = new Node("Bounds");
+        this.attachChild(boundsNode);
+        for (Geometry bound : bounds) {
+            boundsNode.attachChild(bound);
+        }
+        CollisionShape shape = CollisionShapeFactory.createDynamicMeshShape(boundsNode);
+        boundsNode.removeFromParent();
+        return shape;
     }
 
     public void init(Env env) {

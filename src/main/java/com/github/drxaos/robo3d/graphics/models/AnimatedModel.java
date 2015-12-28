@@ -10,7 +10,7 @@ public class AnimatedModel extends StaticModel {
     private AnimChannel mChannel;
 
     public AnimatedModel(AssetManager am, String meshName) {
-        super(am, meshName, null);
+        super(am, meshName, null, null);
 
         mControl = this.getControl(AnimControl.class);
         mChannel = mControl.createChannel();

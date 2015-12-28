@@ -2,7 +2,9 @@ package com.github.drxaos.robo3d.graphics.models;
 
 import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.jme3.asset.AssetManager;
-import com.jme3.material.Material;
+import com.jme3.material.RenderState;
+import com.jme3.renderer.queue.RenderQueue;
+import com.jme3.scene.Geometry;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -72,9 +74,12 @@ public class RoofTileModel extends TileModel {
     protected void prepare() {
         super.prepare();
         // fix z-fighting
-        List<Material> wallMats = JmeUtils.findMaterials(this, "WallMat");
-        for (Material wallMat : wallMats) {
-            wallMat.getAdditionalRenderState().setPolyOffset(1, 1);
+        List<Geometry> roofs = JmeUtils.findGeometryByMaterial(this, "RoofMat");
+        for (Geometry roof : roofs) {
+            roof.getMaterial().getAdditionalRenderState().setPolyOffset(1, 1);
+            roof.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
+            roof.getMaterial().getAdditionalRenderState().setDepthWrite(false);
+            roof.setQueueBucket(RenderQueue.Bucket.Transparent);
         }
     }
 }

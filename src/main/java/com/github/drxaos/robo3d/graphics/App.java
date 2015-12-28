@@ -1,5 +1,6 @@
 package com.github.drxaos.robo3d.graphics;
 
+import com.github.drxaos.robo3d.graphics.filters.SelectionAppState;
 import com.github.drxaos.robo3d.graphics.map.MapLoader;
 import com.github.drxaos.robo3d.graphics.models.StaticModel;
 import com.jme3.app.SimpleApplication;
@@ -25,6 +26,8 @@ public class App extends SimpleApplication {
     private Lights mLights;
     private Env env;
     private BulletAppState bulletAppState;
+    private SelectionAppState selectionAppState;
+    private Node selectionNode;
 
     private List<StaticModel> objects = new ArrayList<>();
     float timeStep = 1.0f / 60.0f;
@@ -49,7 +52,7 @@ public class App extends SimpleApplication {
 
         bulletAppState = new BulletAppState();
         stateManager.attach(bulletAppState);
-        bulletAppState.setDebugEnabled(true);
+        //bulletAppState.setDebugEnabled(true);
         bulletAppState.getPhysicsSpace().setAccuracy(1f / 100f);
         bulletAppState.getPhysicsSpace().setMaxSubSteps(10);
 
@@ -75,9 +78,15 @@ public class App extends SimpleApplication {
         cam.setFrustumPerspective(45f, (float) cam.getWidth() / cam.getHeight(), 0.01f, 1000f);
         flyCam.setDragToRotate(true);
         flyCam.setEnabled(true);
-        flyCam.setMoveSpeed(10.0f);
+        flyCam.setMoveSpeed(20.0f);
+        inputManager.setCursorVisible(true);
         cam.setFrustumFar(4000.0f);
 //        cam.setFrustumNear(0.1f);
+
+        selectionNode = new Node("Selection");
+        rootNode.attachChild(selectionNode);
+        selectionAppState = new SelectionAppState(selectionNode);
+        stateManager.attach(selectionAppState);
 
         inputManager.setCursorVisible(true);
 
@@ -88,6 +97,8 @@ public class App extends SimpleApplication {
 
         mMapLoader.loadTo(env);
         mLights.setLights(env);
+
+        inputManager.addRawInputListener(new Picker(env));
     }
 
     public void toggleGraphicsStats() {
@@ -135,5 +146,18 @@ public class App extends SimpleApplication {
 
     public List<StaticModel> getObjects() {
         return objects;
+    }
+
+    public StaticModel getObject(String name) {
+        for (StaticModel object : objects) {
+            if (name.equals(object.getName())) {
+                return object;
+            }
+        }
+        return null;
+    }
+
+    public void select(StaticModel object, SelectionAppState.Type type) {
+        selectionAppState.highlight(object, type);
     }
 }

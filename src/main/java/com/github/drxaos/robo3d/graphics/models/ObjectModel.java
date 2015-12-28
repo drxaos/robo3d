@@ -8,8 +8,8 @@ import java.util.Map;
 
 abstract public class ObjectModel extends StaticModel {
 
-    public ObjectModel(AssetManager am, String path, String subname) {
-        super(am, path, subname);
+    public ObjectModel(AssetManager am, String path, String subname, String objectName) {
+        super(am, path, subname, objectName);
 
         if (fresh) {
             for (Spatial spatial : this.getChildren()) {
@@ -29,5 +29,8 @@ abstract public class ObjectModel extends StaticModel {
     public static final Map<String, Class<? extends ObjectModel>> TYPES = new HashMap<String, Class<? extends ObjectModel>>() {{
         put("Robot", RobotModel.class);
         put("RedRobot", RedRobotModel.class);
+        put("RadioStation", RadioStationModel.class);
+        put("Fence", FenceModel.class);
+        put("Control", ControlModel.class);
     }};
 }

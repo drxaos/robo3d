@@ -1,5 +1,6 @@
 package com.github.drxaos.robo3d.graphics;
 
+import com.github.drxaos.robo3d.graphics.filters.SelectionFilter;
 import com.jme3.asset.AssetManager;
 import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
@@ -24,6 +25,7 @@ public class Lights {
     ColorOverlayFilter overlay;
     ColorRGBA overlayColor;
     FXAAFilter fxaa;
+    SelectionFilter selection;
 
     public void setLights(Env env) {
 
