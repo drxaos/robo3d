@@ -51,5 +51,5 @@ void main(){
     //color *= (1.0 - edgeAmount);
     color = mix (color,m_EdgeColor.rgb,edgeAmount);
    
-    gl_FragColor = vec4(color, 1.0);
+    gl_FragColor = vec4(color, 0.5);
 }

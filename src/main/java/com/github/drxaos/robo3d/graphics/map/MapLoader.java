@@ -88,9 +88,16 @@ public class MapLoader {
                     env.getApp().getObjects().add(objectModel);
                 }
             }
+
+            env.getApp().look(
+                    map.getWidth() * 6 / 4, map.getHeight() * 6 / 2,
+                    -FastMath.PI / 2 + 0.01f, FastMath.PI / 12 * 3, map.getWidth() * 6);
+            env.getApp().size(map.getWidth() * 6, map.getHeight() * 6);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
 }

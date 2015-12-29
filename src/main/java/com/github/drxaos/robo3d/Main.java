@@ -188,7 +188,7 @@ public class Main {
             public Void call() {
                 if (app instanceof SimpleApplication) {
                     SimpleApplication simpleApp = (SimpleApplication) app;
-                    simpleApp.getFlyByCamera().setDragToRotate(true);
+                    //simpleApp.getFlyByCamera().setDragToRotate(true);
                 }
                 return null;
             }

@@ -53,5 +53,5 @@ void main(){
     //color *= (1.0 - edgeAmount);
     color = mix (color,m_EdgeColor.rgb,edgeAmount);
 
-    outFragColor = vec4(color, 1.0);
+    outFragColor = vec4(color, 0.5);
 }

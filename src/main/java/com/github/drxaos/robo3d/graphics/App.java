@@ -1,5 +1,7 @@
 package com.github.drxaos.robo3d.graphics;
 
+import com.github.drxaos.robo3d.graphics.controls.Navigator;
+import com.github.drxaos.robo3d.graphics.controls.Picker;
 import com.github.drxaos.robo3d.graphics.filters.SelectionAppState;
 import com.github.drxaos.robo3d.graphics.map.MapLoader;
 import com.github.drxaos.robo3d.graphics.models.StaticModel;
@@ -28,11 +30,11 @@ public class App extends SimpleApplication {
     private BulletAppState bulletAppState;
     private SelectionAppState selectionAppState;
     private Node selectionNode;
+    private Picker picker;
+    private Navigator navigator;
 
     private List<StaticModel> objects = new ArrayList<>();
-    float timeStep = 1.0f / 60.0f;
-    int velocityIterations = 6;
-    int positionIterations = 2;
+
 
     public App() {
         super();
@@ -77,7 +79,7 @@ public class App extends SimpleApplication {
         cam.lookAt(new Vector3f(15, 0, 100), cam.getUp());
         cam.setFrustumPerspective(45f, (float) cam.getWidth() / cam.getHeight(), 0.01f, 1000f);
         flyCam.setDragToRotate(true);
-        flyCam.setEnabled(true);
+        flyCam.setEnabled(false);
         flyCam.setMoveSpeed(20.0f);
         inputManager.setCursorVisible(true);
         cam.setFrustumFar(4000.0f);
@@ -95,10 +97,12 @@ public class App extends SimpleApplication {
 
         env = new Env(this, assetManager, viewPort, cam);
 
-        mMapLoader.loadTo(env);
         mLights.setLights(env);
 
-        inputManager.addRawInputListener(new Picker(env));
+        inputManager.addRawInputListener(picker = new Picker(env));
+        inputManager.addRawInputListener(navigator = new Navigator(env));
+
+        mMapLoader.loadTo(env);
     }
 
     public void toggleGraphicsStats() {
@@ -134,6 +138,8 @@ public class App extends SimpleApplication {
         for (StaticModel model : objects) {
             model.update(env);
         }
+
+        navigator.updateCam();
     }
 
     @Override
@@ -170,5 +176,13 @@ public class App extends SimpleApplication {
                 selectedObject.selected(true);
             }
         }
+    }
+
+    public void look(float x, float y, float roll, float yaw, float distance) {
+        navigator.move(x, y, roll, yaw, distance);
+    }
+
+    public void size(float x, float y) {
+        navigator.setBounds(x, y);
     }
 }

@@ -49,6 +49,13 @@ public class SelectionAppState extends AbstractAppState {
         viewPort.setClearFlags(false, true, false);
         viewPort.attachScene(scene);
 
+        // Filter
+//        FilterPostProcessor fpp = new FilterPostProcessor(assetManager);
+//        fpp.setNumSamples(2);
+//        SelectionFilter selectionFilter = new SelectionFilter();
+//        fpp.addFilter(selectionFilter);
+//        viewPort.addProcessor(fpp);
+
         hoverNode = new Node("Hover Node");
         scene.attachChild(hoverNode);
         selectNode = new Node("Select Node");

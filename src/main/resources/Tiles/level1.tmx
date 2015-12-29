@@ -44,11 +44,11 @@
   </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="p1" type="RedRobot" gid="402" x="116.346" y="718.214" width="50" height="50" rotation="-136.274"/>
-  <object id="2" name="p2" type="RedRobot" gid="402" x="42.8227" y="784.052" width="50" height="50" rotation="-203.735"/>
-  <object id="3" name="p3" type="RedRobot" gid="402" x="65.598" y="720.721" width="50" height="50" rotation="-146.882"/>
-  <object id="4" name="p4" type="RedRobot" gid="402" x="80.6104" y="795.946" width="50" height="50" rotation="-577.507"/>
-  <object id="5" name="p5" type="RedRobot" gid="402" x="62.109" y="751.304" width="50" height="50" rotation="-174.937"/>
+  <object id="1" name="p1" type="RedRobot" gid="402" x="91.3578" y="729.875" width="50" height="50" rotation="178.548"/>
+  <object id="2" name="p2" type="RedRobot" gid="402" x="60.5526" y="786.553" width="50" height="50" rotation="-179.879"/>
+  <object id="3" name="p3" type="RedRobot" gid="402" x="59.0998" y="713.615" width="50" height="50" rotation="-178.609"/>
+  <object id="4" name="p4" type="RedRobot" gid="402" x="92.4312" y="768.467" width="50" height="50" rotation="-537.824"/>
+  <object id="5" name="p5" type="RedRobot" gid="402" x="59.9457" y="748.946" width="50" height="50" rotation="-180.125"/>
   <object id="6" name="r1" type="Robot" gid="401" x="232.218" y="699.72" width="50" height="50" rotation="-92.8642"/>
   <object id="7" name="r2" type="Robot" gid="401" x="757.257" y="620.234" width="50" height="50" rotation="-358.27"/>
   <object id="8" name="r3" type="Robot" gid="401" x="266.218" y="698.72" width="50" height="50" rotation="-92.8642"/>

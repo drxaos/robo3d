@@ -1,5 +1,7 @@
-package com.github.drxaos.robo3d.graphics;
+package com.github.drxaos.robo3d.graphics.controls;
 
+import com.github.drxaos.robo3d.graphics.App;
+import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.filters.SelectionAppState;
 import com.github.drxaos.robo3d.graphics.models.StaticModel;
 import com.jme3.collision.CollisionResult;
