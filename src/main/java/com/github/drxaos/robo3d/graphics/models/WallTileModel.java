@@ -13,6 +13,8 @@ public class WallTileModel extends TileModel {
     public static final boolean STATIC_LAYER = true;
 
     public enum Element implements TileModel.Element {
+        Border(ElementType.Wall),
+        BorderCorner(ElementType.Wall),
         Wall(ElementType.Wall),
         WallBranch(ElementType.Wall),
         WallBranchThin(ElementType.Wall),
@@ -62,7 +64,9 @@ public class WallTileModel extends TileModel {
         CrossThin(14, Element.WallCrossThin),
         ColumnThin(15, Element.WallColumnThin),
         Two(16, Element.WallTwo),
-        TwoThin(17, Element.WallTwoThin);
+        TwoThin(17, Element.WallTwoThin),
+        Border(18, Element.Border),
+        BorderCorner(19, Element.BorderCorner);
 
         Integer idx;
         List<Element> elements;

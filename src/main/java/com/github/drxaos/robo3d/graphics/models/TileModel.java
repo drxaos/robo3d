@@ -74,6 +74,7 @@ abstract public class TileModel extends StaticModel {
         put("walls", WallTileModel.class);
         put("doors", DoorTileModel.class);
         put("roads", RoadTileModel.class);
+        put("borders", BorderTileModel.class);
     }};
 
 

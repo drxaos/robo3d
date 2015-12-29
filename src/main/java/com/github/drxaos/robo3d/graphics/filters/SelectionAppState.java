@@ -88,6 +88,9 @@ public class SelectionAppState extends AbstractAppState {
     }
 
     public void highlight(Spatial spatial, Type type) {
+        if (!initialized) {
+            return;
+        }
         switch (type) {
             case HOVER: {
                 highlight(spatial, hoverNode, HOVER_COLOR);
