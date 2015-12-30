@@ -154,10 +154,16 @@ public class Navigator implements RawInputListener {
         }
 
         if (evt.getDeltaWheel() != 0) {
-            toCamDistance += -1f * evt.getDeltaWheel() / 15f;
-            // TODO move look point closer to mouse
-//            Vector3f groundPoint = getGroundPoint();
-//            toCamLookAt.distance(groundPoint);
+            float delta = 1f * evt.getDeltaWheel() / 15f;
+            toCamDistance -= delta;
+
+            Vector3f groundPoint = getGroundPoint();
+            if (groundPoint != null) {
+                float dist = toCamLookAt.distance(groundPoint);
+                float shift = delta * dist / toCamDistance;
+                Vector3f shiftVec = groundPoint.subtract(toCamLookAt).normalize().multLocal(shift);
+                toCamLookAt.addLocal(shiftVec);
+            }
         }
     }
 
@@ -201,7 +207,9 @@ public class Navigator implements RawInputListener {
         rootNode.collideWith(ray, results);
         if (results.size() > 0) {
             CollisionResult collision = results.getClosestCollision();
-            return collision.getContactPoint().setY(0);
+            if (!"Sky".equals(collision.getGeometry().getName())) {
+                return collision.getContactPoint().setY(0);
+            }
         }
         return null;
     }

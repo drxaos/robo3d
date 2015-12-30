@@ -8,12 +8,16 @@ import com.github.drxaos.robo3d.tmx.*;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.PlaneCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Plane;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.ViewPort;
+import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
+import com.jme3.scene.shape.Quad;
 import com.jme3.util.SkyFactory;
 
 public class MapLoader {
@@ -68,6 +72,16 @@ public class MapLoader {
             }
             RigidBodyControl floorPhy = new RigidBodyControl(new PlaneCollisionShape(new Plane(Vector3f.UNIT_Y, 0)), 0.0f);
             env.getApp().getBulletAppState().getPhysicsSpace().add(floorPhy);
+
+            Quad quad = new Quad(1000000, 1000000);
+            Geometry geo = new Geometry("Zero plane", quad);
+            geo.rotate(-FastMath.PI / 2, 0, 0);
+            geo.move(-500000f, 0, 500000f);
+            geo.setCullHint(Spatial.CullHint.Always);
+            Material mat = new Material(assetManager, "Common/MatDefs/Misc/Unshaded.j3md");
+            mat.setColor("Color", ColorRGBA.BlackNoAlpha);
+            geo.setMaterial(mat);
+            sceneNode.attachChild(geo);
 
             for (TmxObjectGroup tmxObjectGroup : map.getObjectGroups()) {
                 for (TmxMapObject object : tmxObjectGroup.getObjects()) {
