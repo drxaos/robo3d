@@ -100,10 +100,60 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.jbox2d</groupId>-->
-            <!--<artifactId>jbox2d-library</artifactId>-->
-            <!--<version>2.2.1.1</version>-->
+        <!--<groupId>org.jbox2d</groupId>-->
+        <!--<artifactId>jbox2d-library</artifactId>-->
+        <!--<version>2.2.1.1</version>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.netbeans</groupId>
+            <artifactId>org-openide-util</artifactId>
+            <version>5.5</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/org-openide-util.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans</groupId>
+            <artifactId>org-netbeans-modules-editor</artifactId>
+            <version>5.5</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/org-netbeans-modules-editor.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans</groupId>
+            <artifactId>org-netbeans-modules-editor-lib</artifactId>
+            <version>5.5</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/org-netbeans-modules-editor-lib.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans</groupId>
+            <artifactId>org-netbeans-modules-editor-fold</artifactId>
+            <version>5.5</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/org-netbeans-modules-editor-fold.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans</groupId>
+            <artifactId>org-netbeans-modules-editor-util</artifactId>
+            <version>5.5</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/org-netbeans-modules-editor-util.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans</groupId>
+            <artifactId>org-netbeans-modules-html-editor</artifactId>
+            <version>5.5</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/org-netbeans-modules-html-editor.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans</groupId>
+            <artifactId>org-netbeans-modules-html-editor-lib</artifactId>
+            <version>5.5</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/org-netbeans-modules-html-editor-lib.jar</systemPath>
+        </dependency>
     </dependencies>
 
 

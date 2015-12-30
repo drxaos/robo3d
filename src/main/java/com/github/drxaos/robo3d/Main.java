@@ -1,5 +1,6 @@
 package com.github.drxaos.robo3d;
 
+import com.github.drxaos.robo3d.editor.NBEditor;
 import com.github.drxaos.robo3d.graphics.App;
 import com.jme3.app.SimpleApplication;
 import com.jme3.system.AppSettings;
@@ -59,12 +60,14 @@ public class Main {
         generalCanvasPanel.setLayout(new BorderLayout());
 
         controlsPanel = new JPanel();
-        controlsPanel.setLayout(new GridBagLayout());
+        controlsPanel.setLayout(new BorderLayout());
+        controlsPanel.add(new NBEditor(), BorderLayout.CENTER);
+        controlsPanel.add(new JEditorPane(), BorderLayout.SOUTH);
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, generalCanvasPanel, controlsPanel);
         splitPane.setPreferredSize(new Dimension(1024, 768));
         splitPane.setOneTouchExpandable(false);
-        splitPane.setDividerLocation(800);
+        splitPane.setDividerLocation(768);
 
         Dimension minimumSize = new Dimension(100, 50);
         generalCanvasPanel.setMinimumSize(minimumSize);
