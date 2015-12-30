@@ -18,6 +18,7 @@ import com.jme3.scene.Spatial;
 import jme3tools.optimize.GeometryBatchFactory;
 
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 public class SelectionAppState extends AbstractAppState {
 
@@ -27,7 +28,7 @@ public class SelectionAppState extends AbstractAppState {
 
     protected App app;
     protected AssetManager assetManager;
-    protected final Node scene;
+    protected final Node scene, parent;
     protected Node hoverNode, selectNode;
     protected ViewPort viewPort;
     protected RenderManager rm;
@@ -35,6 +36,7 @@ public class SelectionAppState extends AbstractAppState {
 
     public SelectionAppState(Node scene) {
         this.scene = scene;
+        this.parent = scene.getParent();
     }
 
     @Override
@@ -110,21 +112,26 @@ public class SelectionAppState extends AbstractAppState {
         }
     }
 
-    protected void highlight(Spatial obj, Node node, Material color) {
-        for (Spatial s : node.getChildren()) {
-            s.removeFromParent();
-        }
-        if (obj != null) {
-            Spatial spatial = obj.clone(false);
-            spatial.setUserData("original_object", obj);
-            node.attachChild(spatial);
-            ArrayList<Geometry> geoms = new ArrayList<>();
-            GeometryBatchFactory.gatherGeoms(spatial, geoms);
-            for (Geometry geom : geoms) {
-                geom.setMaterial(color);
-                geom.setQueueBucket(RenderQueue.Bucket.Transparent);
+    protected void highlight(final Spatial obj, final Node node, final Material color) {
+        app.enqueue(new Callable<Void>() {
+            public Void call() {
+                for (Spatial s : node.getChildren()) {
+                    s.removeFromParent();
+                }
+                if (obj != null) {
+                    Spatial spatial = obj.clone(false);
+                    spatial.setUserData("original_object", obj);
+                    node.attachChild(spatial);
+                    ArrayList<Geometry> geoms = new ArrayList<>();
+                    GeometryBatchFactory.gatherGeoms(spatial, geoms);
+                    for (Geometry geom : geoms) {
+                        geom.setMaterial(color);
+                        geom.setQueueBucket(RenderQueue.Bucket.Transparent);
+                    }
+                }
+                return null;
             }
-        }
+        });
     }
 
 

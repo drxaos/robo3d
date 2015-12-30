@@ -42,6 +42,7 @@ public class Navigator implements RawInputListener {
     private Quaternion camRotation = new Quaternion();
     private Vector3f camForward = new Vector3f(0, 0, 0);
     private Vector2f drag = new Vector2f();
+    private boolean enabled = true;
 
     public Navigator(Env env) {
         this.app = env.getApp();
@@ -140,17 +141,20 @@ public class Navigator implements RawInputListener {
 
     @Override
     public void onMouseMotionEvent(MouseMotionEvent evt) {
+        if (!enabled) {
+            return;
+        }
         if (ldown) {
             dragging = true;
             inputManager.setCursorVisible(false);
-            drag.set(-evt.getDX(), evt.getDY()).multLocal(camDistance / 400);
+            drag.set(-evt.getDX(), evt.getDY()).multLocal(camDistance / 1500);
             drag.rotateAroundOrigin(camRoll, true);
             toCamLookAt.addLocal(drag.x, 0, drag.y);
         } else if (rdown) {
             rotating = true;
             inputManager.setCursorVisible(false);
-            toCamRoll += -0.01f * evt.getDX();
-            toCamYaw += -0.01f * evt.getDY();
+            toCamRoll += -0.002f * evt.getDX();
+            toCamYaw += -0.001f * evt.getDY();
         }
 
         if (evt.getDeltaWheel() != 0) {
@@ -169,6 +173,9 @@ public class Navigator implements RawInputListener {
 
     @Override
     public void onMouseButtonEvent(MouseButtonEvent evt) {
+        if (!enabled) {
+            return;
+        }
         if (evt.isPressed()) {
             if (evt.getButtonIndex() == MouseInput.BUTTON_LEFT && !rdown) {
                 ldown = true;
@@ -222,5 +229,9 @@ public class Navigator implements RawInputListener {
     @Override
     public void onTouchEvent(TouchEvent evt) {
 
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

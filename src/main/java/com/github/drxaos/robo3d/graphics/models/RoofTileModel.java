@@ -76,10 +76,7 @@ public class RoofTileModel extends TileModel {
         // fix z-fighting
         List<Geometry> roofs = JmeUtils.findGeometryByMaterial(this, "RoofMat");
         for (Geometry roof : roofs) {
-            roof.getMaterial().getAdditionalRenderState().setPolyOffset(1, 1);
-            roof.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
-            roof.getMaterial().getAdditionalRenderState().setDepthWrite(false);
-            roof.setQueueBucket(RenderQueue.Bucket.Transparent);
+            roof.getMaterial().getAdditionalRenderState().setPolyOffset(-1, -1);
         }
     }
 }

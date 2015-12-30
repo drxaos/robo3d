@@ -24,6 +24,7 @@ public class Picker implements RawInputListener {
     Node rootNode;
     boolean pressed = false;
     boolean dragging = false;
+    private boolean enabled = true;
 
     public Picker(Env env) {
         this.app = env.getApp();
@@ -89,6 +90,9 @@ public class Picker implements RawInputListener {
 
     @Override
     public void onMouseMotionEvent(MouseMotionEvent evt) {
+        if (!enabled) {
+            return;
+        }
         if (pressed) {
             dragging = true;
         } else {
@@ -98,6 +102,9 @@ public class Picker implements RawInputListener {
 
     @Override
     public void onMouseButtonEvent(MouseButtonEvent evt) {
+        if (!enabled) {
+            return;
+        }
         if (evt.isPressed()) {
             pressed = true;
         }
@@ -118,5 +125,9 @@ public class Picker implements RawInputListener {
     @Override
     public void onTouchEvent(TouchEvent evt) {
 
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

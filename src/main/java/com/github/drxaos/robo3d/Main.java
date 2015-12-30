@@ -1,13 +1,14 @@
 package com.github.drxaos.robo3d;
 
 import com.github.drxaos.robo3d.graphics.App;
-import com.jme3.app.Application;
 import com.jme3.app.SimpleApplication;
 import com.jme3.system.AppSettings;
 import com.jme3.system.JmeCanvasContext;
 import com.jme3.util.JmeFormatter;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,26 +23,59 @@ public class Main {
 
     private static JmeCanvasContext context;
     private static Canvas canvas;
-    private static Application app;
+    private static App app;
     private static JFrame frame;
-    private static Container generalCanvasPanel, cameraCanvasPanel;
-    private static Container currentPanel;
+    private static Container generalCanvasPanel, controlsPanel;
     private static JTabbedPane tabbedPane;
+    private static JSplitPane splitPane;
+    private static boolean initialized = false;
 
     private static void createTabs() {
-        tabbedPane = new JTabbedPane();
+        tabbedPane = new JTabbedPane() {
+            @Override
+            public Component getComponentAt(int index) {
+                if (initialized && index == 1) {
+                    return splitPane;
+                } else {
+                    return super.getComponentAt(index);
+                }
+            }
+        };
+        tabbedPane.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if (tabbedPane.getSelectedIndex() == 0) {
+                    app.showCameraView(false);
+                } else if (tabbedPane.getSelectedIndex() == 1) {
+                    boolean done = app.showCameraView(true);
+                    if (!done) {
+                        tabbedPane.setSelectedIndex(0);
+                    }
+                }
+            }
+        });
 
         generalCanvasPanel = new JPanel();
         generalCanvasPanel.setLayout(new BorderLayout());
-        tabbedPane.addTab("General", generalCanvasPanel);
 
-        cameraCanvasPanel = new JPanel();
-        cameraCanvasPanel.setLayout(new BorderLayout());
-        tabbedPane.addTab("Camera", cameraCanvasPanel);
+        controlsPanel = new JPanel();
+        controlsPanel.setLayout(new GridBagLayout());
 
-        frame.getContentPane().add(tabbedPane);
+        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, generalCanvasPanel, controlsPanel);
+        splitPane.setPreferredSize(new Dimension(1024, 768));
+        splitPane.setOneTouchExpandable(false);
+        splitPane.setDividerLocation(800);
 
-        currentPanel = generalCanvasPanel;
+        Dimension minimumSize = new Dimension(100, 50);
+        generalCanvasPanel.setMinimumSize(minimumSize);
+        controlsPanel.setMinimumSize(minimumSize);
+
+        tabbedPane.addTab("General", splitPane);
+        tabbedPane.addTab("Camera", new JPanel());
+
+        frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
+        initialized = true;
     }
 
     private static void createMenu() {
@@ -56,11 +90,11 @@ public class Main {
         itemRemoveCanvas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (itemRemoveCanvas.getText().equals("Remove Canvas")) {
-                    currentPanel.remove(canvas);
+//                    currentPanel.remove(canvas);
 
                     itemRemoveCanvas.setText("Add Canvas");
                 } else if (itemRemoveCanvas.getText().equals("Add Canvas")) {
-                    currentPanel.add(canvas, BorderLayout.CENTER);
+//                    currentPanel.add(canvas, BorderLayout.CENTER);
 
                     itemRemoveCanvas.setText("Remove Canvas");
                 }
@@ -87,13 +121,13 @@ public class Main {
             public void actionPerformed(ActionEvent e) {
                 if (itemSwitchTab.getText().equals("Switch to tab #2")) {
                     generalCanvasPanel.remove(canvas);
-                    cameraCanvasPanel.add(canvas, BorderLayout.CENTER);
-                    currentPanel = cameraCanvasPanel;
+//                    cameraCanvasPanel.add(canvas, BorderLayout.CENTER);
+//                    currentPanel = cameraCanvasPanel;
                     itemSwitchTab.setText("Switch to tab #1");
                 } else if (itemSwitchTab.getText().equals("Switch to tab #1")) {
-                    cameraCanvasPanel.remove(canvas);
+//                    cameraCanvasPanel.remove(canvas);
                     generalCanvasPanel.add(canvas, BorderLayout.CENTER);
-                    currentPanel = generalCanvasPanel;
+//                    currentPanel = generalCanvasPanel;
                     itemSwitchTab.setText("Switch to tab #2");
                 }
             }
@@ -128,11 +162,11 @@ public class Main {
         menuTortureMethods.add(itemKillCanvas);
         itemKillCanvas.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                currentPanel.remove(canvas);
+//                currentPanel.remove(canvas);
                 app.stop(true);
 
                 createCanvas();
-                currentPanel.add(canvas, BorderLayout.CENTER);
+//                currentPanel.add(canvas, BorderLayout.CENTER);
                 frame.pack();
                 startApp();
             }
@@ -218,7 +252,8 @@ public class Main {
 
                 createFrame();
 
-                currentPanel.add(canvas, BorderLayout.CENTER);
+                generalCanvasPanel.add(canvas, BorderLayout.CENTER);
+
                 frame.pack();
                 startApp();
                 frame.setLocationRelativeTo(null);

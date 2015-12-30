@@ -6,6 +6,7 @@ import com.github.drxaos.robo3d.graphics.filters.SelectionAppState;
 import com.github.drxaos.robo3d.graphics.map.MapLoader;
 import com.github.drxaos.robo3d.graphics.models.StaticModel;
 import com.jme3.app.SimpleApplication;
+import com.jme3.app.StatsAppState;
 import com.jme3.asset.AssetEventListener;
 import com.jme3.asset.AssetKey;
 import com.jme3.asset.TextureKey;
@@ -20,7 +21,6 @@ import java.util.List;
 
 public class App extends SimpleApplication {
 
-    private boolean mDisplayGraphicalStats = false;
     private Node mSceneNode;
     private CameraNode mCameraNode;
     private FutureUpdater mFutureUpdater;
@@ -32,6 +32,8 @@ public class App extends SimpleApplication {
     private Node selectionNode;
     private Picker picker;
     private Navigator navigator;
+    private StatsAppState statsAppState;
+    private boolean initialized = false;
 
     private List<StaticModel> objects = new ArrayList<>();
 
@@ -47,12 +49,13 @@ public class App extends SimpleApplication {
     public void simpleInitApp() {
         inputManager.clearMappings();
 
-        setDisplayFps(false);
-        setDisplayStatView(false);
+        statsAppState = stateManager.getState(StatsAppState.class);
+        statsAppState.setDisplayFps(true);
+        statsAppState.setDisplayStatView(false);
         setPauseOnLostFocus(true);
-        toggleGraphicsStats();
 
         bulletAppState = new BulletAppState();
+        bulletAppState.setSpeed(2);
         stateManager.attach(bulletAppState);
         //bulletAppState.setDebugEnabled(true);
         bulletAppState.getPhysicsSpace().setAccuracy(1f / 100f);
@@ -103,18 +106,8 @@ public class App extends SimpleApplication {
         inputManager.addRawInputListener(navigator = new Navigator(env));
 
         mMapLoader.loadTo(env);
-    }
 
-    public void toggleGraphicsStats() {
-        if (!mDisplayGraphicalStats) {
-            mDisplayGraphicalStats = true;
-            setDisplayFps(true);
-            setDisplayStatView(true);
-        } else {
-            mDisplayGraphicalStats = false;
-            setDisplayFps(false);
-            setDisplayStatView(false);
-        }
+        initialized = true;
     }
 
     public CameraNode getCameraNode() {
@@ -139,7 +132,11 @@ public class App extends SimpleApplication {
             model.update(env);
         }
 
-        navigator.updateCam();
+        if (cameraView) {
+            selectedObject.applyFirstPersonView(cam);
+        } else {
+            navigator.updateCam();
+        }
     }
 
     @Override
@@ -184,5 +181,23 @@ public class App extends SimpleApplication {
 
     public void size(float x, float y) {
         navigator.setBounds(x, y);
+    }
+
+
+    boolean cameraView = false;
+
+    public boolean showCameraView(boolean show) {
+        if (!initialized) {
+            return false;
+        }
+        if (show && selectedObject == null) {
+            return false;
+        }
+        cameraView = show;
+        picker.setEnabled(!show);
+        navigator.setEnabled(!show);
+        selectionAppState.highlight(show ? null : selectedObject, SelectionAppState.Type.SELECT);
+
+        return true;
     }
 }

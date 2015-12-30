@@ -9,6 +9,7 @@ import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.MatParamTexture;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.renderer.Camera;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
@@ -122,4 +123,11 @@ public class StaticModel extends Node {
     public void selected(boolean selected) {
         this.selected = selected;
     }
+
+    public void applyFirstPersonView(Camera cam) {
+        Spatial camera = getChild("FirstPersonCamera");
+        cam.setLocation(camera.getWorldTranslation());
+        cam.setRotation(camera.getWorldRotation());
+    }
+
 }
