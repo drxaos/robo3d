@@ -108,6 +108,13 @@
         </dependency>
         <dependency>
             <groupId>org.netbeans</groupId>
+            <artifactId>org-openide-text</artifactId>
+            <version>5.5.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/org-openide-text.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans</groupId>
             <artifactId>org-netbeans-modules-editor</artifactId>
             <version>5.5.1</version>
             <scope>system</scope>

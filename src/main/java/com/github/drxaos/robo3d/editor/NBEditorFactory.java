@@ -1,4 +1,4 @@
-package net.antonioshome.nbeditorlib;
+package com.github.drxaos.robo3d.editor;
 
 import java.io.InputStream;
 import java.util.Enumeration;

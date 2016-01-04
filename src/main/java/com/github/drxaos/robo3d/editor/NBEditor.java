@@ -1,24 +1,24 @@
 package com.github.drxaos.robo3d.editor;
 
-import net.antonioshome.nbeditorlib.NBEditorFactory;
-import net.antonioshome.nbeditorlib.demo.syntax.SchemeEditorKit;
-import net.antonioshome.nbeditorlib.demo.syntax.SchemeSettingsInitializer;
+import com.github.drxaos.robo3d.editor.syntax.JSKit;
+import com.github.drxaos.robo3d.editor.syntax.JSSettingsInitializer;
+import org.netbeans.editor.ext.ExtKit;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class NBEditor extends JPanel {
 
-    SchemeEditorKit editorKit;
+    ExtKit editorKit;
     JEditorPane editorPane;
     JComponent renderer;
 
     public NBEditor() {
         // Create an editor kit for scheme
-        editorKit = new SchemeEditorKit();
+        editorKit = new JSKit();
 
         // Initialize Scheme language support
-        NBEditorFactory.addSyntax(editorKit, new SchemeSettingsInitializer());
+        NBEditorFactory.addSyntax(editorKit, new JSSettingsInitializer(editorKit.getClass()));
 
         // Create a plain editor pane
         editorPane = new JEditorPane();
@@ -27,7 +27,7 @@ public class NBEditor extends JPanel {
         renderer = NBEditorFactory.newTextRenderer(editorKit, editorPane);
 
         // Set the text *in the editor pane*
-        editorPane.setText("; A scheme definition\n(define i (sqrt -1 ))\n");
+        editorPane.setText("// JavaScript\n\nfunction main(){\n    print('hello');\n}");
 
         // Visualize the *renderer*
         setLayout(new BorderLayout());
