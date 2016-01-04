@@ -144,6 +144,9 @@ public class Navigator implements RawInputListener {
         if (!enabled) {
             return;
         }
+
+        Vector3f groundPoint = getGroundPoint();
+
         if (ldown) {
             dragging = true;
             inputManager.setCursorVisible(false);
@@ -155,13 +158,15 @@ public class Navigator implements RawInputListener {
             inputManager.setCursorVisible(false);
             toCamRoll += -0.002f * evt.getDX();
             toCamYaw += -0.001f * evt.getDY();
+        } else {
+            updateInfo(groundPoint);
         }
+
 
         if (evt.getDeltaWheel() != 0) {
             float delta = 1f * evt.getDeltaWheel() / 15f;
             toCamDistance -= delta;
 
-            Vector3f groundPoint = getGroundPoint();
             if (groundPoint != null) {
                 float dist = toCamLookAt.distance(groundPoint);
                 float shift = delta * dist / toCamDistance;
@@ -169,6 +174,11 @@ public class Navigator implements RawInputListener {
                 toCamLookAt.addLocal(shiftVec);
             }
         }
+    }
+
+    protected void updateInfo(Vector3f groundPoint) {
+        app.getInfo().setCursorX("" + (groundPoint == null ? "---" : String.format("%.2f", groundPoint.getX())));
+        app.getInfo().setCursorY("" + (groundPoint == null ? "---" : String.format("%.2f", groundPoint.getZ())));
     }
 
     @Override

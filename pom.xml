@@ -140,20 +140,6 @@
             <scope>system</scope>
             <systemPath>${basedir}/lib/org-netbeans-modules-editor-util.jar</systemPath>
         </dependency>
-        <dependency>
-            <groupId>org.netbeans</groupId>
-            <artifactId>org-netbeans-modules-html-editor</artifactId>
-            <version>5.5</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/org-netbeans-modules-html-editor.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>org.netbeans</groupId>
-            <artifactId>org-netbeans-modules-html-editor-lib</artifactId>
-            <version>5.5</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/org-netbeans-modules-html-editor-lib.jar</systemPath>
-        </dependency>
     </dependencies>
 
 

@@ -38,11 +38,6 @@ public class RobotModel extends ObjectModel {
         physic.setLinearDamping(0.999f);
         physic.setAngularDamping(0.999f);
 
-        List<Geometry> pickers = JmeUtils.findGeometryByMaterial(this, "Picker");
-        for (Geometry picker : pickers) {
-            picker.setCullHint(CullHint.Always);
-        }
-
         Optimizer.optimize(this, true);
 
         env.getApp().getInputManager().addRawInputListener(new RawInputListener() {
@@ -90,6 +85,18 @@ public class RobotModel extends ObjectModel {
                 if (evt.isReleased() && evt.getKeyCode() == 27) {
                     r = false;
                 }
+                if (evt.isPressed() && evt.getKeyCode() == 39) {
+                    bl = true;
+                }
+                if (evt.isPressed() && evt.getKeyCode() == 40) {
+                    br = true;
+                }
+                if (evt.isReleased() && evt.getKeyCode() == 39) {
+                    bl = false;
+                }
+                if (evt.isReleased() && evt.getKeyCode() == 40) {
+                    br = false;
+                }
             }
 
             @Override
@@ -100,18 +107,29 @@ public class RobotModel extends ObjectModel {
     }
 
     float maxChassisForce = 12f;
-    boolean r, l;
+    boolean r, l, br, bl;
 
     public void update(Env env) {
         Vector3f force = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(-maxChassisForce));
+        force.setY(0);
+        Vector3f bforce = force.mult(-1);
         Vector3f back = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(0.5f));
         Vector3f lc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(0.9f)).add(back);
+        lc.setY(0);
         Vector3f rc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(-0.9f)).add(back);
+        rc.setY(0);
+        physic.setPhysicsLocation(physic.getPhysicsLocation().setY(0));
         if (l && selected) {
             physic.applyForce(force, lc);
         }
         if (r && selected) {
             physic.applyForce(force, rc);
+        }
+        if (bl && selected) {
+            physic.applyForce(bforce, lc);
+        }
+        if (br && selected) {
+            physic.applyForce(bforce, rc);
         }
     }
 }

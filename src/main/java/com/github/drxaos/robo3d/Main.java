@@ -27,8 +27,9 @@ public class Main {
     private static App app;
     private static JFrame frame;
     private static Container generalCanvasPanel, controlsPanel;
-    private static JTabbedPane tabbedPane;
+    private static JTabbedPane tabbedPane, srcTabs;
     private static JSplitPane splitPane;
+    private static NBEditor libEdit, progEdit, logs;
     private static boolean initialized = false;
 
     private static void createTabs() {
@@ -59,10 +60,22 @@ public class Main {
         generalCanvasPanel = new JPanel();
         generalCanvasPanel.setLayout(new BorderLayout());
 
-        controlsPanel = new JPanel();
-        controlsPanel.setLayout(new BorderLayout());
-        controlsPanel.add(new NBEditor(), BorderLayout.CENTER);
-        controlsPanel.add(new JEditorPane(), BorderLayout.SOUTH);
+        {
+            controlsPanel = new JPanel();
+            controlsPanel.setLayout(new BorderLayout());
+
+            libEdit = new NBEditor();
+            progEdit = new NBEditor();
+            srcTabs = new JTabbedPane();
+            srcTabs.addTab("Library", libEdit);
+            srcTabs.addTab("Program", progEdit);
+
+            logs = new NBEditor();
+            logs.setPreferredSize(new Dimension(100, 100));
+
+            controlsPanel.add(srcTabs, BorderLayout.CENTER);
+            controlsPanel.add(logs, BorderLayout.SOUTH);
+        }
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, generalCanvasPanel, controlsPanel);
         splitPane.setPreferredSize(new Dimension(1024, 768));
