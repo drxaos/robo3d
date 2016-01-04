@@ -1,7 +1,6 @@
 package com.github.drxaos.robo3d.graphics.models;
 
 import com.github.drxaos.robo3d.graphics.Env;
-import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.map.Optimizer;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
@@ -9,12 +8,8 @@ import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.event.*;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Geometry;
-
-import java.util.List;
 
 public class RobotModel extends ObjectModel {
-    RigidBodyControl physic;
 
     public RobotModel(AssetManager am, String objectName) {
         this(am, null, objectName);
@@ -118,7 +113,7 @@ public class RobotModel extends ObjectModel {
         lc.setY(0);
         Vector3f rc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(-0.9f)).add(back);
         rc.setY(0);
-        physic.setPhysicsLocation(physic.getPhysicsLocation().setY(0));
+
         if (l && selected) {
             physic.applyForce(force, lc);
         }
@@ -130,6 +125,11 @@ public class RobotModel extends ObjectModel {
         }
         if (br && selected) {
             physic.applyForce(bforce, rc);
+        }
+
+        // fix stuck in walls
+        if ((r || l || br || bl) && physic.getLinearVelocity().length() < 0.1) {
+            physic.setPhysicsLocation(physic.getPhysicsLocation().setY(0f));
         }
     }
 }

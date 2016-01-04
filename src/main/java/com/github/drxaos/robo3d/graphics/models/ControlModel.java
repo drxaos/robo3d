@@ -7,8 +7,6 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 
 public class ControlModel extends ObjectModel {
-    RigidBodyControl physic;
-
     public ControlModel(AssetManager am, String objectName) {
         this(am, null, objectName);
     }

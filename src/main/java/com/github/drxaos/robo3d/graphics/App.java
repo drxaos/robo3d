@@ -59,8 +59,8 @@ public class App extends SimpleApplication {
         bulletAppState.setSpeed(2);
         stateManager.attach(bulletAppState);
         bulletAppState.setDebugEnabled(false);
-        bulletAppState.getPhysicsSpace().setAccuracy(1f / 30f);
-        bulletAppState.getPhysicsSpace().setMaxSubSteps(1);
+        bulletAppState.getPhysicsSpace().setAccuracy(1f / 100f);
+        bulletAppState.getPhysicsSpace().setMaxSubSteps(5);
 
         stateManager.attach(new InfoAppState(guiNode, guiFont, info = new Info()));
 
@@ -131,10 +131,6 @@ public class App extends SimpleApplication {
 
         for (StaticModel model : objects) {
             model.update(env);
-        }
-
-        for (StaticModel object : objects) {
-            object.setLocalTranslation(object.getLocalTranslation().setY(0));
         }
 
         if (cameraView) {
