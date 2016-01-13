@@ -5,6 +5,7 @@ import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.ModelCache;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
+import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.MatParamTexture;
 import com.jme3.material.Material;
@@ -21,6 +22,7 @@ import jme3tools.optimize.LodGenerator;
 import java.util.List;
 
 public class StaticModel extends Node {
+    protected RigidBodyControl physic;
 
     enum ElementType {
         Floor(ShadowMode.Receive),
@@ -130,4 +132,7 @@ public class StaticModel extends Node {
         cam.setRotation(camera.getWorldRotation());
     }
 
+    public RigidBodyControl getPhysic() {
+        return physic;
+    }
 }

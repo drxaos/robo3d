@@ -1,6 +1,5 @@
 package com.github.drxaos.robo3d;
 
-import com.github.drxaos.robo3d.editor.NBEditor;
 import com.github.drxaos.robo3d.graphics.App;
 import com.jme3.app.SimpleApplication;
 import com.jme3.system.AppSettings;
@@ -27,8 +26,9 @@ public class Main {
     private static App app;
     private static JFrame frame;
     private static Container generalCanvasPanel, controlsPanel;
-    private static JTabbedPane tabbedPane;
+    private static JTabbedPane tabbedPane, srcTabs;
     private static JSplitPane splitPane;
+    private static JTextArea libEdit, progEdit, logs;
     private static boolean initialized = false;
 
     private static void createTabs() {
@@ -59,10 +59,22 @@ public class Main {
         generalCanvasPanel = new JPanel();
         generalCanvasPanel.setLayout(new BorderLayout());
 
-        controlsPanel = new JPanel();
-        controlsPanel.setLayout(new BorderLayout());
-        controlsPanel.add(new NBEditor(), BorderLayout.CENTER);
-        controlsPanel.add(new JEditorPane(), BorderLayout.SOUTH);
+        {
+            controlsPanel = new JPanel();
+            controlsPanel.setLayout(new BorderLayout());
+
+            libEdit = new JTextArea();
+            progEdit = new JTextArea();
+            srcTabs = new JTabbedPane();
+            srcTabs.addTab("Library", libEdit);
+            srcTabs.addTab("Program", progEdit);
+
+            logs = new JTextArea();
+            logs.setPreferredSize(new Dimension(100, 100));
+
+            controlsPanel.add(srcTabs, BorderLayout.CENTER);
+            controlsPanel.add(logs, BorderLayout.SOUTH);
+        }
 
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, generalCanvasPanel, controlsPanel);
         splitPane.setPreferredSize(new Dimension(1024, 768));

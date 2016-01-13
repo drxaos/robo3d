@@ -140,10 +140,10 @@ public class SelectionAppState extends AbstractAppState {
         HOVER_COLOR = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
         HOVER_COLOR.getAdditionalRenderState().setWireframe(false);
         HOVER_COLOR.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
-        HOVER_COLOR.setColor("Color", new ColorRGBA(1.0f, 0.3f, 0.3f, 0.2f));
+        HOVER_COLOR.setColor("Color", new ColorRGBA(1.0f, 0.3f, 0.3f, 0.1f));
         SELECT_COLOR = new Material(manager, "Common/MatDefs/Misc/Unshaded.j3md");
         SELECT_COLOR.getAdditionalRenderState().setWireframe(false);
         SELECT_COLOR.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
-        SELECT_COLOR.setColor("Color", new ColorRGBA(1.0f, 0.1f, 0.1f, 0.5f));
+        SELECT_COLOR.setColor("Color", new ColorRGBA(1.0f, 0.1f, 0.1f, 0.1f));
     }
 }

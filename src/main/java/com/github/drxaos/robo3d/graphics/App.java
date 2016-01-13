@@ -3,6 +3,8 @@ package com.github.drxaos.robo3d.graphics;
 import com.github.drxaos.robo3d.graphics.controls.Navigator;
 import com.github.drxaos.robo3d.graphics.controls.Picker;
 import com.github.drxaos.robo3d.graphics.filters.SelectionAppState;
+import com.github.drxaos.robo3d.graphics.gui.Info;
+import com.github.drxaos.robo3d.graphics.gui.InfoAppState;
 import com.github.drxaos.robo3d.graphics.map.MapLoader;
 import com.github.drxaos.robo3d.graphics.models.StaticModel;
 import com.jme3.app.SimpleApplication;
@@ -11,6 +13,8 @@ import com.jme3.asset.AssetEventListener;
 import com.jme3.asset.AssetKey;
 import com.jme3.asset.TextureKey;
 import com.jme3.bullet.BulletAppState;
+import com.jme3.math.FastMath;
+import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.renderer.RenderManager;
 import com.jme3.scene.CameraNode;
@@ -36,10 +40,11 @@ public class App extends SimpleApplication {
     private boolean initialized = false;
 
     private List<StaticModel> objects = new ArrayList<>();
+    private Info info;
 
 
     public App() {
-        super();
+        super(null);
         mMapLoader = new MapLoader();
         mLights = new Lights();
         mFutureUpdater = new FutureUpdater();
@@ -48,18 +53,16 @@ public class App extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         inputManager.clearMappings();
-
-        statsAppState = stateManager.getState(StatsAppState.class);
-        statsAppState.setDisplayFps(true);
-        statsAppState.setDisplayStatView(false);
-        setPauseOnLostFocus(true);
+        setPauseOnLostFocus(false);
 
         bulletAppState = new BulletAppState();
         bulletAppState.setSpeed(2);
         stateManager.attach(bulletAppState);
-        //bulletAppState.setDebugEnabled(true);
+        bulletAppState.setDebugEnabled(false);
         bulletAppState.getPhysicsSpace().setAccuracy(1f / 100f);
-        bulletAppState.getPhysicsSpace().setMaxSubSteps(10);
+        bulletAppState.getPhysicsSpace().setMaxSubSteps(5);
+
+        stateManager.attach(new InfoAppState(guiNode, guiFont, info = new Info()));
 
         AssetEventListener asl = new AssetEventListener() {
             public void assetLoaded(AssetKey key) {
@@ -81,9 +84,9 @@ public class App extends SimpleApplication {
         cam.setLocation(new Vector3f(15, 30, 100));
         cam.lookAt(new Vector3f(15, 0, 100), cam.getUp());
         cam.setFrustumPerspective(45f, (float) cam.getWidth() / cam.getHeight(), 0.01f, 1000f);
-        flyCam.setDragToRotate(true);
-        flyCam.setEnabled(false);
-        flyCam.setMoveSpeed(20.0f);
+//        flyCam.setDragToRotate(true);
+//        flyCam.setEnabled(false);
+//        flyCam.setMoveSpeed(20.0f);
         inputManager.setCursorVisible(true);
         cam.setFrustumFar(4000.0f);
 //        cam.setFrustumNear(0.1f);
@@ -126,8 +129,6 @@ public class App extends SimpleApplication {
     public void simpleUpdate(float tpf) {
         mFutureUpdater.update(tpf);
 
-        //cam.getLocation().setY(1.5f);
-
         for (StaticModel model : objects) {
             model.update(env);
         }
@@ -136,6 +137,27 @@ public class App extends SimpleApplication {
             selectedObject.applyFirstPersonView(cam);
         } else {
             navigator.updateCam();
+        }
+
+        updateSelectedInfo();
+    }
+
+    protected void updateSelectedInfo() {
+        if (selectedObject == null) {
+            info.setSelection("none");
+            info.setSelectionX("---");
+            info.setSelectionY("---");
+            info.setSelectionRot("---");
+            info.setSelectionState("---");
+        } else {
+            info.setSelection(selectedObject.getName());
+            info.setSelectionX("" + String.format("%.2f", selectedObject.getWorldTranslation().getX()));
+            info.setSelectionY("" + String.format("%.2f", selectedObject.getWorldTranslation().getZ()));
+            float rot = selectedObject.getWorldRotation().inverse().mult(new Quaternion().fromAngles(0, FastMath.PI, 0)).toAngles(new float[3])[1];
+            rot = (float) (rot / Math.PI * 180);
+            info.setSelectionRot("" + String.format("%.2f", rot));
+            Object state = selectedObject.getUserData("object_state");
+            info.setSelectionState("" + (state == null ? "---" : state));
         }
     }
 
@@ -199,5 +221,9 @@ public class App extends SimpleApplication {
         selectionAppState.highlight(show ? null : selectedObject, SelectionAppState.Type.SELECT);
 
         return true;
+    }
+
+    public Info getInfo() {
+        return info;
     }
 }

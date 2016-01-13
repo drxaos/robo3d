@@ -7,8 +7,6 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 
 public class RadioStationModel extends ObjectModel {
-    RigidBodyControl physic;
-
     public RadioStationModel(AssetManager am, String objectName) {
         this(am, null, objectName);
     }

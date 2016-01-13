@@ -1,7 +1,6 @@
 package com.github.drxaos.robo3d.graphics.models;
 
 import com.github.drxaos.robo3d.graphics.Env;
-import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.map.Optimizer;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
@@ -9,12 +8,8 @@ import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.event.*;
 import com.jme3.math.Vector3f;
-import com.jme3.scene.Geometry;
-
-import java.util.List;
 
 public class RobotModel extends ObjectModel {
-    RigidBodyControl physic;
 
     public RobotModel(AssetManager am, String objectName) {
         this(am, null, objectName);
@@ -37,11 +32,6 @@ public class RobotModel extends ObjectModel {
         physic.setFriction(0.2f);
         physic.setLinearDamping(0.999f);
         physic.setAngularDamping(0.999f);
-
-        List<Geometry> pickers = JmeUtils.findGeometryByMaterial(this, "Picker");
-        for (Geometry picker : pickers) {
-            picker.setCullHint(CullHint.Always);
-        }
 
         Optimizer.optimize(this, true);
 
@@ -90,6 +80,18 @@ public class RobotModel extends ObjectModel {
                 if (evt.isReleased() && evt.getKeyCode() == 27) {
                     r = false;
                 }
+                if (evt.isPressed() && evt.getKeyCode() == 39) {
+                    bl = true;
+                }
+                if (evt.isPressed() && evt.getKeyCode() == 40) {
+                    br = true;
+                }
+                if (evt.isReleased() && evt.getKeyCode() == 39) {
+                    bl = false;
+                }
+                if (evt.isReleased() && evt.getKeyCode() == 40) {
+                    br = false;
+                }
             }
 
             @Override
@@ -100,18 +102,34 @@ public class RobotModel extends ObjectModel {
     }
 
     float maxChassisForce = 12f;
-    boolean r, l;
+    boolean r, l, br, bl;
 
     public void update(Env env) {
         Vector3f force = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(-maxChassisForce));
+        force.setY(0);
+        Vector3f bforce = force.mult(-1);
         Vector3f back = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(0.5f));
         Vector3f lc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(0.9f)).add(back);
+        lc.setY(0);
         Vector3f rc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(-0.9f)).add(back);
+        rc.setY(0);
+
         if (l && selected) {
             physic.applyForce(force, lc);
         }
         if (r && selected) {
             physic.applyForce(force, rc);
+        }
+        if (bl && selected) {
+            physic.applyForce(bforce, lc);
+        }
+        if (br && selected) {
+            physic.applyForce(bforce, rc);
+        }
+
+        // fix stuck in walls
+        if ((r || l || br || bl) && physic.getLinearVelocity().length() < 0.1) {
+            physic.setPhysicsLocation(physic.getPhysicsLocation().setY(0f));
         }
     }
 }

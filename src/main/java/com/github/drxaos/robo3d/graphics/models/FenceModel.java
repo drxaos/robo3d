@@ -7,7 +7,6 @@ import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 
 public class FenceModel extends ObjectModel {
-    RigidBodyControl physic;
 
     public FenceModel(AssetManager am, String objectName) {
         this(am, null, objectName);
@@ -26,6 +25,8 @@ public class FenceModel extends ObjectModel {
         CollisionShape shape = boundsToCollisionShape();
         physic = new RigidBodyControl(shape, 0.5f);
         this.addControl(physic);
+        physic.setLinearDamping(0.9f);
+        physic.setAngularDamping(0.9f);
         env.getApp().getBulletAppState().getPhysicsSpace().add(physic);
 
         Optimizer.optimize(this, true);
