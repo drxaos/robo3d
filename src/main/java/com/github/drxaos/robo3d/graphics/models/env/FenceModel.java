@@ -1,7 +1,8 @@
-package com.github.drxaos.robo3d.graphics.models;
+package com.github.drxaos.robo3d.graphics.models.env;
 
 import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.map.Optimizer;
+import com.github.drxaos.robo3d.graphics.models.ObjectModel;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;

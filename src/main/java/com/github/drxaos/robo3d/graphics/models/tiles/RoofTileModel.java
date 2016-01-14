@@ -1,24 +1,23 @@
-package com.github.drxaos.robo3d.graphics.models;
+package com.github.drxaos.robo3d.graphics.models.tiles;
 
+import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.jme3.asset.AssetManager;
+import com.jme3.scene.Geometry;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RoadTileModel extends TileModel {
+public class RoofTileModel extends TileModel {
     public static final boolean STATIC_LAYER = true;
 
     public enum Element implements TileModel.Element {
-        Ground(ElementType.Floor),
-        GroundHalf(ElementType.Floor),
-        GroundQuarter(ElementType.Floor),
-        RoadCorner(ElementType.Floor),
-        Road(ElementType.Floor),
-        Floor(ElementType.Floor),
-        FloorHalf(ElementType.Floor),
-        FloorQuarter(ElementType.Floor);
+        Ceil(ElementType.Ceil),
+        CeilHalf(ElementType.Ceil),
+        CeilHalfThin(ElementType.Ceil),
+        CeilQuarter(ElementType.Ceil),
+        CeilQuarterThin(ElementType.Ceil);
 
         ElementType elementType;
 
@@ -32,12 +31,11 @@ public class RoadTileModel extends TileModel {
     }
 
     public enum TileType implements TileModel.TileType {
-        Ground(1, Element.Ground),
-        RoadCorner(2, Element.RoadCorner),
-        Road(3, Element.Road),
-        Floor(4, Element.Floor),
-        FloorHalf(5, Element.GroundHalf, Element.FloorHalf),
-        FloorQuarter(6, Element.GroundQuarter, Element.FloorQuarter);
+        Full(1, Element.Ceil),
+        Half(2, Element.CeilHalf),
+        Quarter(3, Element.CeilQuarter),
+        HalfThin(4, Element.CeilHalfThin),
+        QuarterThin(5, Element.CeilQuarterThin);
 
         Integer idx;
         List<Element> elements;
@@ -62,12 +60,21 @@ public class RoadTileModel extends TileModel {
         }
     }};
 
-    public RoadTileModel(AssetManager am, TileType type) {
-        super(am, "Models/map/roads.blend", Arrays.asList(Element.values()), type);
+    public RoofTileModel(AssetManager am, TileType type) {
+        super(am, "Models/map/roofs.blend", Arrays.asList(Element.values()), type);
     }
 
-    public RoadTileModel(AssetManager am, Integer id) {
+    public RoofTileModel(AssetManager am, Integer id) {
         this(am, TILES.get(id));
     }
 
+    @Override
+    protected void prepare() {
+        super.prepare();
+        // fix z-fighting
+        List<Geometry> roofs = JmeUtils.findGeometryByMaterial(this, "RoofMat");
+        for (Geometry roof : roofs) {
+            roof.getMaterial().getAdditionalRenderState().setPolyOffset(-1, -1);
+        }
+    }
 }

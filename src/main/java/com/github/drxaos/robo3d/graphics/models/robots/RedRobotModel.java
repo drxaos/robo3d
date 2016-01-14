@@ -1,4 +1,4 @@
-package com.github.drxaos.robo3d.graphics.models;
+package com.github.drxaos.robo3d.graphics.models.robots;
 
 import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.jme3.asset.AssetManager;

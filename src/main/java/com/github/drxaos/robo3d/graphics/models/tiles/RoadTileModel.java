@@ -1,20 +1,24 @@
-package com.github.drxaos.robo3d.graphics.models;
+package com.github.drxaos.robo3d.graphics.models.tiles;
 
-import com.github.drxaos.robo3d.graphics.Env;
 import com.jme3.asset.AssetManager;
-import com.jme3.bullet.control.RigidBodyControl;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BorderTileModel extends TileModel {
+public class RoadTileModel extends TileModel {
     public static final boolean STATIC_LAYER = true;
 
     public enum Element implements TileModel.Element {
-        Border(ElementType.Wall),
-        BorderCorner(ElementType.Wall);
+        Ground(ElementType.Floor),
+        GroundHalf(ElementType.Floor),
+        GroundQuarter(ElementType.Floor),
+        RoadCorner(ElementType.Floor),
+        Road(ElementType.Floor),
+        Floor(ElementType.Floor),
+        FloorHalf(ElementType.Floor),
+        FloorQuarter(ElementType.Floor);
 
         ElementType elementType;
 
@@ -28,8 +32,12 @@ public class BorderTileModel extends TileModel {
     }
 
     public enum TileType implements TileModel.TileType {
-        Border(1, Element.Border),
-        BorderCorner(2, Element.BorderCorner);
+        Ground(1, Element.Ground),
+        RoadCorner(2, Element.RoadCorner),
+        Road(3, Element.Road),
+        Floor(4, Element.Floor),
+        FloorHalf(5, Element.GroundHalf, Element.FloorHalf),
+        FloorQuarter(6, Element.GroundQuarter, Element.FloorQuarter);
 
         Integer idx;
         List<Element> elements;
@@ -54,17 +62,12 @@ public class BorderTileModel extends TileModel {
         }
     }};
 
-    public BorderTileModel(AssetManager am, TileType type) {
-        super(am, "Models/map/borders.blend", Arrays.asList(Element.values()), type);
+    public RoadTileModel(AssetManager am, TileType type) {
+        super(am, "Models/map/roads.blend", Arrays.asList(Element.values()), type);
     }
 
-    public BorderTileModel(AssetManager am, Integer id) {
+    public RoadTileModel(AssetManager am, Integer id) {
         this(am, TILES.get(id));
     }
 
-    public void init(Env env) {
-        RigidBodyControl phy = new RigidBodyControl(0.0f);
-        this.addControl(phy);
-        env.getApp().getBulletAppState().getPhysicsSpace().add(phy);
-    }
 }

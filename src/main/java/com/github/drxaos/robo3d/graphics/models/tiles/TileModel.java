@@ -1,5 +1,6 @@
-package com.github.drxaos.robo3d.graphics.models;
+package com.github.drxaos.robo3d.graphics.models.tiles;
 
+import com.github.drxaos.robo3d.graphics.models.StaticModel;
 import com.jme3.asset.AssetManager;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;

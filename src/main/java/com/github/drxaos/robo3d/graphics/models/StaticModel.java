@@ -24,7 +24,7 @@ import java.util.List;
 public class StaticModel extends Node {
     protected RigidBodyControl physic;
 
-    enum ElementType {
+    public enum ElementType {
         Floor(ShadowMode.Receive),
         Wall(ShadowMode.CastAndReceive),
         Ceil(ShadowMode.CastAndReceive),
@@ -48,7 +48,7 @@ public class StaticModel extends Node {
     protected AssetManager am;
     protected boolean fresh = false;
     protected String meshName, subname;
-    boolean selected;
+    protected boolean selected;
 
     public StaticModel(AssetManager am, String meshName, String subname, String objectName) {
         this.am = am;

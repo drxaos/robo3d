@@ -1,25 +1,20 @@
-package com.github.drxaos.robo3d.graphics.models;
+package com.github.drxaos.robo3d.graphics.models.tiles;
 
-import com.github.drxaos.robo3d.graphics.JmeUtils;
+import com.github.drxaos.robo3d.graphics.Env;
 import com.jme3.asset.AssetManager;
-import com.jme3.material.RenderState;
-import com.jme3.renderer.queue.RenderQueue;
-import com.jme3.scene.Geometry;
+import com.jme3.bullet.control.RigidBodyControl;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RoofTileModel extends TileModel {
+public class BorderTileModel extends TileModel {
     public static final boolean STATIC_LAYER = true;
 
     public enum Element implements TileModel.Element {
-        Ceil(ElementType.Ceil),
-        CeilHalf(ElementType.Ceil),
-        CeilHalfThin(ElementType.Ceil),
-        CeilQuarter(ElementType.Ceil),
-        CeilQuarterThin(ElementType.Ceil);
+        Border(ElementType.Wall),
+        BorderCorner(ElementType.Wall);
 
         ElementType elementType;
 
@@ -33,11 +28,8 @@ public class RoofTileModel extends TileModel {
     }
 
     public enum TileType implements TileModel.TileType {
-        Full(1, Element.Ceil),
-        Half(2, Element.CeilHalf),
-        Quarter(3, Element.CeilQuarter),
-        HalfThin(4, Element.CeilHalfThin),
-        QuarterThin(5, Element.CeilQuarterThin);
+        Border(1, Element.Border),
+        BorderCorner(2, Element.BorderCorner);
 
         Integer idx;
         List<Element> elements;
@@ -62,21 +54,17 @@ public class RoofTileModel extends TileModel {
         }
     }};
 
-    public RoofTileModel(AssetManager am, TileType type) {
-        super(am, "Models/map/roofs.blend", Arrays.asList(Element.values()), type);
+    public BorderTileModel(AssetManager am, TileType type) {
+        super(am, "Models/map/borders.blend", Arrays.asList(Element.values()), type);
     }
 
-    public RoofTileModel(AssetManager am, Integer id) {
+    public BorderTileModel(AssetManager am, Integer id) {
         this(am, TILES.get(id));
     }
 
-    @Override
-    protected void prepare() {
-        super.prepare();
-        // fix z-fighting
-        List<Geometry> roofs = JmeUtils.findGeometryByMaterial(this, "RoofMat");
-        for (Geometry roof : roofs) {
-            roof.getMaterial().getAdditionalRenderState().setPolyOffset(-1, -1);
-        }
+    public void init(Env env) {
+        RigidBodyControl phy = new RigidBodyControl(0.0f);
+        this.addControl(phy);
+        env.getApp().getBulletAppState().getPhysicsSpace().add(phy);
     }
 }

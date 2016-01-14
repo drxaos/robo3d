@@ -1,6 +1,7 @@
-package com.github.drxaos.robo3d.graphics.models;
+package com.github.drxaos.robo3d.graphics.models.tiles;
 
 import com.github.drxaos.robo3d.graphics.Env;
+import com.github.drxaos.robo3d.graphics.models.StaticModel;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.control.RigidBodyControl;
 
@@ -13,36 +14,36 @@ public class WallTileModel extends TileModel {
     public static final boolean STATIC_LAYER = true;
 
     public enum Element implements TileModel.Element {
-        Border(ElementType.Wall),
-        BorderCorner(ElementType.Wall),
-        Wall(ElementType.Wall),
-        WallBranch(ElementType.Wall),
-        WallBranchThin(ElementType.Wall),
-        WallColumn(ElementType.Wall),
-        WallColumnThin(ElementType.Wall),
-        WallTwo(ElementType.Wall),
-        WallTwoThin(ElementType.Wall),
-        WallCorner(ElementType.Wall),
-        WallCornerThin(ElementType.Wall),
-        WallCross(ElementType.Wall),
-        WallCrossThin(ElementType.Wall),
-        WallHalf(ElementType.Wall),
-        WallHalfR(ElementType.Wall),
-        WallHalfThin(ElementType.Wall),
-        WallHalfThinR(ElementType.Wall),
-        WallSingle(ElementType.Wall),
-        WallSingleR(ElementType.Wall),
-        WallSingleThin(ElementType.Wall),
-        WallSingleThinR(ElementType.Wall),
-        WallThin(ElementType.Wall);
+        Border(StaticModel.ElementType.Wall),
+        BorderCorner(StaticModel.ElementType.Wall),
+        Wall(StaticModel.ElementType.Wall),
+        WallBranch(StaticModel.ElementType.Wall),
+        WallBranchThin(StaticModel.ElementType.Wall),
+        WallColumn(StaticModel.ElementType.Wall),
+        WallColumnThin(StaticModel.ElementType.Wall),
+        WallTwo(StaticModel.ElementType.Wall),
+        WallTwoThin(StaticModel.ElementType.Wall),
+        WallCorner(StaticModel.ElementType.Wall),
+        WallCornerThin(StaticModel.ElementType.Wall),
+        WallCross(StaticModel.ElementType.Wall),
+        WallCrossThin(StaticModel.ElementType.Wall),
+        WallHalf(StaticModel.ElementType.Wall),
+        WallHalfR(StaticModel.ElementType.Wall),
+        WallHalfThin(StaticModel.ElementType.Wall),
+        WallHalfThinR(StaticModel.ElementType.Wall),
+        WallSingle(StaticModel.ElementType.Wall),
+        WallSingleR(StaticModel.ElementType.Wall),
+        WallSingleThin(StaticModel.ElementType.Wall),
+        WallSingleThinR(StaticModel.ElementType.Wall),
+        WallThin(StaticModel.ElementType.Wall);
 
-        ElementType elementType;
+        StaticModel.ElementType elementType;
 
-        Element(ElementType elementType) {
+        Element(StaticModel.ElementType elementType) {
             this.elementType = elementType;
         }
 
-        public ElementType getElementType() {
+        public StaticModel.ElementType getElementType() {
             return elementType;
         }
     }

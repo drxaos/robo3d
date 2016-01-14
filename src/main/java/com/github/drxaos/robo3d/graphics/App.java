@@ -154,8 +154,8 @@ public class App extends SimpleApplication {
             info.setSelectionX("" + String.format("%.2f", selectedObject.getWorldTranslation().getX()));
             info.setSelectionY("" + String.format("%.2f", selectedObject.getWorldTranslation().getZ()));
             float rot = selectedObject.getWorldRotation().inverse().mult(new Quaternion().fromAngles(0, FastMath.PI, 0)).toAngles(new float[3])[1];
-            rot = (float) (rot / Math.PI * 180);
-            info.setSelectionRot("" + String.format("%.2f", rot));
+            float rotGr = (float) (rot / Math.PI * 180);
+            info.setSelectionRot("" + String.format("%.2f", rot) + " (" + String.format("%.2f", rotGr) + ")");
             Object state = selectedObject.getUserData("object_state");
             info.setSelectionState("" + (state == null ? "---" : state));
         }
@@ -213,6 +213,9 @@ public class App extends SimpleApplication {
             return false;
         }
         if (show && selectedObject == null) {
+            return false;
+        }
+        if (show && selectedObject.getChild("FirstPersonCamera") == null) {
             return false;
         }
         cameraView = show;

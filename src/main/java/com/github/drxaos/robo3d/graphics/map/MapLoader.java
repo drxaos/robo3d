@@ -3,7 +3,7 @@ package com.github.drxaos.robo3d.graphics.map;
 import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.models.ObjectModel;
-import com.github.drxaos.robo3d.graphics.models.TileModel;
+import com.github.drxaos.robo3d.graphics.models.tiles.TileModel;
 import com.github.drxaos.robo3d.tmx.*;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.PlaneCollisionShape;
