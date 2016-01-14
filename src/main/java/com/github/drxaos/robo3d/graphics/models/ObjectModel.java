@@ -12,7 +12,8 @@ import com.github.drxaos.robo3d.graphics.models.box.BoxModel;
 import com.github.drxaos.robo3d.graphics.models.env.ControlModel;
 import com.github.drxaos.robo3d.graphics.models.env.FenceModel;
 import com.github.drxaos.robo3d.graphics.models.env.RadioStationModel;
-import com.github.drxaos.robo3d.graphics.models.robots.RedRobotModel;
+import com.github.drxaos.robo3d.graphics.models.robots.RobotBlueModel;
+import com.github.drxaos.robo3d.graphics.models.robots.RobotRedModel;
 import com.github.drxaos.robo3d.graphics.models.robots.RobotModel;
 import com.jme3.asset.AssetManager;
 import com.jme3.scene.Geometry;
@@ -54,7 +55,8 @@ abstract public class ObjectModel extends StaticModel {
 
     public static final Map<String, Class<? extends ObjectModel>> TYPES = new HashMap<String, Class<? extends ObjectModel>>() {{
         put("Robot", RobotModel.class);
-        put("RedRobot", RedRobotModel.class);
+        put("RobotRed", RobotRedModel.class);
+        put("RobotBlue", RobotBlueModel.class);
         put("RadioStation", RadioStationModel.class);
         put("Fence", FenceModel.class);
         put("Control", ControlModel.class);

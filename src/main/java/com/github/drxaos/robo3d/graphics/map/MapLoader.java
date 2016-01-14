@@ -92,10 +92,11 @@ public class MapLoader {
                     ObjectModel objectModel = typeCls
                             .getDeclaredConstructor(AssetManager.class, String.class)
                             .newInstance(assetManager, object.name);
+
                     objectModel.move(
-                            object.x / 50 * 6 + FastMath.cos(JmeUtils.degreesToRad(object.rotation - 45)) * 3 * FastMath.sqrt(2),
+                            object.x / 50 * 6 + FastMath.cos(JmeUtils.degreesToRad(object.rotation - 45)) * object.width / 50 * 3 * FastMath.sqrt(2),
                             0,
-                            object.y / 50 * 6 + FastMath.sin(JmeUtils.degreesToRad(object.rotation - 45)) * 3 * FastMath.sqrt(2));
+                            object.y / 50 * 6 + FastMath.sin(JmeUtils.degreesToRad(object.rotation - 45)) * object.height / 50 * 3 * FastMath.sqrt(2));
                     objectModel.rotate(0, JmeUtils.degreesToRad(-object.rotation), 0);
                     sceneNode.attachChild(objectModel);
                     objectModel.init(env);

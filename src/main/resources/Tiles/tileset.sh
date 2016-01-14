@@ -7,4 +7,5 @@ montage `ls roofs-*.png` -geometry 50x50 -tile 5x20 -background '#000000' _tiles
 convert _tileset-roofs.png -fill blue -tint 40 tileset-roofs.png
 convert objects-01-robot.png -fill red -tint 40 objects-02-redrobot.png
 convert objects-01-robot.png -fill blue -tint 40 objects-03-bluerobot.png
-montage `ls objects-*.png` -geometry 50x50 -tile 5x20 -background '#ff00ff' tileset-objects.png
+montage `ls objects-*.png` -geometry 50x50-15-15 -tile 5x20 -background '#ff00ff' tileset-objects.png
+montage `ls lobjects-*.png` -geometry 50x50 -tile 5x20 -background '#ff00ff' tileset-lobjects.png

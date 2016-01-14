@@ -8,9 +8,9 @@ import com.jme3.texture.Texture;
 
 import java.util.List;
 
-public class RedRobotModel extends RobotModel {
+public class RobotRedModel extends RobotModel {
 
-    public RedRobotModel(AssetManager am, String objectName) {
+    public RobotRedModel(AssetManager am, String objectName) {
         super(am, "red", objectName);
     }
 
