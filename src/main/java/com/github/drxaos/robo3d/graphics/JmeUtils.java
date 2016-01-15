@@ -33,9 +33,6 @@ public class JmeUtils {
     }
 
     public static List<Material> findMaterials(Node root, String name) {
-        if (name == null) {
-            return null;
-        }
         List<Material> list = new ArrayList<Material>();
         findMaterials(root, name, list);
         return list;
@@ -43,7 +40,7 @@ public class JmeUtils {
 
     private static void findMaterials(Node root, String name, List<Material> list) {
         for (Spatial child : root.getChildren()) {
-            if (child instanceof Geometry && name.equals(((Geometry) child).getMaterial().getName())) {
+            if (child instanceof Geometry && (name == null || name.equals(((Geometry) child).getMaterial().getName()))) {
                 list.add(((Geometry) child).getMaterial());
             } else if (child instanceof Node) {
                 findMaterials((Node) child, name, list);

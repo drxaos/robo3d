@@ -73,7 +73,6 @@ abstract public class TileModel extends StaticModel {
     public static final Map<String, Class<? extends TileModel>> TYPES = new HashMap<String, Class<? extends TileModel>>() {{
         put("roofs", RoofTileModel.class);
         put("walls", WallTileModel.class);
-        put("doors", DoorTileModel.class);
         put("roads", RoadTileModel.class);
         put("borders", BorderTileModel.class);
     }};

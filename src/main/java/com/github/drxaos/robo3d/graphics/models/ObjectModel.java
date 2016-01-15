@@ -1,14 +1,15 @@
 package com.github.drxaos.robo3d.graphics.models;
 
 import com.github.drxaos.robo3d.graphics.JmeUtils;
-import com.github.drxaos.robo3d.graphics.models.barrels.BarrelBlueModel;
-import com.github.drxaos.robo3d.graphics.models.barrels.BarrelGreenModel;
-import com.github.drxaos.robo3d.graphics.models.barrels.BarrelModel;
-import com.github.drxaos.robo3d.graphics.models.barrels.BarrelRedModel;
+import com.github.drxaos.robo3d.graphics.models.barrel.BarrelBlueModel;
+import com.github.drxaos.robo3d.graphics.models.barrel.BarrelGreenModel;
+import com.github.drxaos.robo3d.graphics.models.barrel.BarrelModel;
+import com.github.drxaos.robo3d.graphics.models.barrel.BarrelRedModel;
 import com.github.drxaos.robo3d.graphics.models.box.BoxAmmoModel;
 import com.github.drxaos.robo3d.graphics.models.box.BoxFragModel;
 import com.github.drxaos.robo3d.graphics.models.box.BoxMedModel;
 import com.github.drxaos.robo3d.graphics.models.box.BoxModel;
+import com.github.drxaos.robo3d.graphics.models.door.DoorModel;
 import com.github.drxaos.robo3d.graphics.models.env.ControlModel;
 import com.github.drxaos.robo3d.graphics.models.env.FenceModel;
 import com.github.drxaos.robo3d.graphics.models.env.RadioStationModel;
@@ -68,5 +69,6 @@ abstract public class ObjectModel extends StaticModel {
         put("BarrelBlue", BarrelBlueModel.class);
         put("BarrelGreen", BarrelGreenModel.class);
         put("BarrelRed", BarrelRedModel.class);
+        put("Door", DoorModel.class);
     }};
 }

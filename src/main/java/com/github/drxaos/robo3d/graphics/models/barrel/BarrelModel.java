@@ -1,4 +1,4 @@
-package com.github.drxaos.robo3d.graphics.models.barrels;
+package com.github.drxaos.robo3d.graphics.models.barrel;
 
 import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.JmeUtils;
