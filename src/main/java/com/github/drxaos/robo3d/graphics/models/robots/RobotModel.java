@@ -106,8 +106,8 @@ public class RobotModel extends ObjectModel {
     boolean r, l, br, bl;
 
     public void update(Env env) {
-        Vector3f force = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(-maxChassisForce));
-        force.setY(0);
+        Vector3f force = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(-1));
+        force.setY(0).normalizeLocal().multLocal(maxChassisForce);
         Vector3f bforce = force.mult(-1);
         Vector3f back = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(0.5f));
         Vector3f lc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(0.9f)).add(back);
