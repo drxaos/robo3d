@@ -3,7 +3,7 @@ package com.github.drxaos.robo3d.graphics.controls;
 import com.github.drxaos.robo3d.graphics.App;
 import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.filters.SelectionAppState;
-import com.github.drxaos.robo3d.graphics.models.StaticModel;
+import com.github.drxaos.robo3d.graphics.models.ObjectModel;
 import com.jme3.collision.CollisionResult;
 import com.jme3.collision.CollisionResults;
 import com.jme3.input.InputManager;
@@ -53,8 +53,8 @@ public class Picker implements RawInputListener {
                 }
                 Spatial e = geometry;
                 while (e != null) {
-                    if (e instanceof StaticModel) {
-                        app.select((StaticModel) e, click ?
+                    if (e instanceof ObjectModel) {
+                        app.select((ObjectModel) e, click ?
                                 SelectionAppState.Type.SELECT :
                                 SelectionAppState.Type.HOVER);
                         return;

@@ -18,10 +18,54 @@ public class DoorModel extends ObjectModel {
 
     public void init(Env env) {
         CollisionShape shape = boundsToCollisionShape();
-        physic = new RigidBodyControl(shape, 0);
+        physic = new RigidBodyControl(shape, 1);
+        physic.setKinematic(true);
         this.addControl(physic);
         env.getApp().getBulletAppState().getPhysicsSpace().add(physic);
 
         //Optimizer.optimize(this, true);
+    }
+
+    int action = 1;
+    final static int ACTION_IDLE = 0;
+    final static int ACTION_CLOSING = 1;
+    final static int ACTION_OPENING = -1;
+    float state = 0;
+    float speed = 0.1f;
+    final static float STATE_OPEN = -3.85f;
+    final static float STATE_CLOSE = 0;
+
+    public boolean isOpen() {
+        return state <= STATE_OPEN;
+    }
+
+    @Override
+    public void update(Env env) {
+        super.update(env);
+
+        state += speed * action;
+
+        if (action == ACTION_CLOSING && state > STATE_CLOSE) {
+            action = ACTION_IDLE;
+            state = STATE_CLOSE;
+        }
+        if (action == ACTION_OPENING && state < STATE_OPEN) {
+            action = ACTION_IDLE;
+            state = STATE_OPEN;
+        }
+
+        setLocalTranslation(getLocalTranslation().setY(state));
+    }
+
+    final static String OPEN = "open";
+    final static String CLOSE = "close";
+
+    public void signal(String name) {
+        if (OPEN.equals(name)) {
+            action = ACTION_OPENING;
+        }
+        if (CLOSE.equals(name)) {
+            action = ACTION_CLOSING;
+        }
     }
 }

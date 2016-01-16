@@ -1,5 +1,6 @@
 package com.github.drxaos.robo3d.graphics.models;
 
+import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.models.barrel.BarrelBlueModel;
 import com.github.drxaos.robo3d.graphics.models.barrel.BarrelGreenModel;
@@ -14,9 +15,12 @@ import com.github.drxaos.robo3d.graphics.models.env.ControlModel;
 import com.github.drxaos.robo3d.graphics.models.env.FenceModel;
 import com.github.drxaos.robo3d.graphics.models.env.RadioStationModel;
 import com.github.drxaos.robo3d.graphics.models.robots.RobotBlueModel;
-import com.github.drxaos.robo3d.graphics.models.robots.RobotRedModel;
 import com.github.drxaos.robo3d.graphics.models.robots.RobotModel;
+import com.github.drxaos.robo3d.graphics.models.robots.RobotRedModel;
 import com.jme3.asset.AssetManager;
+import com.jme3.bullet.control.RigidBodyControl;
+import com.jme3.math.Vector3f;
+import com.jme3.renderer.Camera;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 
@@ -71,4 +75,39 @@ abstract public class ObjectModel extends StaticModel {
         put("BarrelRed", BarrelRedModel.class);
         put("Door", DoorModel.class);
     }};
+
+    public void update(Env env) {
+        if (physic != null && !physic.isKinematic() && physic.getMass() > 0) {
+            Vector3f pos = getLocalTranslation();
+            if (pos.getY() > 0.02) {
+                pos.setY(0);
+                setLocalTranslation(pos);
+                physic.setPhysicsLocation(pos);
+            }
+        }
+    }
+
+    protected boolean selected;
+    protected RigidBodyControl physic;
+
+    public void selected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public void applyFirstPersonView(Camera cam) {
+        Spatial camera = getChild("FirstPersonCamera");
+        cam.setLocation(camera.getWorldTranslation());
+        cam.setRotation(camera.getWorldRotation());
+    }
+
+    public RigidBodyControl getPhysic() {
+        return physic;
+    }
+
+    public void signal(String name) {
+    }
+
+    public Map<String, String> getSignals() {
+        return null;
+    }
 }

@@ -6,9 +6,12 @@ import com.github.drxaos.robo3d.graphics.filters.SelectionAppState;
 import com.github.drxaos.robo3d.graphics.gui.Info;
 import com.github.drxaos.robo3d.graphics.gui.InfoAppState;
 import com.github.drxaos.robo3d.graphics.map.MapLoader;
+import com.github.drxaos.robo3d.graphics.models.ObjectModel;
 import com.github.drxaos.robo3d.graphics.models.StaticModel;
+import com.github.drxaos.robo3d.graphics.models.tiles.TileModel;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.StatsAppState;
+import com.jme3.app.state.AppState;
 import com.jme3.asset.AssetEventListener;
 import com.jme3.asset.AssetKey;
 import com.jme3.asset.TextureKey;
@@ -39,12 +42,13 @@ public class App extends SimpleApplication {
     private StatsAppState statsAppState;
     private boolean initialized = false;
 
-    private List<StaticModel> objects = new ArrayList<>();
+    private List<TileModel> tiles = new ArrayList<>();
+    private List<ObjectModel> objects = new ArrayList<>();
     private Info info;
 
 
     public App() {
-        super(null);
+        super((AppState[]) null);
         mMapLoader = new MapLoader();
         mLights = new Lights();
         mFutureUpdater = new FutureUpdater();
@@ -129,7 +133,7 @@ public class App extends SimpleApplication {
     public void simpleUpdate(float tpf) {
         mFutureUpdater.update(tpf);
 
-        for (StaticModel model : objects) {
+        for (ObjectModel model : objects) {
             model.update(env);
         }
 
@@ -169,7 +173,11 @@ public class App extends SimpleApplication {
         return bulletAppState;
     }
 
-    public List<StaticModel> getObjects() {
+    public List<TileModel> getTiles() {
+        return tiles;
+    }
+
+    public List<ObjectModel> getObjects() {
         return objects;
     }
 
@@ -182,9 +190,9 @@ public class App extends SimpleApplication {
         return null;
     }
 
-    StaticModel selectedObject;
+    ObjectModel selectedObject;
 
-    public void select(StaticModel object, SelectionAppState.Type type) {
+    public void select(ObjectModel object, SelectionAppState.Type type) {
         selectionAppState.highlight(object, type);
         if (type == SelectionAppState.Type.SELECT) {
             if (selectedObject != null) {

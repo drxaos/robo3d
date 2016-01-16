@@ -10,6 +10,7 @@ import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.MatParamTexture;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.jme3.renderer.Camera;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
@@ -20,9 +21,9 @@ import com.jme3.texture.Texture;
 import jme3tools.optimize.LodGenerator;
 
 import java.util.List;
+import java.util.Map;
 
 public class StaticModel extends Node {
-    protected RigidBodyControl physic;
 
     public enum ElementType {
         Floor(ShadowMode.Receive),
@@ -48,7 +49,6 @@ public class StaticModel extends Node {
     protected AssetManager am;
     protected boolean fresh = false;
     protected String meshName, subname;
-    protected boolean selected;
 
     public StaticModel(AssetManager am, String meshName, String subname, String objectName) {
         this.am = am;
@@ -119,20 +119,5 @@ public class StaticModel extends Node {
     public void init(Env env) {
     }
 
-    public void update(Env env) {
-    }
 
-    public void selected(boolean selected) {
-        this.selected = selected;
-    }
-
-    public void applyFirstPersonView(Camera cam) {
-        Spatial camera = getChild("FirstPersonCamera");
-        cam.setLocation(camera.getWorldTranslation());
-        cam.setRotation(camera.getWorldRotation());
-    }
-
-    public RigidBodyControl getPhysic() {
-        return physic;
-    }
 }
