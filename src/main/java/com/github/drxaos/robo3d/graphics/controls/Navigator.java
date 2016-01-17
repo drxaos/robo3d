@@ -94,6 +94,9 @@ public class Navigator implements RawInputListener {
         if (toCamDistance < 30) {
             toCamDistance = 30;
         }
+        if (toCamDistance > 900) {
+            toCamDistance = 900;
+        }
         if (toCamLookAt.getX() < 0) {
             toCamLookAt.setX(0);
         }
