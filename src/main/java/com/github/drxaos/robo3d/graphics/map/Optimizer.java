@@ -41,14 +41,14 @@ public class Optimizer {
 
         for (Geometry geom : geometries) {
             List<Geometry> outList = matToGeom.get(geom.getMaterial());
-            if (outList == null) {
-                //trying to compare materials with the contentEquals method
-                for (Material mat : matToGeom.keySet()) {
-                    if (geom.getMaterial().contentEquals(mat)) {
-                        outList = matToGeom.get(mat);
-                    }
-                }
-            }
+//            if (outList == null) {
+//                //trying to compare materials with the contentEquals method
+//                for (Material mat : matToGeom.keySet()) {
+//                    if (geom.getMaterial().contentEquals(mat)) {
+//                        outList = matToGeom.get(mat);
+//                    }
+//                }
+//            }
             if (outList == null) {
                 outList = new ArrayList<Geometry>();
                 matToGeom.put(geom.getMaterial(), outList);

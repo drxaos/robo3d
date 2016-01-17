@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="8" height="5" tilewidth="50" tileheight="50" nextobjectid="24">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="8" height="5" tilewidth="50" tileheight="50" nextobjectid="25">
  <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="80">
   <image source="tileset-roads.png" trans="000000" width="250" height="800"/>
  </tileset>
@@ -30,7 +30,7 @@
  </layer>
  <layer name="walls" width="8" height="5">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC2NgIB5kMjAcwCefSoJZxAIAyVvnDqAAAAA=
+   H4sIAAAAAAAAC2NgQIBUBvwgk4HhAD55QvrJkQcA56Uv2aAAAAA=
   </data>
  </layer>
  <layer name="roofs" width="8" height="5" opacity="0.29">
@@ -45,17 +45,17 @@
  </objectgroup>
  <objectgroup name="fences">
   <object id="2" name="fence1" type="Fence" gid="402" x="78" y="55" width="50" height="50"/>
-  <object id="3" name="fence2" type="Fence" gid="402" x="178" y="54" width="50" height="50"/>
+  <object id="3" name="fence2" type="Fence" gid="402" x="188" y="54" width="50" height="50"/>
   <object id="4" name="fence3" type="Fence" gid="402" x="277" y="54" width="50" height="50"/>
   <object id="5" name="fence4" type="Fence" gid="402" x="71" y="248" width="50" height="50"/>
-  <object id="6" name="fence5" type="Fence" gid="402" x="170" y="244" width="50" height="50"/>
+  <object id="6" name="fence5" type="Fence" gid="402" x="185.333" y="245.333" width="50" height="50"/>
   <object id="7" name="fence6" type="Fence" gid="402" x="278" y="242" width="50" height="50"/>
  </objectgroup>
  <objectgroup name="boxes">
   <object id="8" name="box" type="BoxMed" gid="304" x="107.333" y="117" width="20" height="20"/>
   <object id="9" name="box" type="BoxAmmo" gid="304" x="272.498" y="160.679" width="20" height="20" rotation="-46.3465"/>
   <object id="10" name="box" type="Box" gid="304" x="81.3377" y="154.456" width="20" height="20" rotation="31.1605"/>
-  <object id="11" name="box" type="BoxFrag" gid="304" x="176.792" y="191.009" width="20" height="20" rotation="23.4114"/>
+  <object id="11" name="box" type="BoxFrag" gid="304" x="196.125" y="187.009" width="20" height="20" rotation="23.4114"/>
  </objectgroup>
  <objectgroup name="barrels">
   <object id="12" name="barrel" type="Barrel" gid="305" x="52.3334" y="204" width="20" height="20"/>
@@ -68,11 +68,19 @@
   <object id="20" name="c1" type="Control" gid="403" x="358.745" y="117.128" width="50" height="50" rotation="-249.369"/>
  </objectgroup>
  <objectgroup name="doors">
-  <object id="21" name="door" type="Door" gid="404" x="145.545" y="108.182" width="50" height="50"/>
+  <object id="21" name="door01" type="Door" gid="404" x="145.545" y="108.182" width="50" height="50"/>
  </objectgroup>
  <objectgroup name="wires">
   <object id="22" name="wire" type="Wire" x="252.667" y="183.333">
-   <polyline points="0,0 -80,-74"/>
+   <polyline points="71.3333,-8 -80,-74"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="buttons">
+  <object id="24" name="button01" type="Button" gid="405" x="300.333" y="199.667" width="50" height="50">
+   <properties>
+    <property name="off_signals" value="door01=close"/>
+    <property name="on_signals" value="door01=open"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

@@ -9,6 +9,7 @@ import com.jme3.collision.CollisionResults;
 import com.jme3.input.InputManager;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.event.*;
+import com.jme3.math.FastMath;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector2f;
 import com.jme3.math.Vector3f;
@@ -22,6 +23,7 @@ public class Picker implements RawInputListener {
     InputManager inputManager;
     Camera cam;
     Node rootNode;
+    float dist = 0;
     boolean pressed = false;
     boolean dragging = false;
     private boolean enabled = true;
@@ -94,7 +96,10 @@ public class Picker implements RawInputListener {
             return;
         }
         if (pressed) {
-            dragging = true;
+            dist += FastMath.abs(evt.getDX()) + FastMath.abs(evt.getDY());
+            if (dist > 10) {
+                dragging = true;
+            }
         } else {
             action(false);
         }
@@ -106,6 +111,7 @@ public class Picker implements RawInputListener {
             return;
         }
         if (evt.isPressed()) {
+            dist = 0;
             pressed = true;
         }
         if (evt.isReleased()) {

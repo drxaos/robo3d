@@ -2,6 +2,7 @@ package com.github.drxaos.robo3d.graphics.models.door;
 
 import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.models.ObjectModel;
+import com.github.drxaos.robo3d.tmx.TmxMapObject;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -16,7 +17,7 @@ public class DoorModel extends ObjectModel {
         super(am, "Models/door/door.blend", subname, objectName);
     }
 
-    public void init(Env env) {
+    public void init(Env env, TmxMapObject mapObject) {
         CollisionShape shape = boundsToCollisionShape();
         physic = new RigidBodyControl(shape, 1);
         physic.setKinematic(true);

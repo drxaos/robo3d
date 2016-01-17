@@ -3,6 +3,7 @@ package com.github.drxaos.robo3d.graphics.models.box;
 import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.models.ObjectModel;
+import com.github.drxaos.robo3d.tmx.TmxMapObject;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -36,7 +37,7 @@ public class BoxModel extends ObjectModel {
         }
     }
 
-    public void init(Env env) {
+    public void init(Env env, TmxMapObject mapObject) {
         CollisionShape shape = CollisionShapeFactory.createDynamicMeshShape(this);
         physic = new RigidBodyControl(shape, 0.5f);
         this.addControl(physic);

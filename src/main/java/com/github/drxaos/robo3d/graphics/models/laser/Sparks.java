@@ -1,0 +1,60 @@
+package com.github.drxaos.robo3d.graphics.models.laser;
+
+import com.jme3.app.SimpleApplication;
+import com.jme3.effect.ParticleEmitter;
+import com.jme3.effect.ParticleMesh.Type;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
+import com.jme3.post.FilterPostProcessorFix;
+import com.jme3.post.filters.BloomFilter;
+
+/**
+ * This demo shows flying sparks, like from welding or
+ * from a short-circuiting electric panel.
+ */
+public class Sparks extends SimpleApplication {
+
+    @Override
+    public void simpleInitApp() {
+        FilterPostProcessorFix fppa = new FilterPostProcessorFix(assetManager);
+        fppa.setNumSamples(4);
+
+        BloomFilter bloom = new BloomFilter(BloomFilter.GlowMode.Objects);
+        bloom.setBloomIntensity(5);
+        bloom.setBlurScale(2);
+        bloom.setDownSamplingFactor(1);
+        fppa.addFilter(bloom);
+
+        viewPort.addProcessor(fppa);
+
+
+        ParticleEmitter sparksEmitter = new ParticleEmitter("Spark emitter", Type.Triangle, 10);
+        Material sparkMat = new Material(assetManager, "Common/MatDefs/Misc/Particle.j3md");
+        sparkMat.setTexture("Texture", assetManager.loadTexture("Effects/spark.png"));
+        sparkMat.setColor("GlowColor", ColorRGBA.Red);
+        sparkMat.setTexture("GlowMap", assetManager.loadTexture("Effects/sparkGlow.png"));
+        sparksEmitter.setMaterial(sparkMat);
+        sparksEmitter.setImagesX(1);
+        sparksEmitter.setImagesY(1);
+        rootNode.attachChild(sparksEmitter);
+
+        sparksEmitter.getParticleInfluencer().
+                setInitialVelocity(new Vector3f(0f, 3f, 0f));
+        sparksEmitter.getParticleInfluencer().
+                setVelocityVariation(1.0f);
+        sparksEmitter.setStartColor(ColorRGBA.Red);
+        sparksEmitter.setEndColor(ColorRGBA.Red);
+        sparksEmitter.setGravity(0, 5, 0);
+        sparksEmitter.setFacingVelocity(true);
+        sparksEmitter.setStartSize(.5f);
+        sparksEmitter.setEndSize(.5f);
+        sparksEmitter.setLowLife(0.1f);
+        sparksEmitter.setHighLife(0.1f);
+    }
+
+    public static void main(String[] args) {
+        Sparks app = new Sparks();
+        app.start();
+    }
+}

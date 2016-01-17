@@ -6,9 +6,7 @@ import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 import com.jme3.post.FilterPostProcessorFix;
-import com.jme3.post.filters.ColorOverlayFilter;
-import com.jme3.post.filters.FXAAFilter;
-import com.jme3.post.filters.FadeFilter;
+import com.jme3.post.filters.*;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
@@ -27,6 +25,8 @@ public class Lights {
     ColorRGBA overlayColor;
     FXAAFilter fxaa;
     FilterPostProcessorFix fppa;
+    private LightScatteringFilter sunLightFilter;
+    private Vector3f lightDir = new Vector3f(-0.39f, -0.32f - 0.5f, -0.74f);
 
     public void setLights(final Env env) {
 
@@ -37,7 +37,7 @@ public class Lights {
         // Lights
         sun = new DirectionalLight();
         sun.setColor(ColorRGBA.White.mult(0.7f));
-        sun.setDirection(new Vector3f(-0.5f, -1, -1));
+        sun.setDirection(lightDir);
         sceneNode.addLight(sun);
 
         al = new AmbientLight();
@@ -80,6 +80,18 @@ public class Lights {
             }
         };
         fppa.setNumSamples(4);
+
+        // Sun Light
+        //sunLightFilter = new LightScatteringFilter(lightDir.mult(-3000));
+        //sunLightFilter.setNbSamples(8);
+        //fppa.addFilter(sunLightFilter);
+
+        // Light beams
+        BloomFilter bloom = new BloomFilter(BloomFilter.GlowMode.Objects);
+        bloom.setBloomIntensity(4);
+//        bloom.setBlurScale(2);
+//        bloom.setDownSamplingFactor(1);
+        fppa.addFilter(bloom);
 
         // Fade in-out
         fade = new FadeFilter(2);

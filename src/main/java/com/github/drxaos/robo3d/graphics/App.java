@@ -7,7 +7,6 @@ import com.github.drxaos.robo3d.graphics.gui.Info;
 import com.github.drxaos.robo3d.graphics.gui.InfoAppState;
 import com.github.drxaos.robo3d.graphics.map.MapLoader;
 import com.github.drxaos.robo3d.graphics.models.ObjectModel;
-import com.github.drxaos.robo3d.graphics.models.StaticModel;
 import com.github.drxaos.robo3d.graphics.models.tiles.TileModel;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.StatsAppState;
@@ -25,6 +24,7 @@ import com.jme3.scene.Node;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class App extends SimpleApplication {
 
@@ -41,6 +41,9 @@ public class App extends SimpleApplication {
     private Navigator navigator;
     private StatsAppState statsAppState;
     private boolean initialized = false;
+
+    private long frame = 0;
+    private boolean visible = false;
 
     private List<TileModel> tiles = new ArrayList<>();
     private List<ObjectModel> objects = new ArrayList<>();
@@ -87,12 +90,10 @@ public class App extends SimpleApplication {
 
         cam.setLocation(new Vector3f(15, 30, 100));
         cam.lookAt(new Vector3f(15, 0, 100), cam.getUp());
-        cam.setFrustumPerspective(45f, (float) cam.getWidth() / cam.getHeight(), 0.01f, 1000f);
 //        flyCam.setDragToRotate(true);
 //        flyCam.setEnabled(false);
 //        flyCam.setMoveSpeed(20.0f);
         inputManager.setCursorVisible(true);
-        cam.setFrustumFar(4000.0f);
 //        cam.setFrustumNear(0.1f);
 
         selectionNode = new Node("Selection");
@@ -129,8 +130,14 @@ public class App extends SimpleApplication {
         return mSceneNode;
     }
 
+    public long getFrame() {
+        return frame;
+    }
+
     @Override
     public void simpleUpdate(float tpf) {
+        frame++;
+
         mFutureUpdater.update(tpf);
 
         for (ObjectModel model : objects) {
@@ -144,6 +151,24 @@ public class App extends SimpleApplication {
         }
 
         updateSelectedInfo();
+
+        for (ObjectModel object : objects) {
+            Map<String, String> signals = object.getSignals();
+            if (signals != null && signals.size() > 0) {
+                for (Map.Entry<String, String> entry : signals.entrySet()) {
+                    getObject(entry.getKey()).signal(entry.getValue());
+                }
+            }
+        }
+
+        if (frame <= 50 && !visible) {
+            mLights.fade.setValue(0);
+
+        }
+        if (frame >= 50 && !visible) {
+            visible = true;
+            mLights.fade.fadeIn();
+        }
     }
 
     protected void updateSelectedInfo() {
@@ -181,8 +206,8 @@ public class App extends SimpleApplication {
         return objects;
     }
 
-    public StaticModel getObject(String name) {
-        for (StaticModel object : objects) {
+    public ObjectModel getObject(String name) {
+        for (ObjectModel object : objects) {
             if (name.equals(object.getName())) {
                 return object;
             }
@@ -227,6 +252,12 @@ public class App extends SimpleApplication {
             return false;
         }
         cameraView = show;
+        if (cameraView) {
+            cam.setFrustumPerspective(45f, (float) cam.getWidth() / cam.getHeight(), 0.01f, 1000f);
+            //cam.setFrustumFar(4000.0f);
+        } else {
+            cam.setFrustumPerspective(45f, (float) cam.getWidth() / cam.getHeight(), 1f, 1000f);
+        }
         picker.setEnabled(!show);
         navigator.setEnabled(!show);
         selectionAppState.highlight(show ? null : selectedObject, SelectionAppState.Type.SELECT);

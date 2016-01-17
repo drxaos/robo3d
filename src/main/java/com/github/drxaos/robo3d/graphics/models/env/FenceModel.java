@@ -3,6 +3,7 @@ package com.github.drxaos.robo3d.graphics.models.env;
 import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.map.Optimizer;
 import com.github.drxaos.robo3d.graphics.models.ObjectModel;
+import com.github.drxaos.robo3d.tmx.TmxMapObject;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
@@ -22,7 +23,7 @@ public class FenceModel extends ObjectModel {
         super.prepare();
     }
 
-    public void init(Env env) {
+    public void init(Env env, TmxMapObject mapObject) {
         CollisionShape shape = boundsToCollisionShape();
         physic = new RigidBodyControl(shape, 0.5f);
         this.addControl(physic);
@@ -31,5 +32,11 @@ public class FenceModel extends ObjectModel {
         env.getApp().getBulletAppState().getPhysicsSpace().add(physic);
 
         Optimizer.optimize(this, true);
+    }
+
+
+    @Override
+    public float getMass() {
+        return 0.2f;
     }
 }

@@ -9,7 +9,6 @@ import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.PlaneCollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.material.Material;
-import com.jme3.material.RenderState;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
 import com.jme3.math.Plane;
@@ -18,7 +17,6 @@ import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.shape.Line;
 import com.jme3.scene.shape.Quad;
 import com.jme3.util.SkyFactory;
 
@@ -58,7 +56,7 @@ public class MapLoader {
                         tileModel.move(x * 6 + 3, 0, y * 6 + 3);
                         tileModel.rotate(0, JmeUtils.degreesToRad(-r), 0);
                         layerNode.attachChild(tileModel);
-                        tileModel.init(env);
+                        tileModel.init(env, null);
                         env.getApp().getTiles().add(tileModel);
                     }
                 }
@@ -101,7 +99,7 @@ public class MapLoader {
                             object.y / 50 * 6 + FastMath.sin(JmeUtils.degreesToRad(object.rotation - 45)) * object.height / 50 * 3 * FastMath.sqrt(2));
                     objectModel.rotate(0, JmeUtils.degreesToRad(-object.rotation), 0);
                     sceneNode.attachChild(objectModel);
-                    objectModel.init(env);
+                    objectModel.init(env, object);
                     env.getApp().getObjects().add(objectModel);
                 }
             }

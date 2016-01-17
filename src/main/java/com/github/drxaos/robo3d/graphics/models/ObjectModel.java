@@ -10,6 +10,7 @@ import com.github.drxaos.robo3d.graphics.models.box.BoxAmmoModel;
 import com.github.drxaos.robo3d.graphics.models.box.BoxFragModel;
 import com.github.drxaos.robo3d.graphics.models.box.BoxMedModel;
 import com.github.drxaos.robo3d.graphics.models.box.BoxModel;
+import com.github.drxaos.robo3d.graphics.models.button.ButtonModel;
 import com.github.drxaos.robo3d.graphics.models.door.DoorModel;
 import com.github.drxaos.robo3d.graphics.models.env.ControlModel;
 import com.github.drxaos.robo3d.graphics.models.env.FenceModel;
@@ -74,6 +75,7 @@ abstract public class ObjectModel extends StaticModel {
         put("BarrelGreen", BarrelGreenModel.class);
         put("BarrelRed", BarrelRedModel.class);
         put("Door", DoorModel.class);
+        put("Button", ButtonModel.class);
     }};
 
     public void update(Env env) {
@@ -109,5 +111,9 @@ abstract public class ObjectModel extends StaticModel {
 
     public Map<String, String> getSignals() {
         return null;
+    }
+
+    public float getMass() {
+        return 1f;
     }
 }

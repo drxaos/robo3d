@@ -3,15 +3,13 @@ package com.github.drxaos.robo3d.graphics.models;
 import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.ModelCache;
+import com.github.drxaos.robo3d.tmx.TmxMapObject;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
-import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.material.MatParamTexture;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
-import com.jme3.math.Vector3f;
-import com.jme3.renderer.Camera;
 import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
@@ -21,7 +19,6 @@ import com.jme3.texture.Texture;
 import jme3tools.optimize.LodGenerator;
 
 import java.util.List;
-import java.util.Map;
 
 public class StaticModel extends Node {
 
@@ -116,8 +113,6 @@ public class StaticModel extends Node {
         return shape;
     }
 
-    public void init(Env env) {
+    public void init(Env env, TmxMapObject mapObject) {
     }
-
-
 }

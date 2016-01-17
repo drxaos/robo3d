@@ -1,13 +1,18 @@
 package com.github.drxaos.robo3d.graphics.models.robots;
 
 import com.github.drxaos.robo3d.graphics.Env;
+import com.github.drxaos.robo3d.graphics.JmeUtils;
 import com.github.drxaos.robo3d.graphics.map.Optimizer;
 import com.github.drxaos.robo3d.graphics.models.ObjectModel;
+import com.github.drxaos.robo3d.tmx.TmxMapObject;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.collision.shapes.CollisionShape;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.input.RawInputListener;
 import com.jme3.input.event.*;
+import com.jme3.material.Material;
+import com.jme3.math.ColorRGBA;
+import com.jme3.math.FastMath;
 import com.jme3.math.Vector3f;
 
 public class RobotModel extends ObjectModel {
@@ -20,12 +25,24 @@ public class RobotModel extends ObjectModel {
         super(am, "Models/robot/robot.blend", subname, objectName);
     }
 
+    protected ColorRGBA glowColorMax;
+    protected ColorRGBA glowColor;
+
     @Override
     protected void prepare() {
         super.prepare();
+
+        glowColorMax = ColorRGBA.Green;
+        glowColor = new ColorRGBA();
+        for (Material glow : JmeUtils.findMaterials(this, "Glow")) {
+            glow.setBoolean("UseMaterialColors", true);
+            glow.setColor("Diffuse", glowColor);
+            glow.setColor("Ambient", glowColor);
+            glow.setColor("GlowColor", glowColor);
+        }
     }
 
-    public void init(Env env) {
+    public void init(Env env, TmxMapObject mapObject) {
         CollisionShape shape = boundsToCollisionShape();
         physic = new RigidBodyControl(shape, 1.0f);
         this.addControl(physic);
@@ -107,6 +124,9 @@ public class RobotModel extends ObjectModel {
 
     public void update(Env env) {
         super.update(env);
+
+        float glowScale = FastMath.abs(FastMath.sin(0.1f * env.getApp().getFrame())) * 0.2f + 0.8f;
+        glowColor.set(glowColorMax).multLocal(glowScale);
 
         Vector3f force = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(-1));
         force.setY(0).normalizeLocal().multLocal(maxChassisForce);

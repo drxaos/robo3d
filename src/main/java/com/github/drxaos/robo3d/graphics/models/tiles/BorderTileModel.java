@@ -1,6 +1,7 @@
 package com.github.drxaos.robo3d.graphics.models.tiles;
 
 import com.github.drxaos.robo3d.graphics.Env;
+import com.github.drxaos.robo3d.tmx.TmxMapObject;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.control.RigidBodyControl;
 
@@ -62,7 +63,7 @@ public class BorderTileModel extends TileModel {
         this(am, TILES.get(id));
     }
 
-    public void init(Env env) {
+    public void init(Env env, TmxMapObject mapObject) {
         RigidBodyControl phy = new RigidBodyControl(0.0f);
         this.addControl(phy);
         env.getApp().getBulletAppState().getPhysicsSpace().add(phy);

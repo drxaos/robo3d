@@ -78,7 +78,7 @@ public class RoadTileModel extends TileModel {
         // fix z-fighting
         List<Material> materials = JmeUtils.findMaterials(this, null);
         for (Material material : materials) {
-            material.getAdditionalRenderState().setPolyOffset(1, 1);
+            material.getAdditionalRenderState().setPolyOffset(2, 2);
         }
     }
 }
