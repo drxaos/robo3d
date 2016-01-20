@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="8" height="5" tilewidth="50" tileheight="50" nextobjectid="25">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="8" height="5" tilewidth="50" tileheight="50" nextobjectid="26">
  <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="80">
   <image source="tileset-roads.png" trans="000000" width="250" height="800"/>
  </tileset>
@@ -44,28 +44,29 @@
   <object id="17" name="testbot0194" type="Robot" gid="301" x="57.732" y="89.9407" width="20" height="20" rotation="-53.7833"/>
  </objectgroup>
  <objectgroup name="fences">
-  <object id="2" name="fence1" type="Fence" gid="402" x="78" y="55" width="50" height="50"/>
+  <object id="2" name="fence1" type="Fence" gid="402" x="118.667" y="167.667" width="50" height="50"/>
   <object id="3" name="fence2" type="Fence" gid="402" x="188" y="54" width="50" height="50"/>
   <object id="4" name="fence3" type="Fence" gid="402" x="277" y="54" width="50" height="50"/>
-  <object id="5" name="fence4" type="Fence" gid="402" x="71" y="248" width="50" height="50"/>
+  <object id="5" name="fence4" type="Fence" gid="402" x="54.0881" y="207.629" width="50" height="50" rotation="-302.967"/>
   <object id="6" name="fence5" type="Fence" gid="402" x="185.333" y="245.333" width="50" height="50"/>
   <object id="7" name="fence6" type="Fence" gid="402" x="278" y="242" width="50" height="50"/>
  </objectgroup>
  <objectgroup name="boxes">
-  <object id="8" name="box" type="BoxMed" gid="304" x="107.333" y="117" width="20" height="20"/>
+  <object id="8" name="box" type="BoxMed" gid="304" x="134" y="63" width="20" height="20"/>
   <object id="9" name="box" type="BoxAmmo" gid="304" x="272.498" y="160.679" width="20" height="20" rotation="-46.3465"/>
-  <object id="10" name="box" type="Box" gid="304" x="81.3377" y="154.456" width="20" height="20" rotation="31.1605"/>
+  <object id="10" name="box" type="Box" gid="304" x="107.338" y="33.1227" width="20" height="20" rotation="31.1605"/>
   <object id="11" name="box" type="BoxFrag" gid="304" x="196.125" y="187.009" width="20" height="20" rotation="23.4114"/>
  </objectgroup>
  <objectgroup name="barrels">
-  <object id="12" name="barrel" type="Barrel" gid="305" x="52.3334" y="204" width="20" height="20"/>
-  <object id="13" name="barrel" type="BarrelBlue" gid="305" x="120.667" y="202" width="20" height="20"/>
+  <object id="12" name="barrel" type="Barrel" gid="305" x="106.333" y="208" width="20" height="20"/>
+  <object id="13" name="barrel" type="BarrelBlue" gid="305" x="88.667" y="212.667" width="20" height="20"/>
   <object id="14" name="barrel" type="BarrelGreen" gid="305" x="323.334" y="141" width="20" height="20"/>
-  <object id="15" name="barrel" type="BarrelRed" gid="305" x="210.667" y="83.3337" width="20" height="20"/>
+  <object id="15" name="barrel" type="BarrelRed" gid="305" x="100.667" y="224.667" width="20" height="20"/>
  </objectgroup>
- <objectgroup name="stations">
+ <objectgroup name="buildings">
   <object id="18" name="rs1" type="RadioStation" gid="401" x="331.782" y="108.791" width="50" height="50" rotation="-11.4273"/>
   <object id="20" name="c1" type="Control" gid="403" x="358.745" y="117.128" width="50" height="50" rotation="-249.369"/>
+  <object id="25" name="bun1" type="Bunker" gid="406" x="128.633" y="154.855" width="50" height="50" rotation="-511.113"/>
  </objectgroup>
  <objectgroup name="doors">
   <object id="21" name="door01" type="Door" gid="404" x="145.545" y="108.182" width="50" height="50"/>

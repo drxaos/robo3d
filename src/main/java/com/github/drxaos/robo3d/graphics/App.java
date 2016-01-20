@@ -62,8 +62,15 @@ public class App extends SimpleApplication {
         inputManager.clearMappings();
         setPauseOnLostFocus(false);
 
-        bulletAppState = new BulletAppState();
-        bulletAppState.setSpeed(2);
+        bulletAppState = new BulletAppState() {
+            public void render(RenderManager rm) {
+                if (!active) {
+                    return;
+                }
+                pSpace.update(speed);
+            }
+        };
+        bulletAppState.setSpeed(1);
         stateManager.attach(bulletAppState);
         bulletAppState.setDebugEnabled(false);
         bulletAppState.getPhysicsSpace().setAccuracy(1f / 100f);

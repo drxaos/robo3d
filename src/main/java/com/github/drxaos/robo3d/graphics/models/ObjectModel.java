@@ -12,6 +12,7 @@ import com.github.drxaos.robo3d.graphics.models.box.BoxMedModel;
 import com.github.drxaos.robo3d.graphics.models.box.BoxModel;
 import com.github.drxaos.robo3d.graphics.models.button.ButtonModel;
 import com.github.drxaos.robo3d.graphics.models.door.DoorModel;
+import com.github.drxaos.robo3d.graphics.models.env.BunkerModel;
 import com.github.drxaos.robo3d.graphics.models.env.ControlModel;
 import com.github.drxaos.robo3d.graphics.models.env.FenceModel;
 import com.github.drxaos.robo3d.graphics.models.env.RadioStationModel;
@@ -76,6 +77,7 @@ abstract public class ObjectModel extends StaticModel {
         put("BarrelRed", BarrelRedModel.class);
         put("Door", DoorModel.class);
         put("Button", ButtonModel.class);
+        put("Bunker", BunkerModel.class);
     }};
 
     public void update(Env env) {

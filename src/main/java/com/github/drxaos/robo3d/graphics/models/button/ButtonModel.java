@@ -87,7 +87,7 @@ public class ButtonModel extends ObjectModel {
     public void update(Env env) {
         super.update(env);
 
-        float glowScale = FastMath.abs(FastMath.sin(0.1f * env.getApp().getFrame())) * 0.2f + 0.4f;
+        float glowScale = FastMath.abs(FastMath.sin(0.1f * env.getApp().getFrame())) * 0.05f + 0.5f;
         glowColor.set(glowColorMax).multLocal(glowScale);
 
         float mass = 0;
