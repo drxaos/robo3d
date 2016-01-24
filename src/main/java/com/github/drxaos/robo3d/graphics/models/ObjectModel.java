@@ -83,7 +83,7 @@ abstract public class ObjectModel extends StaticModel {
     public void update(Env env) {
         if (physic != null && !physic.isKinematic() && physic.getMass() > 0) {
             Vector3f pos = getLocalTranslation();
-            if (pos.getY() > 0.02) {
+            if (pos.getY() > 0.05) {
                 pos.setY(0);
                 setLocalTranslation(pos);
                 physic.setPhysicsLocation(pos);

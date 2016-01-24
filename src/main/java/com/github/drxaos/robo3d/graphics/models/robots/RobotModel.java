@@ -132,10 +132,8 @@ public class RobotModel extends ObjectModel {
         force.setY(0).normalizeLocal().multLocal(maxChassisForce);
         Vector3f bforce = force.mult(-1);
         Vector3f back = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(0.5f));
-        Vector3f lc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(0.9f)).add(back);
-        lc.setY(0);
-        Vector3f rc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(-0.9f)).add(back);
-        rc.setY(0);
+        Vector3f lc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(0.9f)).setY(0.5f);
+        Vector3f rc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(-0.9f)).setY(0.5f);
 
         if (l && selected) {
             physic.applyForce(force, lc);
@@ -151,8 +149,8 @@ public class RobotModel extends ObjectModel {
         }
 
         // fix stuck in walls
-        if ((r || l || br || bl) && physic.getLinearVelocity().length() < 0.1) {
-            physic.setPhysicsLocation(physic.getPhysicsLocation().setY(0f));
-        }
+//        if ((r || l || br || bl) && physic.getLinearVelocity().length() < 0.1) {
+//            physic.setPhysicsLocation(physic.getPhysicsLocation().setY(0f));
+//        }
     }
 }
