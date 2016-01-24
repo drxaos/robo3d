@@ -5,14 +5,13 @@ import com.jme3.light.AmbientLight;
 import com.jme3.light.DirectionalLight;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-import com.jme3.post.FilterPostProcessorFix;
+import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.*;
+import com.jme3.post.ssao.SSAOFilter;
 import com.jme3.renderer.ViewPort;
 import com.jme3.scene.Node;
 import com.jme3.shadow.DirectionalLightShadowRenderer;
 import com.jme3.shadow.EdgeFilteringMode;
-
-import java.util.concurrent.Callable;
 
 public class Lights {
 
@@ -24,7 +23,8 @@ public class Lights {
     ColorOverlayFilter overlay;
     ColorRGBA overlayColor;
     FXAAFilter fxaa;
-    FilterPostProcessorFix fppa;
+    SSAOFilter ssao;
+    FilterPostProcessor fppa;
     private LightScatteringFilter sunLightFilter;
     private Vector3f lightDir = new Vector3f(-0.39f, -0.32f - 0.5f, -0.74f);
 
@@ -57,29 +57,8 @@ public class Lights {
 
     protected void loadFilters(final Env env, final AssetManager assetManager, final ViewPort viewPort) {
         // fix black screen on resize
-        fppa = new FilterPostProcessorFix(assetManager) {
-            boolean loaded = false;
-
-            @Override
-            public void reshape(ViewPort vp, int w, int h) {
-                if (loaded) {
-                    env.getApp().enqueue(new Callable<Void>() {
-                        public Void call() {
-                            if (fppa != null) {
-                                viewPort.removeProcessor(fppa);
-                                fppa = null;
-                            }
-                            loadFilters(env, assetManager, viewPort);
-                            return null;
-                        }
-                    });
-                    setDisableReshape(true);
-                }
-                super.reshape(vp, w, h);
-                loaded = true;
-            }
-        };
-        fppa.setNumSamples(4);
+        fppa = new FilterPostProcessor(assetManager);
+        fppa.setNumSamples(1);
 
         // Sun Light
         //sunLightFilter = new LightScatteringFilter(lightDir.mult(-3000));
@@ -96,6 +75,11 @@ public class Lights {
         // Fade in-out
         fade = new FadeFilter(2);
         fppa.addFilter(fade);
+
+        // SSAO
+//        ssao = new SSAOFilter(1f, 5f, 0.1f, 0.01f);
+//        ssao.setUseOnlyAo(true);
+//        fppa.addFilter(ssao);
 
         // Color
         overlayColor = new ColorRGBA(1f, 0.9f, 0.9f, 1f);

@@ -27,8 +27,7 @@ public class FenceModel extends ObjectModel {
         CollisionShape shape = boundsToCollisionShape();
         physic = new RigidBodyControl(shape, 0.5f);
         this.addControl(physic);
-        physic.setLinearDamping(0.9f);
-        physic.setAngularDamping(0.9f);
+        physic.setDamping(0.9f, 0.9f);
         env.getApp().getBulletAppState().getPhysicsSpace().add(physic);
 
         Optimizer.optimize(this, true);

@@ -6,7 +6,7 @@ import com.jme3.effect.ParticleMesh.Type;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
-import com.jme3.post.FilterPostProcessorFix;
+import com.jme3.post.FilterPostProcessor;
 import com.jme3.post.filters.BloomFilter;
 
 /**
@@ -17,7 +17,7 @@ public class Sparks extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
-        FilterPostProcessorFix fppa = new FilterPostProcessorFix(assetManager);
+        FilterPostProcessor fppa = new FilterPostProcessor(assetManager);
         fppa.setNumSamples(4);
 
         BloomFilter bloom = new BloomFilter(BloomFilter.GlowMode.Objects);

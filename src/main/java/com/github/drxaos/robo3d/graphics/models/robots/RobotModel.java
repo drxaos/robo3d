@@ -48,8 +48,7 @@ public class RobotModel extends ObjectModel {
         this.addControl(physic);
         env.getApp().getBulletAppState().getPhysicsSpace().add(physic);
         physic.setFriction(0.2f);
-        physic.setLinearDamping(0.999f);
-        physic.setAngularDamping(0.999f);
+        physic.setDamping(0.999f, 0.999f);
 
         Optimizer.optimize(this, true);
 
@@ -132,8 +131,8 @@ public class RobotModel extends ObjectModel {
         force.setY(0).normalizeLocal().multLocal(maxChassisForce);
         Vector3f bforce = force.mult(-1);
         Vector3f back = this.getWorldRotation().mult(Vector3f.UNIT_X.mult(0.5f));
-        Vector3f lc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(0.9f)).setY(0.5f);
-        Vector3f rc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(-0.9f)).setY(0.5f);
+        Vector3f lc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(0.9f)).setY(-0.01f);
+        Vector3f rc = this.getWorldRotation().mult(Vector3f.UNIT_Z.mult(-0.9f)).setY(-0.01f);
 
         if (l && selected) {
             physic.applyForce(force, lc);

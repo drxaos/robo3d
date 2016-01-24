@@ -88,11 +88,11 @@ public class StaticModel extends Node {
                 }
             }
 
-            LodGenerator lod = new LodGenerator((Geometry) spatial);
-            lod.bakeLods(LodGenerator.TriangleReductionMethod.PROPORTIONAL, 0.25f, 0.5f, 0.75f, 0.9f);
-            LodControl lc = new LodControl();
-            lc.setDistTolerance(0.0005f);
-            spatial.addControl(lc);
+//            LodGenerator lod = new LodGenerator((Geometry) spatial);
+//            lod.bakeLods(LodGenerator.TriangleReductionMethod.PROPORTIONAL, 0.25f, 0.5f, 0.75f, 0.9f);
+//            LodControl lc = new LodControl();
+//            lc.setDistTolerance(0.0005f);
+//            spatial.addControl(lc);
         }
         if (spatial instanceof Node) {
             for (Spatial child : ((Node) spatial).getChildren()) {

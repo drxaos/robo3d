@@ -41,8 +41,7 @@ public class BarrelModel extends ObjectModel {
         CollisionShape shape = CollisionShapeFactory.createDynamicMeshShape(this);
         physic = new RigidBodyControl(shape, 0.5f);
         this.addControl(physic);
-        physic.setLinearDamping(0.9f);
-        physic.setAngularDamping(0.9f);
+        physic.setDamping(0.9f, 0.9f);
         env.getApp().getBulletAppState().getPhysicsSpace().add(physic);
 
         //Optimizer.optimize(this, true);

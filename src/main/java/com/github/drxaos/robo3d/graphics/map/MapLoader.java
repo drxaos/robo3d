@@ -71,6 +71,7 @@ public class MapLoader {
                 sceneNode.attachChild(layerNode);
             }
             RigidBodyControl floorPhy = new RigidBodyControl(new PlaneCollisionShape(new Plane(Vector3f.UNIT_Y, 0)), 0.0f);
+            floorPhy.setFriction(0.1f);
             env.getApp().getBulletAppState().getPhysicsSpace().add(floorPhy);
 
             Quad quad = new Quad(1000000, 1000000);
