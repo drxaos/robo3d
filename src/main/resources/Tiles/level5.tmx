@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="50" tileheight="50" nextobjectid="37">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="50" tileheight="50" nextobjectid="74">
  <tileset firstgid="1" name="roads" tilewidth="50" tileheight="50" tilecount="80" columns="5">
   <image source="tileset-roads.png" trans="000000" width="250" height="800"/>
  </tileset>
@@ -9,14 +9,14 @@
  <tileset firstgid="101" name="walls" tilewidth="50" tileheight="50" tilecount="100" columns="5">
   <image source="tileset-walls.png" trans="00ff00" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="201" name="doors" tilewidth="50" tileheight="50" tilecount="100" columns="5">
-  <image source="tileset-doors.png" trans="ffff00" width="250" height="1000"/>
- </tileset>
- <tileset firstgid="301" name="roofs" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+ <tileset firstgid="201" name="roofs" tilewidth="50" tileheight="50" tilecount="100" columns="5">
   <image source="tileset-roofs.png" trans="000000" width="250" height="1000"/>
  </tileset>
- <tileset firstgid="401" name="objects" tilewidth="50" tileheight="50" tilecount="100" columns="5">
-  <image source="tileset-objects.png" trans="ff00ff" width="250" height="1000"/>
+ <tileset firstgid="301" name="objects" tilewidth="20" tileheight="20" tilecount="100" columns="5">
+  <image source="tileset-objects.png" trans="ff00ff" width="100" height="400"/>
+ </tileset>
+ <tileset firstgid="401" name="objects-large" tilewidth="50" tileheight="50" tilecount="100" columns="5">
+  <image source="tileset-lobjects.png" trans="ff00ff" width="250" height="1000"/>
  </tileset>
  <layer name="roads" width="30" height="30">
   <data encoding="base64" compression="gzip">
@@ -33,52 +33,53 @@
    H4sIAAAAAAAAA+1WXZLCIAzmqLwUdF1tnVnvw1E4mkEKxhgS2k4dHzYzGX7S5OMjAWrMv3yjONDBmNBSsIc9cAfdHntjaRywemNs6f/k8aPl7Bp/jYPCb7V9Z9zY43sjtgl0hL0qOpF9w74uaziiOW/4HFJfiGsxzpWsdxTWDJgWNB6RTy9fKicyxriwN9Yr9bsWl/KT+C7BxbXvmdrfgpvyfchtED6rMXCs8T2/dXxRcJP8KnaM94diXzNWODXqTOFrZ75R+IxdG7PP3bizXcRsxUg4qW6BZ7hlzjVOq57LOd6Iy7aSTznHBdc95wPyq3XsyZ0x59Pidlq4zz5rRH32vloqPflN/FM/7cHwantIuYvP5C6W3kma3w77W791R0ictPNJfTnc87y2y3P8Yuf4HhrzrRx+E9/yBqL8xjTv0L8L8qlnwDf49uZ3rUic6buP70xH/sWWqvQGb+UkyV7/bppI+6W9RZ+WO+D/mVUQDgAA
   </data>
  </layer>
- <layer name="doors" width="30" height="30">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+3UsQ0AIAhE0b//FI5iKyxla0liiBb/NVdBaA6Q/rJgnClV5esDVBIwb+az8TdE12JJX7LzEmy73PxAEA4AAA==
-  </data>
- </layer>
  <layer name="roofs" width="30" height="30" opacity="0.29">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+2WYQqAIAyF14FKu1FH8ygerUkNYpm4OQnKD96PoPWaPlcAg8HgK6wTgJ9gI+F1qK11WLtgjRPUXHyTXyDhdRT4bugbnKBGQ+pP01sr2FtENSPdHyvf9Jz58K6+36jfWy5K+bbyzeHPNSD5i89bvu7IQuQ1Fjkv+T7B30czT1rmCCHNqxXaOcYzrZ3fUvgeS/d7+NbBM02irNA5yann92oprEfPs/M3X5oLOfX+55GyA2NnOEQQDgAA
+   H4sIAAAAAAAAA+2UYQqAIAyFPapH8yj+zdmdmthAzMzZJDAfPEJqfukeU2ppaWkW7WivlCbj2rTWAtphDTBqEm7gGTKuLYOrkWuAUdMjiDYjGSXh2awT2IfbHylu2GeLz+bvhc57yUUt31Lckvx5B2SfvPuKCzELNq+RyHmNe6f8f3rmyZs5QuLmVUq9c4zuqeSR88plPU498u7+xqVclByysvo/N/ep/wPRbB1oUIr0EA4AAA==
   </data>
  </layer>
- <objectgroup name="objects">
-  <object id="1" name="p1" type="RobotRed" gid="402" x="91.3578" y="729.875" width="50" height="50" rotation="178.548"/>
-  <object id="2" name="p2" type="RobotRed" gid="402" x="60.5526" y="786.553" width="50" height="50" rotation="-179.879"/>
-  <object id="3" name="p3" type="RobotRed" gid="402" x="59.0998" y="713.615" width="50" height="50" rotation="-178.609"/>
-  <object id="4" name="p4" type="RobotRed" gid="402" x="92.4312" y="768.467" width="50" height="50" rotation="-537.824"/>
-  <object id="5" name="p5" type="RobotRed" gid="402" x="59.9457" y="748.946" width="50" height="50" rotation="-180.125"/>
-  <object id="6" name="r1" type="Robot" gid="401" x="232.218" y="699.72" width="50" height="50" rotation="-92.8642"/>
-  <object id="7" name="r2" type="Robot" gid="401" x="757.257" y="620.234" width="50" height="50" rotation="-358.27"/>
-  <object id="8" name="r3" type="Robot" gid="401" x="266.218" y="698.72" width="50" height="50" rotation="-92.8642"/>
-  <object id="14" name="rs1" type="RadioStation" gid="404" x="467.666" y="629" width="50" height="50"/>
-  <object id="15" name="rs2" type="RadioStation" gid="404" x="563.611" y="457.98" width="50" height="50" rotation="-225.631"/>
-  <object id="16" name="f1" type="Fence" gid="405" x="293.299" y="716.605" width="50" height="50" rotation="-14.9568"/>
-  <object id="17" name="f2" type="Fence" gid="405" x="517.072" y="960.68" width="50" height="50" rotation="7.17787"/>
-  <object id="18" name="f3" type="Fence" gid="405" x="757.14" y="1303.73" width="50" height="50" rotation="282.223"/>
-  <object id="19" name="f4" type="Fence" gid="405" x="805.17" y="797.828" width="50" height="50" rotation="269.608"/>
-  <object id="20" name="r4" type="Robot" gid="401" x="757.257" y="738.234" width="50" height="50" rotation="-358.27"/>
-  <object id="21" name="r5" type="Robot" gid="401" x="1013.85" y="642.096" width="50" height="50" rotation="-447.43">
-   <properties>
-    <property name="path" value="pt1"/>
-   </properties>
-  </object>
-  <object id="22" name="f5" type="Fence" gid="405" x="213.26" y="847.258" width="50" height="50" rotation="-0.593299"/>
-  <object id="23" name="f6" type="Fence" gid="405" x="277.26" y="849.258" width="50" height="50" rotation="-0.593299"/>
-  <object id="24" name="f7" type="Fence" gid="405" x="334.26" y="847.258" width="50" height="50" rotation="-0.593299"/>
-  <object id="25" name="ctr1" type="Control" gid="406" x="525.317" y="785.321" width="50" height="50" rotation="180"/>
-  <object id="26" name="ctr2" type="Control" gid="406" x="580.317" y="785.321" width="50" height="50" rotation="180"/>
-  <object id="27" name="ctr3" type="Control" gid="406" x="468.903" y="845.294" width="50" height="50" rotation="75.6564"/>
-  <object id="28" name="ctr4" type="Control" gid="406" x="570.709" y="895.922" width="50" height="50" rotation="-90.9071"/>
-  <object id="29" name="rs3" type="RadioStation" gid="404" x="1357.7" y="1190.79" width="50" height="50" rotation="-472.634"/>
-  <object id="30" name="f8" type="Fence" gid="405" x="898.26" y="1043.26" width="50" height="50" rotation="-0.593299"/>
-  <object id="31" name="f9" type="Fence" gid="405" x="850.26" y="1045.26" width="50" height="50" rotation="-0.593299"/>
-  <object id="32" name="f10" type="Fence" gid="405" x="948.26" y="1045.26" width="50" height="50" rotation="-0.593299"/>
-  <object id="33" name="pt1" type="Path" x="1060" y="522">
-   <polyline points="-66,100 -22,214 -72,452 -176,438 -182,148"/>
-  </object>
-  <object id="35" name="r6" type="Robot" gid="401" x="540.302" y="1075.7" width="50" height="50" rotation="-471.027"/>
-  <object id="36" name="r7" type="Robot" gid="401" x="263.813" y="413.52" width="50" height="50" rotation="-212.227"/>
+ <objectgroup name="env">
+  <object id="37" name="rs1" type="RadioStation" gid="401" x="478.37" y="514.2" width="50" height="50" rotation="-16.9422"/>
+  <object id="38" name="rs2" type="RadioStation" gid="401" x="493.015" y="694.948" width="50" height="50" rotation="-87.7843"/>
+  <object id="39" name="rs3" type="RadioStation" gid="401" x="534.653" y="594.25" width="50" height="50" rotation="-313.784"/>
+  <object id="40" name="rs4" type="RadioStation" gid="401" x="1327.26" y="1156.33" width="50" height="50" rotation="-407.05"/>
+  <object id="66" name="c1" type="Control" gid="403" x="491.552" y="865.118" width="50" height="50" rotation="-245.039"/>
+  <object id="67" name="c1" type="Control" gid="403" x="579.854" y="904.355" width="50" height="50" rotation="-481.688"/>
+ </objectgroup>
+ <objectgroup name="robots">
+  <object id="41" name="r1" type="Robot" gid="301" x="221.588" y="683.708" width="20" height="20" rotation="-93.4778"/>
+  <object id="42" name="r2" type="Robot" gid="301" x="1017.78" y="801.998" width="20" height="20" rotation="-51.9041"/>
+  <object id="43" name="r3" type="Robot" gid="301" x="249.651" y="685.277" width="20" height="20" rotation="-84.0309"/>
+  <object id="44" name="r4" type="Robot" gid="301" x="772.052" y="787.463" width="20" height="20" rotation="-362.389"/>
+  <object id="45" name="r5" type="Robot" gid="301" x="249" y="433" width="20" height="20" rotation="-257.389"/>
+  <object id="46" name="r6" type="Robot" gid="301" x="566.036" y="1080.37" width="20" height="20" rotation="-400.107"/>
+  <object id="47" name="r7" type="Robot" gid="301" x="1060.94" y="459.194" width="20" height="20" rotation="-454.14"/>
+  <object id="48" name="rr1" type="RobotRed" gid="302" x="144.534" y="764.538" width="20" height="20" rotation="-178.841"/>
+  <object id="49" name="rr2" type="RobotRed" gid="302" x="116" y="764.333" width="20" height="20" rotation="-178.841"/>
+  <object id="50" name="rr3" type="RobotRed" gid="302" x="84.6667" y="763.667" width="20" height="20" rotation="-178.841"/>
+  <object id="51" name="rr4" type="RobotRed" gid="302" x="53.6667" y="765" width="20" height="20" rotation="-178.841"/>
+ </objectgroup>
+ <objectgroup name="boxes">
+  <object id="52" name="box" type="Box" gid="304" x="219.451" y="913.431" width="20" height="20" rotation="-2.52643"/>
+  <object id="54" name="box" type="Box" gid="304" x="267.481" y="912.871" width="20" height="20" rotation="9.5413"/>
+  <object id="55" name="box" type="Box" gid="304" x="291.333" y="735" width="20" height="20"/>
+  <object id="56" name="box" type="Box" gid="304" x="390.667" y="448.667" width="20" height="20"/>
+  <object id="57" name="box" type="Box" gid="304" x="368.667" y="464" width="20" height="20"/>
+  <object id="58" name="box" type="Box" gid="304" x="1023.1" y="1005.07" width="20" height="20" rotation="-39.3135"/>
+  <object id="59" name="box" type="Box" gid="304" x="1042" y="1006.75" width="20" height="20"/>
+  <object id="60" name="box" type="Box" gid="304" x="1032.26" y="976.636" width="20" height="20" rotation="17.0164"/>
+  <object id="61" name="box" type="Box" gid="304" x="1066.25" y="993.5" width="20" height="20"/>
+  <object id="62" name="box" type="Box" gid="304" x="1089.75" y="1009" width="20" height="20"/>
+  <object id="63" name="box" type="Box" gid="304" x="760.333" y="1004" width="20" height="20"/>
+  <object id="64" name="box" type="Box" gid="304" x="786.667" y="976" width="20" height="20"/>
+  <object id="65" name="box" type="Box" gid="304" x="786.667" y="1005" width="20" height="20"/>
+ </objectgroup>
+ <objectgroup name="doors">
+  <object id="68" name="dr1" type="Door" gid="404" x="399.75" y="549.25" width="50" height="50"/>
+  <object id="69" name="ent1" type="Door" gid="404" x="151" y="800" width="50" height="50"/>
+  <object id="70" name="dr2" type="Door" gid="404" x="800" y="1198.75" width="50" height="50"/>
+  <object id="71" name="dr3" type="Door" gid="404" x="799.404" y="304.096" width="50" height="50" rotation="270.221"/>
+  <object id="72" name="dr4" type="Door" gid="404" x="899.75" y="304.5" width="50" height="50" rotation="270.221"/>
+  <object id="73" name="dr5" type="Door" gid="404" x="1205.12" y="699.594" width="50" height="50" rotation="-0.0542823"/>
  </objectgroup>
 </map>

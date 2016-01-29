@@ -33,7 +33,7 @@ public class MapLoader {
 
         try {
             assetManager.registerLoader(TmxLoader.class, "tmx");
-            TmxMap map = (TmxMap) assetManager.loadAsset("Tiles/level1.tmx");
+            TmxMap map = (TmxMap) assetManager.loadAsset("Tiles/level5.tmx");
 
 
             for (TmxLayer layer : map.getLayers()) {

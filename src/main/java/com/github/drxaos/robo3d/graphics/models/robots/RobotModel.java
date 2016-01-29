@@ -31,15 +31,6 @@ public class RobotModel extends ObjectModel {
     @Override
     protected void prepare() {
         super.prepare();
-
-        glowColorMax = ColorRGBA.Green;
-        glowColor = new ColorRGBA();
-        for (Material glow : JmeUtils.findMaterials(this, "Glow")) {
-            glow.setBoolean("UseMaterialColors", true);
-            glow.setColor("Diffuse", glowColor);
-            glow.setColor("Ambient", glowColor);
-            glow.setColor("GlowColor", glowColor);
-        }
     }
 
     public void init(Env env, TmxMapObject mapObject) {
@@ -49,6 +40,15 @@ public class RobotModel extends ObjectModel {
         env.getApp().getBulletAppState().getPhysicsSpace().add(physic);
         physic.setFriction(0.2f);
         physic.setDamping(0.999f, 0.999f);
+
+        glowColorMax = ColorRGBA.Green;
+        glowColor = new ColorRGBA();
+        for (Material glow : JmeUtils.findMaterials(this, "Glow")) {
+            glow.setBoolean("UseMaterialColors", true);
+            glow.setColor("Diffuse", glowColor);
+            glow.setColor("Ambient", glowColor);
+            glow.setColor("GlowColor", glowColor);
+        }
 
         Optimizer.optimize(this, true);
 

@@ -218,7 +218,7 @@ public class Main {
         settings.setFrameRate(30);
         settings.setDepthBits(24);
         settings.setBitsPerPixel(24);
-        settings.setSamples(8);
+        settings.setSamples(4);
 
         app = new App();
         app.setPauseOnLostFocus(false);

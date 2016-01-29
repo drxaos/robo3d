@@ -1,6 +1,8 @@
 package com.github.drxaos.robo3d.graphics.models.robots;
 
+import com.github.drxaos.robo3d.graphics.Env;
 import com.github.drxaos.robo3d.graphics.JmeUtils;
+import com.github.drxaos.robo3d.tmx.TmxMapObject;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
@@ -36,7 +38,11 @@ public class RobotRedModel extends RobotModel {
         for (Material trackMat : trackMats) {
             trackMat.setParam("DiffuseMap", VarType.Texture2D, redTrackTexture);
         }
+    }
 
+    @Override
+    public void init(Env env, TmxMapObject mapObject) {
+        super.init(env, mapObject);
         glowColorMax = ColorRGBA.Red;
     }
 }
